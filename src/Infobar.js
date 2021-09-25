@@ -1,7 +1,7 @@
 
 export default function Infobar() {
     return (
-<div>
+<div className="Infobar">
     InfoBar
 </div>    );
   }
