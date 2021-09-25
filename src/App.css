@@ -1,3 +1,7 @@
+body{
+    background-color: rgb(218, 225, 233);
+}
+
 .Navbar{
     display: flex;
     border-style: solid;
@@ -5,6 +9,7 @@
     border-color: black;
     
 }
+
 .Main{
     border-style: solid;
     border-width: 2px;
