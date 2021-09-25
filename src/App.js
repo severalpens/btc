@@ -6,13 +6,14 @@ import Footer from './Footer'
 import Transactions from './Transactions'
 import Send from './Send'
 import Infobar from './Infobar'
+import RegisterContract from './RegisterContract';
 
 function App() {
   return (
     <div className="App">
       <Navbar></Navbar>
       <Infobar></Infobar>
-<Send></Send>
+      <RegisterContract></RegisterContract>
       <Footer></Footer>
     </div>
   );

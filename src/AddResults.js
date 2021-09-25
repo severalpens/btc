@@ -66,7 +66,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Transactions() {
+export default function AddResults() {
   const classes = useStyles();
 
 

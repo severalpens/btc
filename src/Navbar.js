@@ -1,14 +1,21 @@
 import Menu from './Menu';
+import './Navbar.css';
 
 function Navbar() {
   return (
       <div className="Navbar">
           <a href="/">Home</a>
-          <Menu></Menu>
-          <a href="/">About</a>
-          <a href="/">Send</a>
-          <a href="/">Receive</a>
-          <a href="/">Transactions</a>
+          <a href="/">RegisterContract</a>
+          <a href="/">ExitTransaction</a>
+          <a href="/">Add</a>
+          <a href="/">EntryTransaction</a>
+          <a href="/">Update</a>
+          <a href="/">ReclaimTransaction</a>
+          <a href="/">ReclaimTransaction1</a>
+          <a href="/">BtcTransfer</a>
+          <a href="/">BtcTransferFrom</a>
+          <a href="/">GetContract</a>
+          <a href="/">HaveContract</a>
           
       </div>
   );
