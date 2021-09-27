@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 
 //Contract details
 const artifact = require("../artifacts/contracts/BasicToken.sol/BasicToken.json");
-const initialBalance = ethers.utils.parseEther("10000.0");
+//const initialBalance = ethers.utils.parseEther("10000.0");
 const contractConstructorArgs = [100000];
 
 
