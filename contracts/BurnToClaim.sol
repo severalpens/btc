@@ -12,6 +12,8 @@ contract BurnToClaim {
         bytes32 hashlock,
         uint256 timelock
     );
+
+    
     event entryTransactionEvent(bytes32 indexed transactionId);
     event reclaimTransactionEvent(bytes32 indexed transactionId);
 
@@ -26,14 +28,21 @@ contract BurnToClaim {
         bool refunded;
         bytes32 preimage;
     }
+
+
     mapping(bytes32 => BurnTokenData) burnTokenData;
+
+
     struct CrosschainAddress {
         address contractAddress;
         bool isExit;
     }
+
+
     mapping(address => CrosschainAddress) crosschainAddress;
 
     event requireMockEvent(string  message);
+
     event revertMockEvent(string  message);
 
     function requireMock(bool result, string memory message) public {
@@ -52,6 +61,8 @@ contract BurnToClaim {
             true
         );
     }
+
+
 
     function exitTransaction(
         address _burnAddress,
@@ -112,6 +123,9 @@ contract BurnToClaim {
             block.timestamp
         );
     }
+
+
+
 
     function add(
         address _crosschainContractAddress,

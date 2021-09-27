@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 require("@nomiclabs/hardhat-etherscan");
 require("@nomiclabs/hardhat-waffle");
 require("hardhat-gas-reporter");
@@ -41,7 +40,7 @@ module.exports = {
     sources: "./contracts",
     tests: "./test",
     cache: "./cache",
-    artifacts: "./artifacts"
+    artifacts: ".client/src/artifacts"
   },
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY,
