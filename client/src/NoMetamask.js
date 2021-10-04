@@ -9,7 +9,6 @@ function NoMetamask() {
             <h1>
               Demo of <a href="https://docs.ethers.io/" target="blank"> Ethers.js </a> and <a href="https://metamask.io" target="blank"> Metamask </a>.
             </h1>
-
           </div>
           <div>
             <p>See <a href="https://youtube.com/playlist?list=PLH7-GRFbhInaXsLjTgYdfiU7k7yPj3fxT" target="blank">youtube playlist</a>for more info.</p>

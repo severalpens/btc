@@ -40,7 +40,7 @@ module.exports = {
     sources: "./contracts",
     tests: "./test",
     cache: "./cache",
-    artifacts: "./client/src/artifacts"
+    artifacts: "./client/src/artifacts/hardhat"
   },
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY,
