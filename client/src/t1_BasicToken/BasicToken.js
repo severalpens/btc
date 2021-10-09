@@ -7,7 +7,7 @@ const artifact = require("../artifacts/contracts/BasicToken.sol/BasicToken.json"
 const contractConstructorArgs = [100000];
 
 const createBasicToken = async function () {
-  window.ethereum.request({ method: 'eth_requestAccounts' });
+  await window.ethereum.request({ method: 'eth_requestAccounts' });
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
   const factory = new ethers.ContractFactory(artifact.abi, artifact.bytecode, signer);
