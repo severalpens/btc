@@ -1,6 +1,6 @@
 import react from 'react';
 import './App.css';
-import {Component as BasicTokenComponent} from './t1_BasicToken/Component'
+import {BasicToken} from './t1_BasicToken/BasicToken'
 
 class App extends react.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class App extends react.Component {
           </div>
         </div>
         <div className="container">
-          <BasicTokenComponent/>
+          <BasicToken/>
           </div>
       </div>
     );
