@@ -28,15 +28,17 @@ More are involved on initial setup. For the full data flow diagram, refer to [BT
 
 A [proof of concept repo](https://github.com/severalpens/burn-to-claim) was built in 2020 which uses a node.js console application to demonstrate the 'happy path' for a successful transfer.
 
+### This version
+The React app is located in `/client`.
+
+The root directory (`/`) can be used to compile contracts and will eventually be used as a platform for integration testing using [Hardhat](https://hardhat.org/).
+
 ### Objective 1 - Construct UI forms for each method (step) in the dataflow diagram.
 
 The main purpose of this repo is to take some of the console application code and use it to construct a complete React UI application. 
 
-For example, deploying the ERC20 tokens, relevant code from the node.js version can be recycled in the construction of a form which will do the same thing. However the user will have control over the variables such as initial amount:
+For example, deploying the ERC20 tokens, relevant code from the node.js version can be recycled in the construction of a form which will do the same thing. However the user will have control over the variables such as `network` and `initial amount`:
 
 ![oldNewExample](./architecture/OldNewExample.png)
 
-#### NB
-
-Ignore everything in the root directory (/) for now. The React application is located in '/client'.
 
