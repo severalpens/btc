@@ -46,3 +46,18 @@ For example, deploying the ERC20 tokens, relevant code from the node.js version 
 ![oldNewExample](./architecture/OldNewExample.png)
 
 
+### Objective 2 - Build Server Side API & Oauth
+- A small api will be needed to track transfer expiration.
+- An Oauth implementation will be needed. Preferably [Auth0](auth0.com).
+
+### Objective 2 - Add Integration/Unit Testing
+- Use Hardhat to build integration tests for the contracts.
+- Use mocha.js/chai.js to build unit tests for the client application.
+
+[Hardhat](https://hardhat.org/)
+
+### Objective 3 - Refine the React app 
+- Expand Usability.
+- Add more networks and possibly Mainnet.
+
+
