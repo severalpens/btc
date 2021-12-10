@@ -30,7 +30,11 @@ A [proof of concept repo](https://github.com/severalpens/burn-to-claim) was buil
 
 ### Objective 1 - Construct UI forms for each method (step) in the dataflow diagram.
 
-The main purpose of this repo is to take some of the console application code and use it to construct a complete React UI application.
+The main purpose of this repo is to take some of the console application code and use it to construct a complete React UI application. 
+
+For example, deploying the ERC20 tokens, relevant code from the node.js version can be recycled in the construction of a form which will do the same thing. However the user will have control over the variables such as initial amount:
+
+![oldNewExample](architecture\OldNewExample.png)
 
 #### NB
 
