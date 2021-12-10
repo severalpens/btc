@@ -1,42 +1,28 @@
-# Advanced Sample Hardhat Project
+# Cross-chain Value Transfer App using 'Burn-to-Claim' protocol by Babu Pillai
 
-This project demonstrates an advanced Hardhat use case, integrating other tools commonly used alongside Hardhat in the ecosystem.
+For the purposes of building this application, knowledge of the protocol is not really required. All the protocol does is transfer value (eg ERC20 tokens) from one blockchain to another OR timeout and return the funds.
 
-The project comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts. It also comes with a variety of other tools, preconfigured to work with the project code.
 
-Try running some of the following tasks:
+For a successful transfer, there are 5 method calls to the blockchain. 
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-npx hardhat help
-REPORT_GAS=true npx hardhat test
-npx hardhat coverage
-npx hardhat run scripts/deploy.js
-node scripts/deploy.js
-npx eslint '**/*.js'
-npx eslint '**/*.js' --fix
-npx prettier '**/*.{json,sol,md}' --check
-npx prettier '**/*.{json,sol,md}' --write
-npx solhint 'contracts/**/*.sol'
-npx solhint 'contracts/**/*.sol' --fix
-```
+![BTC2022 Successful](./architecture/diagrams/BTC2022_Successful.svg)
 
-# Etherscan verification
 
-To try out Etherscan verification, you first need to deploy a contract to an Ethereum network that's supported by Etherscan, such as Ropsten.
+For a failed transfer there are 3. 
 
-In this project, copy the .env.template file to a file named .env, and then edit it to fill in the details. Enter your Etherscan API key, your Ropsten node URL (eg from Alchemy), and the private key of the account which will send the deployment transaction. With a valid .env file in place, first deploy your contract:
+![BTC2022 Timeout](./architecture/diagrams/BTC2022_Timeout.svg)
 
-```shell
-hardhat run --network ropsten scripts/deploy.js
-```
+More are involved on initial setup. For the full data flow diagram, refer to './architecture/diagrams/BTC2022.svg'.
 
-Then, copy the deployment address and paste it in to replace `DEPLOYED_CONTRACT_ADDRESS` in this command:
+## The node.js version
 
-```shell
-npx hardhat verify --network ropsten DEPLOYED_CONTRACT_ADDRESS "Hello, Hardhat!"
-```
+A repo was built in 2020 which uses a node.js console application to demonstrate the 'happy path' for a successful transfer. See burn-to-claim.
+
+## Objective 1 - Construct UI forms for each method (step) in the dataflow diagram.
+
+The main purpose of this repo is to take some of the console application code and use it to construct a complete React UI application.
+
+#### NB
+
+Ignore everything in the root directory (/) for now. The React application is located in '/client'.
+
