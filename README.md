@@ -3,9 +3,12 @@
 
 
 ### Prerequisites
-For the purposes of building this application, knowledge of the protocol is not required. 
+Intermediate level javascript and React programming knowledge is required.
 
 Knowledge of [Smart Contract](https://ethereum.org/en/developers/docs/smart-contracts/) development is advantageous. To learn more, visit my [Youtube series](https://youtube.com/playlist?list=PLH7-GRFbhInbZmSubSoaqWz40nfOK0kyH) on the Ethers.js javascript library.
+
+For the purposes of building this application, knowledge of the protocol is not required. 
+
 
 ### This App
 This app implements the protocol on the Ethereum blockchain via [Smart Contracts](https://ethereum.org/en/developers/docs/smart-contracts/). For simplicity, and cost reasons, transfers will only take place between two testnet networks (Rinkeby & Ropsten).
