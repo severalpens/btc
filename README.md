@@ -34,7 +34,7 @@ The main purpose of this repo is to take some of the console application code an
 
 For example, deploying the ERC20 tokens, relevant code from the node.js version can be recycled in the construction of a form which will do the same thing. However the user will have control over the variables such as initial amount:
 
-![oldNewExample](architecture\OldNewExample.png)
+![oldNewExample](./architecture/OldNewExample.png)
 
 #### NB
 
