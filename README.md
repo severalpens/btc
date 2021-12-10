@@ -1,5 +1,6 @@
 # Burn-to-Claim Demo App
-### Cross-chain Value Transfer App using [Burn-to-Claim](https://www.sciencedirect.com/science/article/abs/pii/S1389128621004369) protocol by Babu Pillai
+### Cross-chain Value Transfer App using [Burn-to-Claim](https://www.sciencedirect.com/science/article/abs/pii/S1389128621004369) protocol by [Babu Pillai](https://scholar.google.ch/citations?user=Xtg1XHIAAAAJ&hl=en)
+
 
 ### Prerequisites
 For the purposes of building this application, knowledge of the protocol is not required. 
