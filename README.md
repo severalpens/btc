@@ -1,4 +1,7 @@
-# Cross-chain Value Transfer App using 'Burn-to-Claim' protocol by Babu Pillai
+# Burn-to-Claim Demo App
+### Cross-chain Value Transfer App using 'Burn-to-Claim' protocol by Babu Pillai
+
+
 
 For the purposes of building this application, knowledge of the protocol is not really required. All the protocol does is transfer value (eg ERC20 tokens) from one blockchain to another OR timeout and return the funds.
 
