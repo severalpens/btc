@@ -26,7 +26,7 @@ For a failed transfer there are 3.
 
 ![BTC2022 Timeout](./architecture/diagrams/BTC2022_Timeout.svg)
 
-More are involved on initial setup. For the full data flow diagram, refer to [BTC2022](./architecture/diagrams/BTC2022.svg).
+More are involved on initial setup. For the full data flow diagram, refer to [BTC2022](./architecture/diagrams/btcvertical.svg).
 
 ### The node.js version
 
