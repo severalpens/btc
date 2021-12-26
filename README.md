@@ -37,7 +37,16 @@ The React app is located in `/client`.
 
 The root directory (`/`) can be used to compile contracts and will eventually be used as a platform for integration testing using [Hardhat](https://hardhat.org/).
 
-### Objective 1 - Construct UI forms for each method (step) in the dataflow diagram.
+## Wireframes
+Draft [wireframes](https://www.figma.com/file/57QEuRZprxs9rInc4j9C5M/BTC2022?node-id=0%3A1) have been created to demonstrate UIs from a functional perspective. ie I have no web design skills
+
+## Project Management 
+
+### Checkpoint 1 - Construct UI forms for each method (step) in the dataflow diagram.
+
+
+
+
 
 The main purpose of this repo is to take some of the console application code and use it to construct a complete React UI application. 
 
@@ -46,16 +55,16 @@ For example, deploying the ERC20 tokens, relevant code from the node.js version 
 ![oldNewExample](./architecture/OldNewExample.png)
 
 
-### Objective 2 - Build Server Side API & Oauth
+### Checkpoint 2 - Build Server Side API & Oauth
 - A small api will be needed to track transfer expiration.
 - An Oauth implementation will be needed. Preferably [Auth0](https://auth0.com).
 
-### Objective 3 - Add Integration/Unit Testing
+### Checkpoint 3 - Add Integration/Unit Testing
 - Use [Hardhat](https://hardhat.org/) to build integration tests for the contracts.
 - Use mocha.js/chai.js to build unit tests for the client application.
 
 
-### Objective 4 - Refine the React app 
+### Checkpoint 4 - Refine the React app 
 - Expand Usability.
 - Add more networks and possibly Mainnet.
 
