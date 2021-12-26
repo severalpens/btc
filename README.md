@@ -42,6 +42,12 @@ Draft [wireframes](https://www.figma.com/file/57QEuRZprxs9rInc4j9C5M/BTC2022?nod
 
 ## Project Management 
 
+### ToDo
+- User stories
+- Form template
+- CSS
+- Variable names
+
 ### Checkpoint 1 - Construct UI forms for each method (step) in the dataflow diagram.
 
 
