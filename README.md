@@ -57,9 +57,15 @@ v2 is a complete rebuild using:
     - typescript
     - react-router
     - scss
+    - [style guide](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Organizing)
 - server 
     - express-generator
     - ejs
+
+
+https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Organizing
+
+
 
 ### Checkpoint/Version 1 - PoC
 ### Checkpoint/Version 2 - Setup template and build template form

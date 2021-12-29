@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Outlet, Link } from 'react-router-dom';
+import './App.scss';
 
 export default function App() {
   return (
