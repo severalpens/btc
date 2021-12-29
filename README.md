@@ -48,7 +48,24 @@ Draft [wireframes](https://www.figma.com/file/57QEuRZprxs9rInc4j9C5M/BTC2022?nod
 - CSS
 - Variable names
 
-### Checkpoint 1 - Construct UI forms for each method (step) in the dataflow diagram.
+### Versions
+V1 was a playground/PoC environment.
+
+v2 is a complete rebuild using:
+- client 
+    - create-react-app
+    - typescript
+    - react-router
+    - scss
+- server 
+    - express-generator
+    - ejs
+
+### Checkpoint/Version 1 - PoC
+### Checkpoint/Version 2 - Setup template and build template form
+
+
+### Checkpoint 3 - Construct UI forms for each method (step) in the dataflow diagram.
 
 
 
@@ -61,16 +78,16 @@ For example, deploying the ERC20 tokens, relevant code from the node.js version 
 ![oldNewExample](./architecture/OldNewExample.png)
 
 
-### Checkpoint 2 - Build Server Side API & Oauth
+### Checkpoint 4 - Build Server Side API & Oauth
 - A small api will be needed to track transfer expiration.
 - An Oauth implementation will be needed. Preferably [Auth0](https://auth0.com).
 
-### Checkpoint 3 - Add Integration/Unit Testing
+### Checkpoint 5 - Add Integration/Unit Testing
 - Use [Hardhat](https://hardhat.org/) to build integration tests for the contracts.
 - Use mocha.js/chai.js to build unit tests for the client application.
 
 
-### Checkpoint 4 - Refine the React app 
+### Checkpoint 6 - Refine the React app 
 - Expand Usability.
 - Add more networks and possibly Mainnet.
 
