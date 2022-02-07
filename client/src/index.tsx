@@ -1,10 +1,11 @@
-import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import Expenses from './routes/expenses';
 import Invoices from './routes/invoices';
 import Invoice from './routes/invoice';
+import BasicToken from './routes/BasicToken';
+import BasicTokens from './routes/BasicTokens';
 import './index.scss';
 
 const rootElement = document.getElementById('root');
@@ -13,6 +14,7 @@ ReactDOM.render(
     <Routes>
       <Route path="/" element={<App />}>
         <Route path="expenses" element={<Expenses />} />
+
         <Route path="invoices" element={<Invoices />}>
           <Route
             index
@@ -24,6 +26,19 @@ ReactDOM.render(
           />
           <Route path=":invoiceId" element={<Invoice />} />
         </Route>
+
+        <Route path="basictokens" element={<BasicTokens />}>
+          <Route
+            index
+            element={
+              <main style={{ padding: '1rem' }}>
+                <p>Basic Tokens</p>
+              </main>
+            }
+          />
+          <Route path=":basicTokenId" element={<BasicToken />} />
+        </Route>
+        
         <Route
           path="*"
           element={
@@ -33,6 +48,10 @@ ReactDOM.render(
           }
         />
       </Route>
+
+
+
+      
     </Routes>
   </BrowserRouter>,
   rootElement

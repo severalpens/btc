@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import './App.scss';
 
@@ -8,7 +7,8 @@ export default function App() {
       <h1>Bookkeeper</h1>
       <nav style={{ borderBottom: 'solid 1px', paddingBottom: '1rem' }}>
         <Link to="/invoices">Invoices</Link> |{' '}
-        <Link to="/expenses">Expenses</Link>
+        <Link to="/expenses">Expenses</Link> |{' '}
+        <Link to="/basictokens">Basic Tokens</Link>
       </nav>
       <Outlet />
     </div>

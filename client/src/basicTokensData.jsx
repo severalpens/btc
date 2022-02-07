@@ -1,7 +1,7 @@
 /**
- * @type {Invoice[]}
+ * @type {BasicToken[]}
  */
-let invoices = [
+let basicTokens = [
   {
     name: "Santa Monica",
     number: 1995,
@@ -36,26 +36,27 @@ let invoices = [
 
 
 
- export function getInvoices() {
-  return invoices;
+export function getBasicTokens() {
+  return basicTokens;
 }
 
 /**
  * @param {number} number
- * @returns {Invoice}
+ * @returns {BasicToken}
  */
-export function getInvoice(number) {
-  return invoices.find(invoice => invoice.number === number);
+export function getBasicToken(number) {
+  return basicTokens.find(basicToken => basicToken.number === number);
 }
 
 /**
  * @param {number} number
  * @returns {void}
  */
-export function deleteInvoice(number) {
-  invoices = invoices.filter(invoice => invoice.number !== number);
+export function deleteBasicToken(number) {
+  basicTokens = basicTokens.filter(basicToken => basicToken.number !== number);
 }
 
 /**
  * @typedef {{ name: string; number: number; amount: string; due: string }} Invoice
  */
+
