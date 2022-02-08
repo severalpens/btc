@@ -7,12 +7,15 @@ import './App.scss';
   return (
     <div>
       <AmplifySignOut />
-      <h1>Bookkeeper</h1>
+      <h1>Burn To Claim App</h1>
       <nav style={{ borderBottom: 'solid 1px', paddingBottom: '1rem' }}>
         <Link to="/invoices">Invoices</Link> |{' '}
-        <Link to="/expenses">Expenses</Link> |{' '}
-        <Link to="/basictokens">Basic Tokens</Link> |{' '}
-        <Link to="/todos">todos</Link>
+        <Link to="/accounts">Accounts</Link>  |{' '}
+        <Link to="/contracts">Contracts</Link>  |{' '}
+        <Link to="/registerContract">Register Contract</Link>  |{' '}
+        <Link to="/seed">Seed</Link>  |{' '}
+        <Link to="/approve">Approve</Link>  |{' '}
+        <Link to="/exitTransaction">Exit Transaction</Link>  |{' '}
       </nav>
       <Outlet />
     </div>

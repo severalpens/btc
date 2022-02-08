@@ -11,8 +11,8 @@ type Contract @model @auth(rules: [{allow: public}]) {
   symbol: String
   name: String
   address: String
-  privateKey: String
   initialBalance: String
+  network: String
 }
 
 type Todo @model @auth(rules: [{allow: public}]) {

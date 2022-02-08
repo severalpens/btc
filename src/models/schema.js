@@ -95,15 +95,15 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "privateKey": {
-                    "name": "privateKey",
+                "initialBalance": {
+                    "name": "initialBalance",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "initialBalance": {
-                    "name": "initialBalance",
+                "network": {
+                    "name": "network",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -188,5 +188,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "39e0cfbfcfeeadd9d9ca2ddd7385b30a"
+    "version": "987dd14ac58e3351543d029a48d14077"
 };

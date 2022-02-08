@@ -19,8 +19,8 @@ export declare class Contract {
   readonly symbol?: string;
   readonly name?: string;
   readonly address?: string;
-  readonly privateKey?: string;
   readonly initialBalance?: string;
+  readonly network?: string;
   constructor(init: ModelInit<Contract>);
   static copyOf(source: Contract, mutator: (draft: MutableModel<Contract>) => MutableModel<Contract> | void): Contract;
 }
