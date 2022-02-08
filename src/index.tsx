@@ -16,6 +16,7 @@ Amplify.configure(awsExports);
 
 const rootElement = document.getElementById('root');
 
+
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
