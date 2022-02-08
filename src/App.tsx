@@ -7,7 +7,7 @@ import './App.scss';
   return (
     <div>
       <AmplifySignOut />
-      <h1>Burn To Claim App</h1>
+      <h1>Burn To Claim 2022</h1>
       <nav style={{ borderBottom: 'solid 1px', paddingBottom: '1rem' }}>
         <Link to="/invoices">Invoices</Link> |{' '}
         <Link to="/accounts">Accounts</Link>  |{' '}
