@@ -4,6 +4,7 @@ import App from './App';
 import Expenses from './routes/expenses';
 import Invoices from './routes/invoices';
 import Invoice from './routes/invoice';
+import Todos from './routes/todos';
 import BasicToken from './routes/BasicToken';
 import BasicTokens from './routes/BasicTokens';
 
@@ -18,7 +19,8 @@ ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
-        <Route path="expenses" element={<Expenses />} />
+      <Route path="expenses" element={<Expenses />} />
+      <Route path="todos" element={<Todos />} />
 
         <Route path="invoices" element={<Invoices />}>
           <Route

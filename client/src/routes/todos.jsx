@@ -9,7 +9,7 @@ Amplify.configure(awsExports);
 
 const initialState = { name: '', description: '' }
 
-const App = () => {
+const Todos = () => {
   const [formState, setFormState] = useState(initialState)
   const [todos, setTodos] = useState([])
 
@@ -78,4 +78,4 @@ const styles = {
   button: { backgroundColor: 'black', color: 'white', outline: 'none', fontSize: 18, padding: '12px 0px' }
 }
 
-export default App
+export default Todos
