@@ -11,8 +11,8 @@ import BasicTokens from './routes/BasicTokens';
 import Amplify from "aws-amplify";
 import awsExports from "./aws-exports";
 
-import './index.scss';
-Amplify.configure(awsExports);
+// import './index.scss';
+// Amplify.configure(awsExports);
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
