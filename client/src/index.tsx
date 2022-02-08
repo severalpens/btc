@@ -9,10 +9,10 @@ import BasicToken from './routes/BasicToken';
 import BasicTokens from './routes/BasicTokens';
 
 import Amplify from "aws-amplify";
-import awsExports from "./aws-exports";
+//import awsExports from "./aws-exports";
 
 import './index.scss';
-Amplify.configure(awsExports);
+//Amplify.configure(awsExports);
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
