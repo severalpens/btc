@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import Invoices from './routes/invoices';
 import Invoice from './routes/invoice';
+import TransferEth from './routes/transferEth'
 import Accounts from './routes/accounts';
 import Contracts from './routes/contracts';
 import RegisterContract from './routes/registerContract';
@@ -35,6 +36,7 @@ ReactDOM.render(
         <Route path=":invoiceId" element={<Invoice />} />
       </Route>
 
+      <Route path="transferEth" element={<TransferEth />}/>
       <Route path="accounts" element={<Accounts />}/>
       <Route path="contracts" element={<Contracts />}/>
       <Route path="registerContract" element={<RegisterContract />}/>

@@ -4,6 +4,9 @@ import { API, graphqlOperation } from 'aws-amplify';
 import { createContract } from '../graphql/mutations';
 import { listContracts } from '../graphql/queries';
 
+import { ethers } from "ethers";
+
+
 const initialState = { symbol: '', name: '', address: '' }
 
 const Contracts = () => {
@@ -44,10 +47,34 @@ const Contracts = () => {
     }
   }
 
+  async function newContract(){
+
+      const requestURL = '../artifacts/BurnToClaim.json';
+      const request = new Request(requestURL);
+      const response = await fetch(request);
+      const artifact = await response.json();
+    
+    
+    
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const factory = new ethers.ContractFactory(artifact.abi, artifact.bytecode, signer);
+    const deployment = await factory.deploy(window.ethereum.selectedAddress);
+    const result = await deployment.deployed();
+
+    // contract.address = result.address
+  }
+
   return (
     <div style={styles.container}>
 
       <h2>Contracts</h2>
+      <input
+        onChange={event => setInput('symbol', event.target.value)}
+        style={styles.input}
+        value={formState.symbol}
+        placeholder="Symbol"
+      />
       <input
         onChange={event => setInput('name', event.target.value)}
         style={styles.input}
@@ -55,12 +82,19 @@ const Contracts = () => {
         placeholder="Name"
       />
       <input
-        onChange={event => setInput('address', event.target.value)}
+        onChange={event => setInput('initialAmount', event.target.value)}
         style={styles.input}
-        value={formState.address}
-        placeholder="Address"
+        value={formState.initialAmount}
+        placeholder="Initial Amount (if applicable)"
       />
-      <button style={styles.button} onClick={addContract}>Submit</button>
+      <input
+        onChange={event => setInput('artifact', event.target.value)}
+        style={styles.input}
+        value={formState.artifact}
+        placeholder="Json Artifact  File (abi & bytecode)"
+      />
+
+      <button style={styles.button} onClick={newContract}>Submit</button>
       {
         contracts.map((contract, index) => (
           <div key={contract.id ? contract.id : index} style={styles.todo}>
