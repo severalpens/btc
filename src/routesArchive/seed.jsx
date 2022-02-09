@@ -2,38 +2,55 @@
 import { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listContracts, listAccounts} from '../graphql/queries';
-import { ethers } from "ethers";
 
-const initialState = { recipient: '',  amount: '' }
+const initialState = { network: '', subject: '', object: '', amount: '' }
 
-const Contract = () => {
+const Seed = () => {
   const [formState, setFormState] = useState(initialState)
-  const [address, setAddress] = useState('')
+  const [contracts, setContracts] = useState([])
 
+  useEffect(() => {
+    fetchContracts()
+  }, [])
 
   function setInput(key, value) {
     setFormState({ ...formState, [key]: value })
   }
 
-  const deploy = async function () {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const factory = new ethers.ContractFactory(artifact.abi, artifact.bytecode, signer);
-    const deployment = await factory.deploy(...contractConstructorArgs);
-    const contract = await deployment.deployed();
-    localStorage.setItem('ft', contract.address);
-    return contract.deployTransaction;
-  
-}
+  function transfer(){
+    
+  }
+
+  async function fetchContracts() {
+    try {
+      const contractData = await API.graphql(graphqlOperation(listContracts))
+      const contracts = contractData.data.listContracts.items
+      setContracts(contracts)
+    } catch (err) { console.log('error fetching contracts') }
+  }
+
+
   return (
     <div style={styles.container}>
 
-      <h2>Transfer Eth</h2>
+      <h2>Seed BTC Contract (Transfer)</h2>
       <input
-        onChange={event => setInput('recipient', event.target.value)}
+        onChange={event => setInput('network', event.target.value)}
         style={styles.input}
-        value={formState.recipient}
-        placeholder="Recipient"
+        value={formState.network}
+        placeholder="Network"
+      />
+      <input
+        onChange={event => setInput('subject', event.target.value)}
+        style={styles.input}
+        value={formState.subject}
+        placeholder="Subject"
+      />
+      <input
+        onChange={event => setInput('object', event.target.value)}
+        style={styles.input}
+        value={formState.object}
+        placeholder="object"
       />
       <input
         onChange={event => setInput('amount', event.target.value)}
@@ -42,7 +59,6 @@ const Contract = () => {
         placeholder="amount"
       />
       <button style={styles.button} onClick={transfer}>Transfer</button>
-      <div>tx: {txHash}</div>
     </div>
   )
 }
@@ -56,4 +72,4 @@ const styles = {
   button: { backgroundColor: 'black', color: 'white', outline: 'none', fontSize: 18, padding: '12px 0px' }
 }
 
-export default Contract;
+export default Seed;

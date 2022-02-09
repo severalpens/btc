@@ -1,15 +1,15 @@
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
-import Invoices from './routes/invoices';
-import Invoice from './routes/invoice';
+import Invoices from './routesArchive/invoices';
+import Invoice from './routesArchive/invoice';
 import TransferEth from './routes/transferEth'
-import Accounts from './routes/accounts';
+import Accounts from './routesArchive/accounts';
 import Contracts from './routes/contracts';
-import RegisterContract from './routes/registerContract';
-import Seed from './routes/seed';
-import Approve from './routes/approve';
-import ExitTransaction from './routes/exitTransaction';
+import RegisterContract from './routesArchive/registerContract';
+import Seed from './routesArchive/seed';
+import Approve from './routesArchive/approve';
+import ExitTransaction from './routesArchive/exitTransaction';
 import Amplify from "aws-amplify";
 import awsExports from "./aws-exports";
 import NoMetamask from './NoMetamask';
