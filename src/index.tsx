@@ -11,12 +11,14 @@ import Approve from './routes/approve';
 import ExitTransaction from './routes/exitTransaction';
 import Amplify from "aws-amplify";
 import awsExports from "./aws-exports";
+import NoMetamask from './NoMetamask';
 import './index.scss';
 
 Amplify.configure(awsExports);
 
 const rootElement = document.getElementById('root');
 
+if(typeof window.ethereum !== 'undefined'){
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
@@ -52,3 +54,12 @@ ReactDOM.render(
   </BrowserRouter>,
   rootElement
 );
+        }
+        else{
+          ReactDOM.render(
+              <NoMetamask />,
+            document.getElementById('root')
+          );
+        
+        }
+
