@@ -6,7 +6,7 @@ import { createContract } from '../graphql/mutations';
 
 
 
-const initialState = { symbol: '', name: '', initialAmount: '', address: '' }
+const initialState = { symbol: '', name: '', initialBalance: '', address: '', network: '' }
 
 //Uploader component is the main functional component.
 const Contracts = () => {
