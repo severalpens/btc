@@ -5,20 +5,24 @@ import './App.scss';
 
 
 function App() {
-  let network =  'Please use either Rinkeby or Ropsten only.';
-  if(window.ethereum.networkVersion == 3) network = 'ropsten';
-  if(window.ethereum.networkVersion == 4) network = 'rinkeby';
+  let network = 'Please use either Rinkeby or Ropsten only.';
+  if (window.ethereum.networkVersion == 3) network = 'ropsten';
+  if (window.ethereum.networkVersion == 4) network = 'rinkeby';
 
   let selectedAddress = window.ethereum.selectedAddress;
 
   const [accounts, setAccounts] = useState(null);
 
-  useEffect(async () => {
-    let userAccounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    if (!accounts) {
-      setAccounts(userAccounts);
+
+  useEffect(() => {
+    async function fetchData() {
+      let userAccounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      if (!accounts) {
+        setAccounts(userAccounts);
+      }
     }
-  });
+    fetchData();
+  }, [accounts])
 
 
   return (
