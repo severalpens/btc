@@ -9,7 +9,7 @@ import { createContract } from '../graphql/mutations';
 const initialState = { symbol: '', name: '', initialBalance: '', address: '', network: '' }
 
 //Uploader component is the main functional component.
-const Contracts = () => {
+const ContractsFC = () => {
 
 
   //React hooks used to read/write variables
@@ -36,6 +36,10 @@ const Contracts = () => {
       fileReader.readAsText(file);
     }
   };
+
+  const submit = (e: any) => {
+    console.log('submit called')
+  }
 
   return (
     <div>
@@ -80,5 +84,5 @@ const Contracts = () => {
 
 }
 
-export default Contracts;
+export default ContractsFC;
 
