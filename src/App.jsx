@@ -18,12 +18,11 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       let userAccounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      if (!accounts) {
         setAccounts(userAccounts);
-      }
+        console.log(userAccounts)
     }
     fetchData();
-  }, [accounts])
+  }, [])
 
 
   return (

@@ -6,12 +6,11 @@ import { listContracts } from '../../graphql/queries';
 
 import ContractList from './ContractList';
 
-import ContractForm from './ContractForm';
 
 import {  Link } from 'react-router-dom';
 
 
-export default function Contracts() {
+export default function Contracts(props) {
 
   const [contracts, setContracts] = useState(null);
   
@@ -30,7 +29,7 @@ export default function Contracts() {
     <div>
       <h1>Contracts</h1>
       <ContractList contracts={contracts}/>
-      <h1><Link to="/contractForm">Deploy New Contract</Link></h1>
+      <h1><Link to="/contractForm" >Deploy New Contract</Link></h1>
 
     </div>
   )

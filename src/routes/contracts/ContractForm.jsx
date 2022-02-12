@@ -4,103 +4,113 @@ import { API } from 'aws-amplify';
 
 import { listContracts } from '../../graphql/queries';
 import { createContract } from '../../graphql/mutations';
+import { ethers } from "ethers";
+ 
+
+const initialState = { symbol: 'BT', name: 'BasicToken', initialBalance: '1000', address: '', network: '', owner: '', artifact: {} };
+
+const fileReader = new FileReader();
+
+const Contract = (props) => {
+  let network = 'Please use either Rinkeby or Ropsten only.';
+  if (window.ethereum.networkVersion == 3) network = 'ropsten';
+  if (window.ethereum.networkVersion == 4) network = 'rinkeby';
+
+  let selectedAddress = window.ethereum.selectedAddress;
+
+  const [contract, setContract] = useState([]);
+
+  useEffect(() => {
+  }, []);
+
+  const handleFileRead = (e) => {
+    let tmp = contract;
+    tmp.artifact = fileReader.result;
+    setContract(tmp);
+  };
+
+  //Refer to https://dev.to/ilonacodes/frontend-shorts-how-to-read-content-from-the-file-input-in-react-1kfb
+  const handleFileChosen = (file) => {
+    if (file) {
+      fileReader.onloadend = handleFileRead;
+      fileReader.readAsText(file);
+    }
+  };
 
 
-export default class ContractForm extends React.Component {
-  constructor(props){
-    
-    super(props);
+  const postToEthereum = async (c) => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const factory = new ethers.ContractFactory(c.artifact.abi, c.artifact.bytecode, signer);
+    const initialBalance = ethers.utils.parseEther(c.initialBalance);
+    const deployment = await factory.deploy(initialBalance);
+    const contract = await deployment.deployed();
+    console.log(contract.address)
+    return contract.address;
 
-    this.state = { symbol: '', name: '', initialBalance: '', address: '', network: '', contracts: [] };
-
-    this.handleSymbolChange = this.handleSymbolChange.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleInitialBalanceChange = this.handleInitialBalanceChange.bind(this);
-    this.handleAddressChange = this.handleAddressChange.bind(this);
-    this.handleNetworkChange = this.handleNetworkChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.getContracts();
   }
 
- async getContracts(){
-    let contractList = await API.graphql({query: listContracts});
-    console.log(contractList.data.listContracts.items[0]);
-    this.setState({contracts: contractList});
 
-  }
-
-  handleSymbolChange(event) {
-    this.setState({symbol: event.target.value});
-  }
-
-  handleNameChange(event) {
-    this.setState({name: event.target.value});
-  }
-
-  handleInitialBalanceChange(event) {
-    this.setState({initialBalance: event.target.value});
-  }
-
-  handleAddressChange(event) {
-    this.setState({address: event.target.value});
-  }
-
-  handleNetworkChange(event) {
-    this.setState({network: event.target.value});
-  }
-
-  async handleSubmit(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     let c = {};
-    c.symbol = this.state.symbol;
-    c.name = this.state.name;
-    c.initialBalance = this.state.initialBalance;
-    c.address = this.state.address;
-    c.network = this.state.network;
+    c.symbol = contract.symbol;
+    c.name = contract.name;
+    c.initialBalance = contract.initialBalance;
+    c.network = network;
+    c.owner = selectedAddress;
+    c.artifact = contract.abi;
 
-    const newContract = await API.graphql({ query: createContract, variables: {input: c}})
 
-    let contractList = await API.graphql({query: listContracts});
+    c.address = postToEthereum(c);
 
-    this.setState({contracts: contractList});
+    const newContract = await API.graphql({ query: createContract, variables: { input: c } });
+
   }
 
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="symbol">Symbol</label>
+          <br />
+          <input id="symbol" name="symbol" defaultValue="BT"></input>
+        </div>
 
-  render() {
-    return (
-      <div>
         <div>
-          {this.state.contracts[0]}
+          <label htmlFor="name">Name</label>
+          <br />
+          <input id="name" name="name"  defaultValue="BasicToken"></input>
         </div>
+
+
         <div>
-      <form onSubmit={this.handleSubmit}>
-        <div>
-        <label>
-          Symbol:
-          <input type="text" value={this.state.symbol} onChange={this.handleSymbolChange} />
-        </label>
+          <label htmlFor="initialAmount">Initial Amount</label>
+          <br />
+          <input id="initialAmount" name="initialAmount" defaultValue="1000"></input>
         </div>
+
+
         <div>
-        <label>
-          Name:
-          <input type="text" value={this.state.name} onChange={this.handleNameChange} />
-        </label>
+          <label htmlFor="artifact">Artifact JSON file</label>
+          <br />
+          <input type="file" id="artifact" name="artifact" accept=".json" onChange={e => handleFileChosen((e.target)?.files?.[0])} />
         </div>
+
+
+
         <div>
-        <label>
-          Initial Balance:
-          <input type="text" value={this.state.initialBalance} onChange={this.handleInitialBalanceChange} />
-        </label>
+          <button type="submit">Submit</button>
         </div>
-        <input type="submit" value="Submit" />
+
       </form>
-      </div>
-      </div>
-    );
-  }
+    </div>
+  );
+
 
 
 }
 
 
+export default Contract;
