@@ -92,10 +92,10 @@ const Contract = () => {
     newContract.initialBalance = initialBalance;
     newContract.artifactString = artifactString;
     newContract.network = network;
-    newContract.owner = window.ethereum.selectedAddress;;
-    // newContract.abi = abi;
-    // newContract.bytecode = bytecode;
-    // newContract.abiString = abiString;
+    newContract.owner = window.ethereum.selectedAddress;
+    newContract.abi = {} // abi;
+    newContract.bytecode = '' // bytecode;
+    newContract.abiString = '' // abiString;
 
 
     let provider = new ethers.providers.Web3Provider(window.ethereum);
