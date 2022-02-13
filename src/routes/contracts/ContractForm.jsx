@@ -26,11 +26,11 @@ const Contract = () => {
   let network = '';
   console.log(window.ethereum.networkVersion)
   switch (window.ethereum.networkVersion) {
-    case 3:
+    case '3':
       network = 'ropsten';
       break;
 
-    case 4:
+    case '4':
       network = 'rinkeby';
       break;
 
@@ -39,7 +39,7 @@ const Contract = () => {
       break;
   }
 
-
+console.log(network);
 
   let owner = window.ethereum.selectedAddress;
 
