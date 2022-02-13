@@ -48,11 +48,11 @@ const Contract = () => {
   const [symbol, setSymbol] = useState(initialState.symbol);
   const [name, setName] = useState(initialState.name);
   const [initialBalance, setInitialBalance] = useState(initialState.initialBalance);
-  // const [artifact, setArtifact] = useState(initialState.artifact);
+  const [artifact, setArtifact] = useState(initialState.artifact);
   const [artifactString, setArtifactString] = useState(initialState.artifactString);
-  // const [abi, setAbi] = useState(initialState.abi);
-  // const [abiString, setAbiString] = useState(initialState.abiString);
-  // const [bytecode, setBytecode] = useState(initialState.bytecode);
+  const [abi, setAbi] = useState(initialState.abi);
+  const [abiString, setAbiString] = useState(initialState.abiString);
+  const [bytecode, setBytecode] = useState(initialState.bytecode);
 
 
 
@@ -72,9 +72,9 @@ const Contract = () => {
     let jsonFileContents = JSON.parse(strFileContents);
 
     setArtifactString(strFileContents);
-    // setAbi(jsonFileContents.abi);
-    // setAbiString(JSON.stringify(jsonFileContents.abi));
-    // setBytecode(jsonFileContents.bytecode);
+    setAbi(jsonFileContents.abi);
+    setAbiString(JSON.stringify(jsonFileContents.abi));
+    setBytecode(jsonFileContents.bytecode);
 
   };
 
@@ -99,8 +99,8 @@ const Contract = () => {
     newContract.network = network;
     newContract.owner = owner;
     // newContract.abi = abi;
-    newContract.bytecode = bytecode;
-    newContract.abiString = abiString;
+    // newContract.bytecode = bytecode;
+    // newContract.abiString = abiString;
     newContract.artifactString = artifactString;
 
 
