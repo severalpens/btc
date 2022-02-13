@@ -2,40 +2,63 @@
 import React, { useState, useEffect } from "react";
 import { API } from 'aws-amplify';
 
-import { listContracts } from '../../graphql/queries';
 import { createContract } from '../../graphql/mutations';
 import { ethers } from "ethers";
- 
 
-const initialState = { symbol: 'BT', name: 'BasicToken', initialBalance: '1000', address: '', network: '', owner: '', artifact: {}, abi: {} };
-
+const initialState = { symbol: 'BT', name: 'BasicToken', initialBalance: '1000', address: '', network: '', owner: '', abi: {}, bytecode: '' };
 
 const fileReader = new FileReader();
 
-const Contract = (props) => {
-  let network = 'Please use either Rinkeby or Ropsten only.';
-  if (window.ethereum.networkVersion == 3) network = 'ropsten';
-  if (window.ethereum.networkVersion == 4) network = 'rinkeby';
+const Contract = () => {
 
-  let selectedAddress = window.ethereum.selectedAddress;
+  let network = '';
+  switch (window.ethereum.networkVersion) {
+    case 3:
+      network = 'ropsten';
+      break;
+
+    case 4:
+      network = 'rinkeby';
+      break;
+
+    default:
+      network = 'Please use either Rinkeby or Ropsten only.';
+      break;
+  }
+
+
+
+  let owner = window.ethereum.selectedAddress;
+
+
+
 
   const [symbol, setSymbol] = useState(initialState.symbol);
   const [name, setName] = useState(initialState.name);
   const [initialBalance, setInitialBalance] = useState(initialState.initialBalance);
-  const [owner, setOwner] = useState(initialState.owner); // selectedAddress used instead
-  const [artifact, setArtifact] = useState(initialState.artifact);
   const [abi, setAbi] = useState(initialState.abi);
+  const [bytecode, setBytecode] = useState(initialState.bytecode);
+
+
+
+
+
 
   useEffect(() => {
   }, []);
+
+
+
+
 
   const handleFileRead = (e) => {
     let strFileContents = fileReader.result;
     let jsonFileContents = JSON.parse(strFileContents);
     setAbi(jsonFileContents.abi);
-    setArtifact(jsonFileContents);
-
+    setBytecode(jsonFileContents.bytecode);
   };
+
+
 
   //Refer to https://dev.to/ilonacodes/frontend-shorts-how-to-read-content-from-the-file-input-in-react-1kfb
   const handleFileChosen = (file) => {
@@ -49,29 +72,29 @@ const Contract = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    let c = {};
-    c.symbol = symbol;
-    c.name = name;
-    c.initialBalance = initialBalance;
-    c.network = network;
-    c.owner = selectedAddress;
-    c.abi = abi;
-    c.artifact = artifact
+    let newContract = {};
+    newContract.symbol = symbol;
+    newContract.name = name;
+    newContract.initialBalance = initialBalance;
+    newContract.network = network;
+    newContract.owner = owner;
+    newContract.abi = abi;
+    newContract.bytecode = bytecode;
 
 
     let provider = new ethers.providers.Web3Provider(window.ethereum);
     let signer = provider.getSigner();
-    let factory = new ethers.ContractFactory(artifact.abi, artifact.bytecode, signer);
+    let factory = new ethers.ContractFactory(abi, bytecode, signer);
     let balance = ethers.utils.parseEther(initialBalance);
     let deployment = await factory.deploy(balance);
     let result = await deployment.deployed();
 
-    c.address = result.address;
+    newContract.address = result.address;
 
-    await API.graphql({ query: createContract, variables: { input: c } });
+    await API.graphql({ query: createContract, variables: { input: newContract } });
 
   }
-  
+
 
   return (
     <div>
@@ -85,7 +108,7 @@ const Contract = (props) => {
         <div>
           <label htmlFor="name">Name</label>
           <br />
-          <input id="name" name="name"  defaultValue="BasicToken" onChange={e => setName(e.target.value)}></input>
+          <input id="name" name="name" defaultValue="BasicToken" onChange={e => setName(e.target.value)}></input>
         </div>
 
 
