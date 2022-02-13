@@ -7,7 +7,8 @@ import { createContract } from '../../graphql/mutations';
 import { ethers } from "ethers";
  
 
-const initialState = { symbol: 'BT', name: 'BasicToken', initialBalance: '1000', address: '', network: '', owner: '', artifact: {}, abi: '' };
+const initialState = { symbol: 'BT', name: 'BasicToken', initialBalance: '1000', address: '', network: '', owner: '', artifact: {}, abi: {} };
+
 
 const fileReader = new FileReader();
 
@@ -21,7 +22,7 @@ const Contract = (props) => {
   const [symbol, setSymbol] = useState(initialState.symbol);
   const [name, setName] = useState(initialState.name);
   const [initialBalance, setInitialBalance] = useState(initialState.initialBalance);
-  const [owner, setOwner] = useState(initialState.owner);
+  const [owner, setOwner] = useState(initialState.owner); // selectedAddress used instead
   const [artifact, setArtifact] = useState(initialState.artifact);
   const [abi, setAbi] = useState(initialState.abi);
 
@@ -31,7 +32,8 @@ const Contract = (props) => {
   const handleFileRead = (e) => {
     let strFileContents = fileReader.result;
     let jsonFileContents = JSON.parse(strFileContents);
-    setAbi(jsonFileContents.abi)
+    setAbi(jsonFileContents.abi);
+    setArtifact(jsonFileContents);
 
   };
 
@@ -44,16 +46,6 @@ const Contract = (props) => {
   };
 
 
-  // const postToEthereum = async (c) => {
-  //   const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //   const signer = provider.getSigner();
-  //   const factory = new ethers.ContractFactory(artifact.abi, artifact.bytecode, signer);
-  //   const deployment = await factory.deploy(ethers.utils.parseEther(initialBalance));
-  //   const contract = await deployment.deployed();
-  //   return contract.address;
-  // }
-
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -64,6 +56,7 @@ const Contract = (props) => {
     c.network = network;
     c.owner = selectedAddress;
     c.abi = abi;
+    c.artifact = artifact
 
 
     let provider = new ethers.providers.Web3Provider(window.ethereum);
