@@ -1,3 +1,8 @@
+type Test @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  test: String
+}
+
 type Account @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
@@ -13,6 +18,8 @@ type Contract @model @auth(rules: [{allow: public}]) {
   address: String
   initialBalance: String
   network: String
+  artifact: AWSJSON
+  owner: String
 }
 
 type Todo @model @auth(rules: [{allow: public}]) {
