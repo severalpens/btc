@@ -18,15 +18,20 @@ const Contract = (props) => {
 
   let selectedAddress = window.ethereum.selectedAddress;
 
-  const [contract, setContract] = useState([]);
+  const [symbol, setSymbol] = useState(initialState.symbol);
+  const [name, setName] = useState(initialState.name);
+  const [initialBalance, setInitialBalance] = useState(initialState.initialBalance);
+  const [owner, setOwner] = useState(initialState.owner);
+  const [artifact, setArtifact] = useState(initialState.artifact);
 
   useEffect(() => {
   }, []);
 
   const handleFileRead = (e) => {
-    let tmp = contract;
-    tmp.artifact = fileReader.result;
-    setContract(tmp);
+    let strFileContents = fileReader.result;
+    let jsonFileContents = JSON.parse(strFileContents);
+    setArtifact(jsonFileContents);
+
   };
 
   //Refer to https://dev.to/ilonacodes/frontend-shorts-how-to-read-content-from-the-file-input-in-react-1kfb
@@ -38,34 +43,38 @@ const Contract = (props) => {
   };
 
 
-  const postToEthereum = async (c) => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const factory = new ethers.ContractFactory(c.artifact.abi, c.artifact.bytecode, signer);
-    const initialBalance = ethers.utils.parseEther(c.initialBalance);
-    const deployment = await factory.deploy(initialBalance);
-    const contract = await deployment.deployed();
-    console.log(contract.address)
-    return contract.address;
-
-  }
+  // const postToEthereum = async (c) => {
+  //   const provider = new ethers.providers.Web3Provider(window.ethereum);
+  //   const signer = provider.getSigner();
+  //   const factory = new ethers.ContractFactory(artifact.abi, artifact.bytecode, signer);
+  //   const deployment = await factory.deploy(ethers.utils.parseEther(initialBalance));
+  //   const contract = await deployment.deployed();
+  //   return contract.address;
+  // }
 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     let c = {};
-    c.symbol = contract.symbol;
-    c.name = contract.name;
-    c.initialBalance = contract.initialBalance;
+    c.symbol = symbol;
+    c.name = name;
+    c.initialBalance = initialBalance;
     c.network = network;
     c.owner = selectedAddress;
-    c.artifact = contract.abi;
+    c.artifact = artifact;
 
 
-    c.address = postToEthereum(c);
+    let provider = new ethers.providers.Web3Provider(window.ethereum);
+    let signer = provider.getSigner();
+    let factory = new ethers.ContractFactory(artifact.abi, artifact.bytecode, signer);
+    let balance = ethers.utils.parseEther(initialBalance);
+    let deployment = await factory.deploy(balance);
+    let result = await deployment.deployed();
 
-    const newContract = await API.graphql({ query: createContract, variables: { input: c } });
+    c.address = result.address;
+
+    await API.graphql({ query: createContract, variables: { input: c } });
 
   }
 
@@ -75,20 +84,20 @@ const Contract = (props) => {
         <div>
           <label htmlFor="symbol">Symbol</label>
           <br />
-          <input id="symbol" name="symbol" defaultValue="BT"></input>
+          <input id="symbol" name="symbol" defaultValue="Test" onChange={e => setSymbol(e.target.value)}></input>
         </div>
 
         <div>
           <label htmlFor="name">Name</label>
           <br />
-          <input id="name" name="name"  defaultValue="BasicToken"></input>
+          <input id="name" name="name"  defaultValue="BasicToken" onChange={e => setName(e.target.value)}></input>
         </div>
 
 
         <div>
-          <label htmlFor="initialAmount">Initial Amount</label>
+          <label htmlFor="initialBalance">Initial Balance</label>
           <br />
-          <input id="initialAmount" name="initialAmount" defaultValue="1000"></input>
+          <input id="initialBalance" name="initialBalance" defaultValue="1000" onChange={e => setInitialBalance(e.target.value)}></input>
         </div>
 
 
