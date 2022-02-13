@@ -7,7 +7,7 @@ import { createContract } from '../../graphql/mutations';
 import { ethers } from "ethers";
  
 
-const initialState = { symbol: 'BT', name: 'BasicToken', initialBalance: '1000', address: '', network: '', owner: '', artifact: {} };
+const initialState = { symbol: 'BT', name: 'BasicToken', initialBalance: '1000', address: '', network: '', owner: '', artifact: {}, abi: '' };
 
 const fileReader = new FileReader();
 
@@ -23,6 +23,7 @@ const Contract = (props) => {
   const [initialBalance, setInitialBalance] = useState(initialState.initialBalance);
   const [owner, setOwner] = useState(initialState.owner);
   const [artifact, setArtifact] = useState(initialState.artifact);
+  const [abi, setAbi] = useState(initialState.abi);
 
   useEffect(() => {
   }, []);
@@ -30,7 +31,7 @@ const Contract = (props) => {
   const handleFileRead = (e) => {
     let strFileContents = fileReader.result;
     let jsonFileContents = JSON.parse(strFileContents);
-    setArtifact(jsonFileContents);
+    setAbi(jsonFileContents.abi)
 
   };
 
@@ -62,7 +63,7 @@ const Contract = (props) => {
     c.initialBalance = initialBalance;
     c.network = network;
     c.owner = selectedAddress;
-    c.artifact = artifact;
+    c.abi = abi;
 
 
     let provider = new ethers.providers.Web3Provider(window.ethereum);

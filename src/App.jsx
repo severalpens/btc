@@ -14,7 +14,6 @@ function App() {
 
   const [accounts, setAccounts] = useState(null);
 
-
   useEffect(() => {
     async function fetchData() {
       let userAccounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
