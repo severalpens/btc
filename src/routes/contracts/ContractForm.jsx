@@ -5,7 +5,19 @@ import { API } from 'aws-amplify';
 import { createContract } from '../../graphql/mutations';
 import { ethers } from "ethers";
 
-const initialState = { symbol: 'BT', name: 'BasicToken', initialBalance: '1000', address: '', network: '', owner: '', abi: {}, bytecode: '' };
+const initialState = { 
+  symbol: 'BT', 
+  name: 'BasicToken', 
+  initialBalance: '1000', 
+  address: '', 
+  network: '', 
+  owner: '', 
+  abi: {}, 
+  bytecode: '', 
+  abiString: '',
+  artifact: '',
+  artifactString: ''
+};
 
 const fileReader = new FileReader();
 
@@ -36,7 +48,10 @@ const Contract = () => {
   const [symbol, setSymbol] = useState(initialState.symbol);
   const [name, setName] = useState(initialState.name);
   const [initialBalance, setInitialBalance] = useState(initialState.initialBalance);
+  const [artifact, setArtifact] = useState(initialState.artifact);
+  const [artifactString, setArtifactString] = useState(initialState.artifactString);
   const [abi, setAbi] = useState(initialState.abi);
+  const [abiString, setAbiString] = useState(initialState.abiString);
   const [bytecode, setBytecode] = useState(initialState.bytecode);
 
 
@@ -53,9 +68,14 @@ const Contract = () => {
 
   const handleFileRead = (e) => {
     let strFileContents = fileReader.result;
+
     let jsonFileContents = JSON.parse(strFileContents);
+
+    setArtifactString(strFileContents);
     setAbi(jsonFileContents.abi);
+    setAbiString(JSON.stringify(jsonFileContents.abi));
     setBytecode(jsonFileContents.bytecode);
+
   };
 
 
@@ -78,8 +98,10 @@ const Contract = () => {
     newContract.initialBalance = initialBalance;
     newContract.network = network;
     newContract.owner = owner;
-    newContract.abi = abi;
+    // newContract.abi = abi;
     newContract.bytecode = bytecode;
+    newContract.abiString = abiString;
+    newContract.artifactString = artifactString;
 
 
     let provider = new ethers.providers.Web3Provider(window.ethereum);
