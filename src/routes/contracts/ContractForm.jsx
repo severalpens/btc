@@ -77,6 +77,7 @@ const Contract = (props) => {
     await API.graphql({ query: createContract, variables: { input: c } });
 
   }
+  
 
   return (
     <div>
