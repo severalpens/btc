@@ -24,6 +24,7 @@ const fileReader = new FileReader();
 const Contract = () => {
 
   let network = '';
+  console.log(window.ethereum.networkVersion)
   switch (window.ethereum.networkVersion) {
     case 3:
       network = 'ropsten';
@@ -69,12 +70,12 @@ const Contract = () => {
   const handleFileRead = (e) => {
     let strFileContents = fileReader.result;
 
-    let jsonFileContents = JSON.parse(strFileContents);
+    let parsedFileContent = JSON.parse(strFileContents);
 
     setArtifactString(strFileContents);
-    setAbi(jsonFileContents.abi);
-    setAbiString(JSON.stringify(jsonFileContents.abi));
-    setBytecode(jsonFileContents.bytecode);
+    setAbi(parsedFileContent.abi);
+    setAbiString(JSON.stringify(parsedFileContent.abi));
+    setBytecode(parsedFileContent.bytecode);
 
   };
 
