@@ -24,7 +24,6 @@ const fileReader = new FileReader();
 const Contract = () => {
 
   let network = '';
-  console.log(window.ethereum.networkVersion)
   switch (window.ethereum.networkVersion) {
     case '3':
       network = 'ropsten';
@@ -38,12 +37,6 @@ const Contract = () => {
       network = 'Please use either Rinkeby or Ropsten only.';
       break;
   }
-
-console.log(network);
-
-  let owner = window.ethereum.selectedAddress;
-
-
 
 
   const [symbol, setSymbol] = useState(initialState.symbol);
@@ -97,12 +90,12 @@ console.log(network);
     newContract.symbol = symbol;
     newContract.name = name;
     newContract.initialBalance = initialBalance;
+    newContract.artifactString = artifactString;
     newContract.network = network;
-    newContract.owner = owner;
+    newContract.owner = window.ethereum.selectedAddress;;
     // newContract.abi = abi;
     // newContract.bytecode = bytecode;
     // newContract.abiString = abiString;
-    newContract.artifactString = artifactString;
 
 
     let provider = new ethers.providers.Web3Provider(window.ethereum);
