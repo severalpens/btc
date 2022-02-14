@@ -22,7 +22,7 @@ const initialState = {
 
 const fileReader = new FileReader();
 
-const Contract = () => {
+const ContractForm = () => {
 
   let network = '';
   switch (window.ethereum.networkVersion) {
@@ -49,6 +49,7 @@ const Contract = () => {
   const [parsedAbi, setParsedAbi] = useState(initialState.parsedAbi);
   const [abiString, setAbiString] = useState(initialState.abiString);
   const [bytecode, setBytecode] = useState(initialState.bytecode);
+  const [hasIB, setHasIB] = useState(true);
 
 
 
@@ -101,17 +102,28 @@ const Contract = () => {
     newContract.abi = abi // abiString;
     newContract.abiString = abi // abiString;
 
+    let hasConstructor = parsedAbi.find(x => x.type && x.type === "constructor")
+    console.log(hasConstructor);
 
     let provider = new ethers.providers.Web3Provider(window.ethereum);
     let signer = provider.getSigner();
     let factory = new ethers.ContractFactory(parsedAbi, bytecode, signer);
     let balance = ethers.utils.parseEther(initialBalance);
-    let deployment = await factory.deploy(balance);
+
+    let deployment = undefined;
+    if(hasConstructor){
+      deployment = await factory.deploy(balance);
+    }
+    else{
+      deployment = await factory.deploy();
+    }
+
     let result = await deployment.deployed();
 
     newContract.address = result.address;
 
     await API.graphql({ query: createContract, variables: { input: newContract } });
+    
 
   }
 
@@ -129,6 +141,12 @@ const Contract = () => {
           <label htmlFor="name">Name</label>
           <br />
           <input id="name" name="name" defaultValue="BasicToken" onChange={e => setName(e.target.value)}></input>
+        </div>
+
+        <div>
+          <label htmlFor="initialBalance">Has Initial Balance</label>
+          <br />
+          <input type="checkbox" id="hasIB" name="hasIB" defaultValue={true} onChange={e => setHasIB(e.target.value)}></input>
         </div>
 
 
@@ -160,4 +178,4 @@ const Contract = () => {
 }
 
 
-export default Contract;
+export default ContractForm;
