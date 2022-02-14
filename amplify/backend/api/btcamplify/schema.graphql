@@ -23,6 +23,7 @@ type Contract @model @auth(rules: [{allow: public}]) {
   abi: AWSJSON
   bytecode: String
   abiString: String
+  artifactString: String
 }
 
 type Todo @model @auth(rules: [{allow: public}]) {
