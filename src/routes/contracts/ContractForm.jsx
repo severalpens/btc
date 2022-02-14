@@ -93,7 +93,6 @@ const Contract = () => {
     newContract.artifactString = artifactString;
     newContract.network = network;
     newContract.owner = window.ethereum.selectedAddress;
-    newContract.abi = {} // abi;
     newContract.bytecode = '' // bytecode;
     newContract.abiString = '' // abiString;
 

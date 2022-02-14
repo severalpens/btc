@@ -18,9 +18,7 @@ type Contract @model @auth(rules: [{allow: public}]) {
   address: String
   initialBalance: String
   network: String
-  artifact: AWSJSON
   owner: String
-  abi: AWSJSON
   bytecode: String
   abiString: String
   artifactString: String
