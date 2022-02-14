@@ -5,7 +5,7 @@ import { API } from 'aws-amplify';
 import { createContract } from '../../graphql/mutations';
 import { ethers } from "ethers";
 
-const initialState = { 
+const storage = { 
   symbol: 'BT', 
   name: 'BasicToken', 
   initialBalance: '1000', 
@@ -13,47 +13,39 @@ const initialState = {
   network: '', 
   owner: '', 
   abi: '', 
-  parsedAbi: {}, 
-  bytecode: '', 
-  abiString: '',
-  artifact: '',
-  artifactString: ''
 };
+
+const getNetwork = () => {
+  switch (window.ethereum.networkVersion) {
+    case '3':
+      return 'ropsten';
+      break;
+
+    case '4':
+      return 'rinkeby';
+      break;
+
+    default:
+      return 'Please use either Rinkeby or Ropsten only.';
+      break;
+  }
+
+}
+
 
 const fileReader = new FileReader();
 
 const ContractForm = () => {
 
-  let network = '';
-  switch (window.ethereum.networkVersion) {
-    case '3':
-      network = 'ropsten';
-      break;
+  let network = getNetwork();
+  console.log('network',network);
 
-    case '4':
-      network = 'rinkeby';
-      break;
-
-    default:
-      network = 'Please use either Rinkeby or Ropsten only.';
-      break;
-  }
-
-
-  const [symbol, setSymbol] = useState(initialState.symbol);
-  const [name, setName] = useState(initialState.name);
-  const [initialBalance, setInitialBalance] = useState(initialState.initialBalance);
-  const [artifact, setArtifact] = useState(initialState.artifact);
-  const [artifactString, setArtifactString] = useState(initialState.artifactString);
-  const [abi, setAbi] = useState(initialState.abi);
-  const [parsedAbi, setParsedAbi] = useState(initialState.parsedAbi);
-  const [abiString, setAbiString] = useState(initialState.abiString);
-  const [bytecode, setBytecode] = useState(initialState.bytecode);
-  const [hasIB, setHasIB] = useState(true);
-
-
-
-
+  const [symbol, setSymbol] = useState(storage.symbol);
+  const [name, setName] = useState(storage.name);
+  const [initialBalance, setInitialBalance] = useState(storage.initialBalance);
+  const [abi, setAbi] = useState(storage.abi);
+  const [parsedAbi, setParsedAbi] = useState(storage.parsedAbi);
+  const [bytecode, setBytecode] = useState(storage.bytecode);
 
 
   useEffect(() => {
@@ -61,17 +53,13 @@ const ContractForm = () => {
 
 
 
-
-
   const handleFileRead = (e) => {
 
     let strFileContents = fileReader.result;
-    setArtifactString(strFileContents);
-
     let parsedFileContent = JSON.parse(strFileContents);
+
     setParsedAbi(parsedFileContent.abi);
     setAbi(JSON.stringify(parsedFileContent.abi));
-    setAbiString(JSON.stringify(parsedFileContent.abi));
     setBytecode(parsedFileContent.bytecode);
 
   };
@@ -94,29 +82,19 @@ const ContractForm = () => {
     newContract.symbol = symbol;
     newContract.name = name;
     newContract.initialBalance = initialBalance;
-    newContract.artifact = artifactString;
-    newContract.artifactString = artifactString;
     newContract.network = network;
     newContract.owner = window.ethereum.selectedAddress;
-    newContract.bytecode = bytecode // bytecode;
-    newContract.abi = abi // abiString;
-    newContract.abiString = abi // abiString;
+    newContract.abi = abi;
 
-    let hasConstructor = parsedAbi.find(x => x.type && x.type === "constructor")
     console.log(hasConstructor);
-
+    
     let provider = new ethers.providers.Web3Provider(window.ethereum);
     let signer = provider.getSigner();
     let factory = new ethers.ContractFactory(parsedAbi, bytecode, signer);
     let balance = ethers.utils.parseEther(initialBalance);
-
-    let deployment = undefined;
-    if(hasConstructor){
-      deployment = await factory.deploy(balance);
-    }
-    else{
-      deployment = await factory.deploy();
-    }
+    
+    let hasConstructor = parsedAbi.find(x => x.type && x.type === "constructor");
+    let deployment = hasConstructor ? await factory.deploy(balance) : await factory.deploy();
 
     let result = await deployment.deployed();
 
@@ -142,13 +120,6 @@ const ContractForm = () => {
           <br />
           <input id="name" name="name" defaultValue="BasicToken" onChange={e => setName(e.target.value)}></input>
         </div>
-
-        <div>
-          <label htmlFor="initialBalance">Has Initial Balance</label>
-          <br />
-          <input type="checkbox" id="hasIB" name="hasIB" defaultValue={true} onChange={e => setHasIB(e.target.value)}></input>
-        </div>
-
 
         <div>
           <label htmlFor="initialBalance">Initial Balance</label>
