@@ -1,9 +1,7 @@
-//TODO: Refactor this component. Split into smaller components.
 import React, { useState, useEffect } from "react";
 import { API } from 'aws-amplify';
-
-import { createContract } from '../../graphql/mutations';
 import { ethers } from "ethers";
+import { createContract } from '../../graphql/mutations';
 
 const storage = { 
   symbol: 'BT', 
@@ -14,6 +12,19 @@ const storage = {
   owner: '', 
   abi: '', 
 };
+
+const deploy = async (parsedAbi, bytecode, initialBalance) => {
+      
+  let provider = new ethers.providers.Web3Provider(window.ethereum);
+  let signer = provider.getSigner();
+  let factory = new ethers.ContractFactory(parsedAbi, bytecode, signer);
+  let balance = ethers.utils.parseEther(initialBalance);    
+  let hasConstructor = parsedAbi.find(x => x.type && x.type === "constructor");
+  let deployment = hasConstructor ? await factory.deploy(balance) : await factory.deploy();
+  let result = await deployment.deployed();
+  return result;
+
+}
 
 const getNetwork = () => {
   switch (window.ethereum.networkVersion) {
@@ -32,14 +43,10 @@ const getNetwork = () => {
 
 }
 
-
+let network = getNetwork();
 const fileReader = new FileReader();
 
 const ContractForm = () => {
-
-  let network = getNetwork();
-  console.log('network',network);
-
   const [symbol, setSymbol] = useState(storage.symbol);
   const [name, setName] = useState(storage.name);
   const [initialBalance, setInitialBalance] = useState(storage.initialBalance);
@@ -47,21 +54,12 @@ const ContractForm = () => {
   const [parsedAbi, setParsedAbi] = useState(storage.parsedAbi);
   const [bytecode, setBytecode] = useState(storage.bytecode);
 
-
-  useEffect(() => {
-  }, []);
-
-
-
   const handleFileRead = (e) => {
-
     let strFileContents = fileReader.result;
     let parsedFileContent = JSON.parse(strFileContents);
-
     setParsedAbi(parsedFileContent.abi);
     setAbi(JSON.stringify(parsedFileContent.abi));
     setBytecode(parsedFileContent.bytecode);
-
   };
 
 
@@ -85,24 +83,9 @@ const ContractForm = () => {
     newContract.network = network;
     newContract.owner = window.ethereum.selectedAddress;
     newContract.abi = abi;
-
-    console.log(hasConstructor);
-    
-    let provider = new ethers.providers.Web3Provider(window.ethereum);
-    let signer = provider.getSigner();
-    let factory = new ethers.ContractFactory(parsedAbi, bytecode, signer);
-    let balance = ethers.utils.parseEther(initialBalance);
-    
-    let hasConstructor = parsedAbi.find(x => x.type && x.type === "constructor");
-    let deployment = hasConstructor ? await factory.deploy(balance) : await factory.deploy();
-
-    let result = await deployment.deployed();
-
-    newContract.address = result.address;
+    newContract.address = await deploy(parsedAbi, bytecode, initialBalance);
 
     await API.graphql({ query: createContract, variables: { input: newContract } });
-    
-
   }
 
 
