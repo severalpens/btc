@@ -12,7 +12,8 @@ const initialState = {
   address: '', 
   network: '', 
   owner: '', 
-  abi: {}, 
+  abi: '', 
+  parsedAbi: {}, 
   bytecode: '', 
   abiString: '',
   artifact: '',
@@ -45,6 +46,7 @@ const Contract = () => {
   const [artifact, setArtifact] = useState(initialState.artifact);
   const [artifactString, setArtifactString] = useState(initialState.artifactString);
   const [abi, setAbi] = useState(initialState.abi);
+  const [parsedAbi, setParsedAbi] = useState(initialState.parsedAbi);
   const [abiString, setAbiString] = useState(initialState.abiString);
   const [bytecode, setBytecode] = useState(initialState.bytecode);
 
@@ -61,12 +63,13 @@ const Contract = () => {
 
 
   const handleFileRead = (e) => {
+
     let strFileContents = fileReader.result;
+    setArtifactString(strFileContents);
 
     let parsedFileContent = JSON.parse(strFileContents);
-
-    setArtifactString(strFileContents);
-    setAbi(parsedFileContent.abi);
+    setParsedAbi(parsedFileContent.abi);
+    setAbi(JSON.stringify(parsedFileContent.abi));
     setAbiString(JSON.stringify(parsedFileContent.abi));
     setBytecode(parsedFileContent.bytecode);
 
@@ -90,16 +93,18 @@ const Contract = () => {
     newContract.symbol = symbol;
     newContract.name = name;
     newContract.initialBalance = initialBalance;
+    newContract.artifact = artifactString;
     newContract.artifactString = artifactString;
     newContract.network = network;
     newContract.owner = window.ethereum.selectedAddress;
-    newContract.bytecode = '' // bytecode;
-    newContract.abiString = '' // abiString;
+    newContract.bytecode = bytecode // bytecode;
+    newContract.abi = abi // abiString;
+    newContract.abiString = abi // abiString;
 
 
     let provider = new ethers.providers.Web3Provider(window.ethereum);
     let signer = provider.getSigner();
-    let factory = new ethers.ContractFactory(abi, bytecode, signer);
+    let factory = new ethers.ContractFactory(parsedAbi, bytecode, signer);
     let balance = ethers.utils.parseEther(initialBalance);
     let deployment = await factory.deploy(balance);
     let result = await deployment.deployed();
