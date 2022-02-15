@@ -18,8 +18,13 @@ function NoMetamask() {
           <div className="redalert">
           Please install the <a href="https://metamask.io" target="blank"> Metamask </a>  browser extension.
           </div>
+      <div>
+        <br/>
+        Source code: <a href="https://github.com/severalpens/btc">github.com/severalpens/btc</a>
+      </div>
         </div>
       </div>
+
     </div>
   );
 }

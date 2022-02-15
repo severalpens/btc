@@ -1,12 +1,12 @@
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
-import TransferEth from './routes/transferEth';
+import TransferEth from './routesArchive/transferEth';
 import Contracts from './routes/contracts/Contracts';
 import ContractList from './routes/contracts/ContractList';
 import ContractForm from './routes/contracts/ContractForm';
 import Seed from './routesArchive/seed';
-import Approve from './routes/approve';
+import Approve from './routesArchive/approve';
 import ExitTransaction from './routesArchive/exitTransaction';
 import Amplify from "aws-amplify";
 import awsExports from "./aws-exports";
