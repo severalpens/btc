@@ -26,7 +26,7 @@ export default function Contracts(props) {
   },[])
 
   return (
-    <div>
+    <div className="m-28">
       <h1>Contracts</h1>
       <ContractList contracts={contracts}/>
       <h1><Link to="/contractForm" >Deploy New Contract</Link></h1>
