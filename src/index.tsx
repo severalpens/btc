@@ -24,6 +24,7 @@ if (typeof window.ethereum !== 'undefined') {
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="transferEth" element={<TransferEth />} />
+          <Route path="/" element={<Contracts />} />
           <Route path="contracts" element={<Contracts />} />
           <Route path="contractForm" element={<ContractForm />} />
           <Route path="seed" element={<Seed />} />
