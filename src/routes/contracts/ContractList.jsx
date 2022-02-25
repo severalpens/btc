@@ -10,6 +10,7 @@ const contracts = [
 
 
 
+
 export default function ContractList(props) {
   const contracts = props.contracts || [];
 
