@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
-import Navbar from './Navbar';
+import Navbar from './components/Navbar';
 
 import './App.scss';
 
@@ -9,6 +9,7 @@ const getNetwork = () => {
 
 }
 
+console.log('window.ethereum.chainId',window.ethereum.chainId)
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')

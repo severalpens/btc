@@ -9,6 +9,8 @@ import ContractList from './ContractList';
 
 import {  Link } from 'react-router-dom';
 
+import './contract.scss'
+
 
 export default function Contracts(props) {
 
@@ -28,7 +30,7 @@ export default function Contracts(props) {
   return (
     <div className="m-28">
       <h1>Contracts</h1>
-      <ContractList contracts={contracts}/>
+      <ContractList contracts={contracts} className="asdf"/>
       <h1><Link to="/contractForm" >Deploy New Contract</Link></h1>
 
     </div>
