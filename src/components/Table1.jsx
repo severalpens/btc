@@ -1,4 +1,4 @@
-export default function ContractListOld(props) {
+export default function Table(props) {
     const contracts = props.contracts || [];
 
     const contractListItems = contracts.map((c) => {

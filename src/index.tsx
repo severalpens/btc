@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import App from './App';
 import TransferEth from './routesArchive/transferEth';
-import Contracts from './routes/contracts/Contracts';
-import ContractList from './routes/contracts/ContractList';
-import ContractForm from './routes/contracts/ContractForm';
+import Contracts from './components/Contracts';
+import Table from './components/Table2';
+import FormOuter from './components/FormOuter';
 import Seed from './routesArchive/seed';
 import Approve from './routesArchive/approve';
 import ExitTransaction from './routesArchive/exitTransaction';
@@ -26,9 +26,9 @@ if (typeof window.ethereum !== 'undefined') {
           <Route path="transferEth" element={<TransferEth />} />
           <Route path="/" element={<Contracts />} />
           <Route path="contracts" element={<Contracts />} />
-          <Route path="contractForm" element={<ContractForm />} />
+          <Route path="contractForm" element={<FormOuter />} />
           <Route path="seed" element={<Seed />} />
-          <Route path="contractlist" element={<ContractList />} />
+          <Route path="contractlist" element={<Table />} />
           <Route path="approve" element={<Approve />} />
           <Route path="exitTransaction" element={<ExitTransaction />} />
           <Route
