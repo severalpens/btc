@@ -108,6 +108,27 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "owner": {
+                    "name": "owner",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "abi": {
+                    "name": "abi",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "timestamp": {
+                    "name": "timestamp",
+                    "isArray": false,
+                    "type": "AWSTimestamp",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -188,5 +209,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "987dd14ac58e3351543d029a48d14077"
+    "version": "f84895c31ac1244617d3db95068654ee"
 };
