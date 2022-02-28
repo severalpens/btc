@@ -59,6 +59,9 @@ export const onCreateContract = /* GraphQL */ `
       address
       initialBalance
       network
+      owner
+      abi
+      timestamp
       _version
       _deleted
       _lastChangedAt
@@ -76,6 +79,9 @@ export const onUpdateContract = /* GraphQL */ `
       address
       initialBalance
       network
+      owner
+      abi
+      timestamp
       _version
       _deleted
       _lastChangedAt
@@ -93,6 +99,9 @@ export const onDeleteContract = /* GraphQL */ `
       address
       initialBalance
       network
+      owner
+      abi
+      timestamp
       _version
       _deleted
       _lastChangedAt

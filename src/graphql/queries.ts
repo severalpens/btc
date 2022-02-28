@@ -81,6 +81,9 @@ export const getContract = /* GraphQL */ `
       address
       initialBalance
       network
+      owner
+      abi
+      timestamp
       _version
       _deleted
       _lastChangedAt
@@ -103,6 +106,9 @@ export const listContracts = /* GraphQL */ `
         address
         initialBalance
         network
+        owner
+        abi
+        timestamp
         _version
         _deleted
         _lastChangedAt
@@ -134,6 +140,9 @@ export const syncContracts = /* GraphQL */ `
         address
         initialBalance
         network
+        owner
+        abi
+        timestamp
         _version
         _deleted
         _lastChangedAt

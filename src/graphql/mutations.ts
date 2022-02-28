@@ -71,6 +71,9 @@ export const createContract = /* GraphQL */ `
       address
       initialBalance
       network
+      owner
+      abi
+      timestamp
       _version
       _deleted
       _lastChangedAt
@@ -91,6 +94,9 @@ export const updateContract = /* GraphQL */ `
       address
       initialBalance
       network
+      owner
+      abi
+      timestamp
       _version
       _deleted
       _lastChangedAt
@@ -111,6 +117,9 @@ export const deleteContract = /* GraphQL */ `
       address
       initialBalance
       network
+      owner
+      abi
+      timestamp
       _version
       _deleted
       _lastChangedAt
