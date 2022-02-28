@@ -1,26 +1,19 @@
+import FormArtifact from "./FormArtifact";
+import FormInitialBalance from "./FormInitialAmount";
 
 const FormInner = (props) => {
 
   return (
-    <div>
+    <div className="flex justify-center">
       <form onSubmit={props.handleSubmit}>
-        <div>
-          <label htmlFor="artifact">Artifact JSON file</label>
-          <br />
-          <input type="file" id="artifact" name="artifact" accept=".json" onChange={e => props.handleFileChosen((e.target)?.files?.[0])} />
-        </div>
-        <div>
-          <label htmlFor="initialBalance">Initial Balance</label>
-          <br />
-          <input id="initialBalance" name="initialBalance" defaultValue="10000" onChange={e => props.setInitialBalance(e.target.value)}></input>
-        </div>
+        <FormArtifact handleFileChosen={props.handleFileChosen}/>
+        <FormInitialBalance setInitialBalance={props.setInitialBalance}/>
         <div>
           <button type="submit">Submit</button>
         </div>
       </form>
     </div>
   );
-
 }
 
 
