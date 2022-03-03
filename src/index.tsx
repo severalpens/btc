@@ -2,7 +2,6 @@ import * as ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import App from './App';
-import TransferEth from './routesArchive/transferEth';
 import Contracts from './components/Contracts';
 import FormOuter from './components/FormOuter';
 import Amplify from "aws-amplify";
