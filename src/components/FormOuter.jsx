@@ -16,6 +16,8 @@ const FormOuter = (props) => {
     let parsedFile = JSON.parse(strFileContents);
     setAbi(parsedFile.abi);
     setBytecode(parsedFile.bytecode);
+    console.log('abi',abi);
+    console.log('bytecode', bytecode);
   };
 
   //Refer to https://dev.to/ilonacodes/frontend-shorts-how-to-read-content-from-the-file-input-in-react-1kfb
@@ -28,7 +30,7 @@ const FormOuter = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    blockchain.deploy({ abi, bytecode, initialBalance });
+    blockchain.deploy(abi, bytecode, initialBalance);
   }
 
 

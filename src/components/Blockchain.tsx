@@ -8,7 +8,9 @@ export default class Blockchain {
     let factory = new ethers.ContractFactory(abi, bytecode, signer);
     let balance = ethers.utils.parseEther(initialBalance);
     let hasConstructor = abi.find((x: any) => x.type && x.type === "constructor");
-    let deployment = hasConstructor ? await factory.deploy(balance) : await factory.deploy();
+    console.log('hasConstructor',hasConstructor)
+    console.log('initialBalance',initialBalance)
+    let deployment = hasConstructor ? await factory.deploy('ERC20 Contract', 'ERC20') : await factory.deploy();
     let result = await deployment.deployed();
     return result;
   }
