@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function FormArtifact(props) {
   return (
-    <div class="mb-3 w-96">
-      <label for="artifact" className="form-label inline-block mb-2 text-gray-700">Artifact</label>
+    <div className="mb-3 w-96">
+      <label htmlFor="artifact" className="form-label inline-block mb-2 text-gray-700">Artifact</label>
       <input className="form-control
                     block
                     w-full

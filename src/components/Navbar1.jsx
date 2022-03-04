@@ -15,28 +15,28 @@ function Navbar(props) {
 
   return (
     <div className="container flex justify-between mx-auto  border m-4 border-black px-4">
-      <div className="p-6 columns-2  flex align-middle">
-        <div className="mx-6 align-middle">
+      <div className="p-6 columns-2  flex ">
+        <div className="p-6 ">
           <a className="font-bold" href="/">
             BTC
           </a>
         </div>
-        <div className="mx-6">
+        <div className="p-6">
           <a className="" href="/contracts">
             Contracts
           </a>
         </div>
-        <div className="mx-6">
+        <div className="p-6">
           <a className="" href="/deploy">
             Deploy
           </a>
         </div>
-        <div className="mx-6">
+        <div className="p-6">
           <a className="" href="/initialize">
             Initialize
           </a>
         </div>
-        <div className="mx-6">
+        <div className="p-6">
           <a className="" href="/transfer">
             Transfer
           </a>

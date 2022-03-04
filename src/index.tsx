@@ -2,7 +2,7 @@ import * as ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import App from './App';
-import Contracts from './components/Contracts';
+import TableOuter from './components/TableOuter';
 import FormOuter from './components/FormOuter';
 import Amplify from "aws-amplify";
 import awsExports from "./aws-exports";
@@ -18,7 +18,7 @@ if (typeof window.ethereum !== 'undefined') {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path="contracts" element={<Contracts />} />
+          <Route path="contracts" element={<TableOuter />} />
           <Route path="deploy" element={<FormOuter />} />
           <Route
             path="*"

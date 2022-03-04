@@ -3,7 +3,7 @@ import React from 'react'
 export default function FormInitialBalance(props) {
   return (
 <div className="mb-3 xl:w-96">
-  <label for="exampleFormControlInput1" className="form-label inline-block mb-2 text-gray-700">
+  <label htmlFor="exampleFormControlInput1" className="form-label inline-block mb-2 text-gray-700">
     Initial Balance
   </label >
   <input
