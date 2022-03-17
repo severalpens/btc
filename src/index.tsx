@@ -8,6 +8,7 @@ import Amplify from "aws-amplify";
 import awsExports from "./aws-exports";
 import NoMetamask from './NoMetamask';
 import './index.scss';
+import Form2 from './components/Form2';
 
 Amplify.configure(awsExports);
 
@@ -19,7 +20,7 @@ if (typeof window.ethereum !== 'undefined') {
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="contracts" element={<TableOuter />} />
-          <Route path="deploy" element={<FormOuter />} />
+          <Route path="deploy" element={<Form2 />} />
           <Route
             path="*"
             element={

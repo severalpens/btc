@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Blockchain from './Blockchain';
 
+  // component formatted using https://tailwind-elements.com/docs/standard/forms/form-templates/
+
 import BasicToken from './BasicToken';
 import BurnToClaim from './BurnToClaim';
 
@@ -9,17 +11,25 @@ const fileReader = new FileReader();
 
 //Refer to https://dev.to/ilonacodes/frontend-shorts-how-to-read-content-from-the-file-input-in-react-1kfb
 
-export default function FormArtifact(props) {
+export default function Form2(props) {
 
   const [contractType, setContractType] = useState('ERC20');
   const [defaultArtifact, setDefaultArtifact] = useState(true);
   const [abi, setAbi] = useState(BasicToken.abi);
   const [bytecode, setBytecode] = useState(BasicToken.bytecode);
-
+  const [initialBalance, setInitialBalance] = useState('10000');
 
   useEffect(() => {
 
-  }, []);
+}, []);
+
+const handleContractType = (e) => {
+    let ct = e.target.value;
+    setContractType(ct);
+  }
+  
+
+
 
   const handleFileRead = (e) => {
     let strFileContents = fileReader.result;
@@ -28,7 +38,7 @@ export default function FormArtifact(props) {
     setBytecode(parsedFile.bytecode);
   };
 
-
+  //Refer to https://dev.to/ilonacodes/frontend-shorts-how-to-read-content-from-the-file-input-in-react-1kfb
   const handleFileChosen = (file) => {
     if (file) {
       fileReader.onloadend = handleFileRead;
@@ -36,11 +46,11 @@ export default function FormArtifact(props) {
     }
   };
 
-
-  const handleContractType = (e) => {
-    let ct = e.target.value;
-    setContractType(ct);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    blockchain.deploy(abi, bytecode, initialBalance);
   }
+
   
   const handleDefaultArtifact = (e) => {
     setDefaultArtifact(!defaultArtifact)
@@ -84,8 +94,10 @@ export default function FormArtifact(props) {
               focus:outline-none"
           aria-label="Default select example" onChange={handleContractType}>
           <option value="none">--</option>
-          <option value="BTC">Burn to Claim</option>
-          <option value="ERC20">ERC20</option>
+          <option value="BTC">Burn to Claim - Default</option>
+          <option value="BTC">ERC20 - Default</option>
+          <option value="BTC">Burn to Claim - New Artifact</option>
+          <option value="BTC">ERC20 - New Artifact</option>
         </select>
       </div>
 
@@ -151,6 +163,37 @@ export default function FormArtifact(props) {
           disabled={defaultArtifact}
         />
       </div>
+      <div className="mb-3 xl:w-96">
+  <label htmlFor="exampleFormControlInput1" className="form-label inline-block mb-2 text-gray-700">
+    Initial Balance
+  </label >
+  <input
+    type="text"
+    className="
+      form-control
+      block
+      w-full
+      px-3
+      py-1.5
+      text-base
+      font-normal
+      text-gray-700
+      bg-white bg-clip-padding
+      border border-solid border-gray-300
+      rounded
+      transition
+      ease-in-out
+      m-0
+      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+    "
+    placeholder="1000"
+    id="initialBalance" 
+    name="initialBalance" 
+    defaultValue="10000" 
+    onChange={e => props.setInitialBalance(e.target.value)}/>
+</div>
+      <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
+
     </>
   )
 }
