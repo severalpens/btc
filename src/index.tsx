@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import App from './App';
 import TableOuter from './components/TableOuter';
-import FormOuter from './components/FormOuter';
 import Amplify from "aws-amplify";
 import awsExports from "./aws-exports";
 import NoMetamask from './NoMetamask';

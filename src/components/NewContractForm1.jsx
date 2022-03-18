@@ -130,7 +130,7 @@ export default function NewContractForm1(props) {
             disabled={contractType === '1' || contractType === '3'}
           />
         </div>
-        <div className="mb-3 xl:w-96">
+        <div className="mb-3 xl:w-96" hidden={contractType === '1' || contractType === '2'}>
           <label htmlFor="exampleFormControlInput1" className="form-label inline-block mb-2 text-gray-700">
             Initial Balance
           </label >
@@ -154,16 +154,14 @@ export default function NewContractForm1(props) {
       focus:border-blue-600 
       focus:outline-none
     "
-            placeholder="1000"
+            placeholder="10000"
             id="initialBalance"
             name="initialBalance"
             defaultValue="10000"
             onChange={e => setInitialBalance(e.target.value)}
-            disabled={contractType === '1' || contractType === '2'}
           />
         </div>
         <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
-
       </form>
     </div>
   )
