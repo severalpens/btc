@@ -42,17 +42,18 @@ export default function NewContractForm1(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(BurnToClaim.bytecode);
     switch (parseInt(contractType)) {
-      case 0:
+      case 1:
         blockchain.deployBtc(BurnToClaim.abi, BurnToClaim.bytecode);
         break;
-      case 1:
+      case 2:
         blockchain.deployBtc(customArtifact.abi, customArtifact.bytecode);
         break;
-      case 2:
+      case 3:
         blockchain.deployBasicToken(BasicToken.abi, BasicToken.bytecode, initialBalance);
         break;
-      case 3:
+      case 4:
         blockchain.deployBasicToken(customArtifact.abi, customArtifact.bytecode, initialBalance);
         break;
       default:
