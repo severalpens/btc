@@ -2,13 +2,21 @@ import { ethers } from "ethers";
 
 export default class Blockchain {
 
-  async deploy(abi: any, bytecode: string, initialBalance = '1000') {
+  async deployBtc(abi: any, bytecode: string) {
+    let provider = new ethers.providers.Web3Provider(window.ethereum);
+    let signer = provider.getSigner();
+    let factory = new ethers.ContractFactory(abi, bytecode, signer);
+    let deployment = await factory.deploy();
+    let result = await deployment.deployed();
+    return result;
+  }
+
+  async deployBasicToken(abi: any, bytecode: string, initialBalance: string) {
     let provider = new ethers.providers.Web3Provider(window.ethereum);
     let signer = provider.getSigner();
     let factory = new ethers.ContractFactory(abi, bytecode, signer);
     let balance = ethers.utils.parseEther(initialBalance);
-    let hasConstructor = abi.find((x: any) => x.type && x.type === "constructor");
-    let deployment = hasConstructor ? await factory.deploy(balance) : await factory.deploy();
+    let deployment =  await factory.deploy(balance);
     let result = await deployment.deployed();
     return result;
   }

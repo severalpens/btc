@@ -44,16 +44,16 @@ export default function NewContractForm1(props) {
     event.preventDefault();
     switch (parseInt(contractType)) {
       case 0:
-        blockchain.deploy(BurnToClaim.abi, BurnToClaim.bytecode);
+        blockchain.deployBtc(BurnToClaim.abi, BurnToClaim.bytecode);
         break;
       case 1:
-        blockchain.deploy(customArtifact.abi, customArtifact.bytecode);
+        blockchain.deployBtc(customArtifact.abi, customArtifact.bytecode);
         break;
       case 2:
-        blockchain.deploy(BasicToken.abi, BasicToken.bytecode, initialBalance);
+        blockchain.deployBasicToken(BasicToken.abi, BasicToken.bytecode, initialBalance);
         break;
       case 3:
-        blockchain.deploy(customArtifact.abi, customArtifact.bytecode, initialBalance);
+        blockchain.deployBasicToken(customArtifact.abi, customArtifact.bytecode, initialBalance);
         break;
       default:
         break;
