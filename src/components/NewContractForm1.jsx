@@ -17,6 +17,13 @@ export default function NewContractForm1(props) {
   const [contractType, setContractType] = useState('0');
   const [customArtifact, setCustomArtifact] = useState(BasicToken.abi);
   const [initialBalance, setInitialBalance] = useState('10000');
+  const [errors, setErrors] = useState('');
+
+
+  const [ctError1, setCtError1] = useState('');
+  const [aError1, setAError1] = useState('');
+  const [aError2, setAError2] = useState('');
+  const [ibError1, setIbError1] = useState('');
 
   useEffect(() => {
   }, []);
@@ -42,8 +49,10 @@ export default function NewContractForm1(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(BurnToClaim.bytecode);
     switch (parseInt(contractType)) {
+      case 0:
+        setCtError1('No contract chosen');
+        break;
       case 1:
         blockchain.deployBtc(BurnToClaim.abi, BurnToClaim.bytecode);
         break;
@@ -97,8 +106,9 @@ export default function NewContractForm1(props) {
             <option value="3">ERC20 - Default</option>
             <option value="4">ERC20 - New Artifact</option>
           </select>
+          <div className="text-red-600">{errors}</div>
         </div>
-        <div className="mb-3 w-96">
+        <div className="mb-3 w-96" hidden={['0','1','3'].includes(contractType)}>
           <label htmlFor="artifact" className="form-label inline-block mb-2 text-gray-700">Artifact</label>
           <input className="
                     form-control
@@ -128,10 +138,10 @@ export default function NewContractForm1(props) {
             name="artifact"
             accept=".json"
             onChange={handleFileChosen}
-            disabled={contractType === '1' || contractType === '3'}
+            
           />
         </div>
-        <div className="mb-3 xl:w-96" hidden={contractType === '1' || contractType === '2'}>
+        <div className="mb-3 xl:w-96" hidden={['0','1','2'].includes(contractType)}>
           <label htmlFor="exampleFormControlInput1" className="form-label inline-block mb-2 text-gray-700">
             Initial Balance
           </label >
