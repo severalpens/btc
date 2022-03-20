@@ -25,17 +25,17 @@ export default class Blockchain {
 
   }
 
-  static getNetwork() {
-    switch (window.ethereum.networkVersion) {
-      case '1':
+  static getNetwork(id:string) {
+    switch (id) {
+      case '0x1':
         return 'main - do not use';
-      case '2':
+      case '0x2':
         return 'kovan';
-      case '3':
+      case '0x3':
         return 'ropsten';
-      case '4':
+      case '0x4':
         return 'rinkeby';
-      case '5':
+      case '0x5':
         return 'goerli';
       default:
         return 'unknown';
