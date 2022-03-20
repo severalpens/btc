@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import Blockchain from './Blockchain';
 import { NavLink } from 'react-router-dom';
-import { ContractContext } from '../App'
+import {ContractContext} from './ContractContext';
+
 
 function Navbar(props) {
   const [accounts, setAccounts] = useState(null);
@@ -18,6 +19,9 @@ function Navbar(props) {
   }, [])
 
   return (
+    <ContractContext.Consumer>
+    {({address, setAddress}) => (
+
     <>
       <div className="container flex justify-between mx-auto  border m-4 border-black px-4">
         <div className="p-6 columns-2  flex ">
@@ -65,13 +69,15 @@ function Navbar(props) {
           </a>
         </div>
         <div className="p-6">
-          <a href={`https://${network}.etherscan.io/contract/${props.contractAddress}`} target="_blank" rel="noreferrer">
-            Contract: {props.contractAddress}
+          <a href={`https://${network}.etherscan.io/contract/${address}`} target="_blank" rel="noreferrer">
+            Contract: {address}
           </a>
         </div>
       </div>
     </>
-  );
+         )}
+         </ContractContext.Consumer>
+       );
 }
 
 export default withAuthenticator(Navbar);
