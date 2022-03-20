@@ -1,9 +1,15 @@
+import {ContractContext} from './ContractContext';
+
+
 
 export default function TableInner(props) {
   const contracts = props.contracts || [];
 
   return (
+    <ContractContext.Consumer>
+    {({address, setAddress}) => (
     <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+      {address}
       <table className="table-auto min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
@@ -53,6 +59,10 @@ export default function TableInner(props) {
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{contract.address}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 <button type="submit" className="border m-4  px-6 py-2.5 border-black rounded-md" 
+                onClick={e => setAddress(contract.address)}>Select</button>
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <button type="submit" className="border m-4  px-6 py-2.5 border-black rounded-md" 
                 onClick={e => props.deleteRecordHandler(contract)}>Delete</button>
               </td>
             </tr>
@@ -60,5 +70,7 @@ export default function TableInner(props) {
         </tbody>
       </table>
     </div>
-  )
-}
+     )}
+     </ContractContext.Consumer>
+   );
+ }

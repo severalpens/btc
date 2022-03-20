@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
-import Blockchain  from './Blockchain';
-import {NavLink} from 'react-router-dom';
+import Blockchain from './Blockchain';
+import { NavLink } from 'react-router-dom';
+import { ContractContext } from '../App'
 
 function Navbar(props) {
   const [accounts, setAccounts] = useState(null);
@@ -54,13 +55,18 @@ function Navbar(props) {
       </div>
       <div className="container flex mx-auto">
         <div className="p-6">
-        <a href={`https://${network}.etherscan.io/address/${window.ethereum.selectedAddress}`} target="_blank" rel="noreferrer">
+          <a href={`https://${network}.etherscan.io/address/${window.ethereum.selectedAddress}`} target="_blank" rel="noreferrer">
             Network: {network}
           </a>
         </div>
         <div className="p-6">
           <a href={`https://${network}.etherscan.io/address/${window.ethereum.selectedAddress}`} target="_blank" rel="noreferrer">
             Account: {window.ethereum.selectedAddress}
+          </a>
+        </div>
+        <div className="p-6">
+          <a href={`https://${network}.etherscan.io/contract/${props.contractAddress}`} target="_blank" rel="noreferrer">
+            Contract: {props.contractAddress}
           </a>
         </div>
       </div>

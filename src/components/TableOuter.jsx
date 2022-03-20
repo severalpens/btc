@@ -21,10 +21,8 @@ export default function TableOuter(props) {
   }
     
   const deleteRecordHandler = async (contract) => {
-    console.log(contract);
     let input = {id: contract.id, _version: 1};
     input = contract;
-    console.log(input);
     await API.graphql({ query: mutations.deleteContract, variables: {input}});
     await fetchData();
   }
