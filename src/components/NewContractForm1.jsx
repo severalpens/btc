@@ -54,10 +54,10 @@ export default function NewContractForm1(props) {
         setCtError1('No contract chosen');
         break;
       case 1:
-        blockchain.deployBtc(BurnToClaim.abi, BurnToClaim.bytecode);
+        blockchain.deployBtc(BurnToClaim);
         break;
       case 2:
-        blockchain.deployBtc(customArtifact.abi, customArtifact.bytecode);
+        blockchain.deployBtc(customArtifact);
         break;
       case 3:
         blockchain.deployBasicToken(BasicToken.abi, BasicToken.bytecode, initialBalance);

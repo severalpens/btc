@@ -1,24 +1,14 @@
 import {ContractContext} from './ContractContext';
 
-
-
 export default function TableInner(props) {
   const contracts = props.contracts || [];
-
   return (
     <ContractContext.Consumer>
     {({address, setAddress}) => (
     <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-      {address}
       <table className="table-auto min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Symbol
-            </th>
             <th
               scope="col"
               className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -45,13 +35,6 @@ export default function TableInner(props) {
           {contracts.map((contract) => (
             <tr key={contract.id}>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="flex items-center">
-                  <div className="ml-4">
-                    <div className="text-sm font-medium text-gray-900">{contract.symbol}</div>
-                  </div>
-                </div>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-900">{contract.name}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
@@ -60,7 +43,10 @@ export default function TableInner(props) {
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{contract.address}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 <button type="submit" className="border m-4  px-6 py-2.5 border-black rounded-md" 
-                onClick={e => setAddress(contract.address)}>Select</button>
+                onClick={e => {
+                  setAddress(contract.address);
+                  window.localStorage.setItem('contract',JSON.stringify(contract))
+                  }}>Select</button>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 <button type="submit" className="border m-4  px-6 py-2.5 border-black rounded-md" 

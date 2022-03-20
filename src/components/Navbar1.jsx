@@ -8,6 +8,7 @@ import {ContractContext} from './ContractContext';
 function Navbar(props) {
   const [accounts, setAccounts] = useState(null);
   const [network, setNetwork] = useState(null);
+  let contract = JSON.parse(window.localStorage.contract);
 
   useEffect(() => {
     async function fetchData() {
@@ -69,8 +70,8 @@ function Navbar(props) {
           </a>
         </div>
         <div className="p-6">
-          <a href={`https://${network}.etherscan.io/contract/${address}`} target="_blank" rel="noreferrer">
-            Contract: {address}
+          <a href={`https://${network}.etherscan.io/address/${contract.address}`} target="_blank" rel="noreferrer">
+            Contract: {contract.name} | {contract.network} | {contract.address}
           </a>
         </div>
       </div>
