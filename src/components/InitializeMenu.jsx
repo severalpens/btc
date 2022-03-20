@@ -7,11 +7,10 @@ export default function InitializeMenu() {
             <div>
                 <h2 className="font-medium leading-tight text-4xl mt-0 mb-8 text-blue-600">Initialize</h2>
                 <div>
-                    <Link to="/">Register Contract</Link>
-
+                    <Link to="/initialize/register">Register Contract</Link>
                 </div>
                 <div>
-                    <Link to="/">Transfer</Link>
+                    <Link to="/initialize/transfer">Transfer (Initial Balance)</Link>
 
                 </div>
             </div>

@@ -31,15 +31,15 @@ if (typeof window.ethereum !== 'undefined') {
           <Route path="contracts" element={<TableOuter />} />
           <Route path="deploy" element={<NewContractForm1 />} />
           <Route path="initialize" element={<InitializeMenu />} />
+          <Route path="initialize/transfer" element={<Transfer />} />
+          <Route path="initialize/register" element={<RegisterContract />} />
           <Route path="transfer" element={<TransferMenu />} />
-          <Route path="approve" element={<Approve />} />
-          <Route path="register" element={<RegisterContract />} />
-          <Route path="transfer" element={<Transfer />} />
-          <Route path="exit" element={<ExitTransaction />} />
-          <Route path="reclaim" element={<Reclaim />} />
-          <Route path="update" element={<Update />} />
-          <Route path="add" element={<Add />} />
-          <Route path="entry" element={<EntryTransaction />} />
+          <Route path="transfer/approve" element={<Approve />} />
+          <Route path="transfer/exit" element={<ExitTransaction />} />
+          <Route path="transfer/reclaim" element={<Reclaim />} />
+          <Route path="transfer/update" element={<Update />} />
+          <Route path="transfer/add" element={<Add />} />
+          <Route path="transfer/entry" element={<EntryTransaction />} />
           <Route
             path="*"
             element={

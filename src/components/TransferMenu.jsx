@@ -7,22 +7,22 @@ export default function TransferMenu() {
             <div>
                 <h2 className="font-medium leading-tight text-4xl mt-0 mb-8 text-blue-600">Transfer</h2>
                 <div>
-                    <Link to="/">Approve</Link>
+                    <Link to="/transfer/approve">Approve</Link>
                 </div>
                 <div>
-                    <Link to="/">Exit Transaction</Link>
+                    <Link to="/transfer/exit">Exit Transaction</Link>
                 </div>
                 <div>
-                    <Link to="/">Reclaim Transaction</Link>
+                    <Link to="/transfer/reclaim">Reclaim Transaction</Link>
                 </div>
                 <div>
-                    <Link to="/">Update</Link>
+                    <Link to="/transfer/update">Update</Link>
                 </div>
                 <div>
-                    <Link to="/">Add</Link>
+                    <Link to="/transfer/add">Add</Link>
                 </div>
                 <div>
-                    <Link to="/">Entry Transaction</Link>
+                    <Link to="/transfer/entry">Entry Transaction</Link>
                 </div>
             </div>
         </div>

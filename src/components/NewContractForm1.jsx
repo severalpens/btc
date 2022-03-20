@@ -41,6 +41,7 @@ export default function NewContractForm1(props) {
 
   //Refer to https://dev.to/ilonacodes/frontend-shorts-how-to-read-content-from-the-file-input-in-react-1kfb
   const handleFileChosen = (file) => {
+    console.log(file)
     if (file) {
       fileReader.onloadend = handleFileRead;
       fileReader.readAsText(file);
@@ -60,10 +61,10 @@ export default function NewContractForm1(props) {
         blockchain.deployBtc(customArtifact);
         break;
       case 3:
-        blockchain.deployBasicToken(BasicToken.abi, BasicToken.bytecode, initialBalance);
+        blockchain.deployBasicToken(BasicToken, initialBalance);
         break;
       case 4:
-        blockchain.deployBasicToken(customArtifact.abi, customArtifact.bytecode, initialBalance);
+        blockchain.deployBasicToken(customArtifact, initialBalance);
         break;
       default:
         break;
@@ -137,7 +138,7 @@ export default function NewContractForm1(props) {
             id="artifact"
             name="artifact"
             accept=".json"
-            onChange={handleFileChosen}
+            onChange={e => handleFileChosen(e.target.files[0])}
             
           />
         </div>
