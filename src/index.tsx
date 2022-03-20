@@ -10,6 +10,14 @@ import './index.scss';
 import NewContractForm1 from './components/NewContractForm1';
 import InitializeMenu from './components/InitializeMenu';
 import TransferMenu from './components/TransferMenu';
+import Approve from './components/Approve';
+import RegisterContract from './components/RegisterContract';
+import Transfer from './components/Transfer';
+import ExitTransaction from './components/ExitTransaction';
+import Reclaim from './components/Reclaim';
+import Update from './components/Update';
+import Add from './components/Add';
+import EntryTransaction from './components/EntryTransaction';
 
 Amplify.configure(awsExports);
 
