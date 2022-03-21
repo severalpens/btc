@@ -27,7 +27,23 @@ export default class Blockchain {
     return result;
   }
 
+async registerContract(args:any){
+  let address = '0x0';
+  let abi: ethers.ContractInterface = [];
+  let provider = new ethers.providers.Web3Provider(window.ethereum);
+  let signer = provider.getSigner();
+  let ethersContract = new ethers.Contract(address, abi, signer);
+  let tx = await ethersContract.registerContract(address);
+  let result = await tx.wait();
+  await this.save(args, result);
+  return result;
+}
 
+async saveTx(artifact:any, result: any){
+
+ // let tmp = await API.graphql({ query: mutations.createContract, variables: { input } });
+
+}
 
   async save(artifact:any, result: any) {
     let dt = new Date();
@@ -44,6 +60,8 @@ export default class Blockchain {
     };
 
     let tmp = await API.graphql({ query: mutations.createContract, variables: { input } });
+
+
   }
 
   static getNetwork(id: string) {
