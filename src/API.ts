@@ -2,23 +2,17 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateAccountInput = {
+export type CreateTransactionInput = {
   id?: string | null,
-  name?: string | null,
-  address?: string | null,
-  privateKey?: string | null,
-  balance?: string | null,
+  transactionId?: string | null,
   _version?: number | null,
 };
 
-export type ModelAccountConditionInput = {
-  name?: ModelStringInput | null,
-  address?: ModelStringInput | null,
-  privateKey?: ModelStringInput | null,
-  balance?: ModelStringInput | null,
-  and?: Array< ModelAccountConditionInput | null > | null,
-  or?: Array< ModelAccountConditionInput | null > | null,
-  not?: ModelAccountConditionInput | null,
+export type ModelTransactionConditionInput = {
+  transactionId?: ModelStringInput | null,
+  and?: Array< ModelTransactionConditionInput | null > | null,
+  or?: Array< ModelTransactionConditionInput | null > | null,
+  not?: ModelTransactionConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -59,6 +53,47 @@ export type ModelSizeInput = {
   ge?: number | null,
   gt?: number | null,
   between?: Array< number | null > | null,
+};
+
+export type Transaction = {
+  __typename: "Transaction",
+  id?: string,
+  transactionId?: string | null,
+  _version?: number,
+  _deleted?: boolean | null,
+  _lastChangedAt?: number,
+  createdAt?: string,
+  updatedAt?: string,
+};
+
+export type UpdateTransactionInput = {
+  id: string,
+  transactionId?: string | null,
+  _version?: number | null,
+};
+
+export type DeleteTransactionInput = {
+  id: string,
+  _version?: number | null,
+};
+
+export type CreateAccountInput = {
+  id?: string | null,
+  name?: string | null,
+  address?: string | null,
+  privateKey?: string | null,
+  balance?: string | null,
+  _version?: number | null,
+};
+
+export type ModelAccountConditionInput = {
+  name?: ModelStringInput | null,
+  address?: ModelStringInput | null,
+  privateKey?: ModelStringInput | null,
+  balance?: ModelStringInput | null,
+  and?: Array< ModelAccountConditionInput | null > | null,
+  or?: Array< ModelAccountConditionInput | null > | null,
+  not?: ModelAccountConditionInput | null,
 };
 
 export type Account = {
@@ -203,15 +238,12 @@ export type DeleteTodoInput = {
   _version?: number | null,
 };
 
-export type ModelAccountFilterInput = {
+export type ModelTransactionFilterInput = {
   id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  address?: ModelStringInput | null,
-  privateKey?: ModelStringInput | null,
-  balance?: ModelStringInput | null,
-  and?: Array< ModelAccountFilterInput | null > | null,
-  or?: Array< ModelAccountFilterInput | null > | null,
-  not?: ModelAccountFilterInput | null,
+  transactionId?: ModelStringInput | null,
+  and?: Array< ModelTransactionFilterInput | null > | null,
+  or?: Array< ModelTransactionFilterInput | null > | null,
+  not?: ModelTransactionFilterInput | null,
 };
 
 export type ModelIDInput = {
@@ -228,6 +260,24 @@ export type ModelIDInput = {
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
   size?: ModelSizeInput | null,
+};
+
+export type ModelTransactionConnection = {
+  __typename: "ModelTransactionConnection",
+  items?:  Array<Transaction | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type ModelAccountFilterInput = {
+  id?: ModelIDInput | null,
+  name?: ModelStringInput | null,
+  address?: ModelStringInput | null,
+  privateKey?: ModelStringInput | null,
+  balance?: ModelStringInput | null,
+  and?: Array< ModelAccountFilterInput | null > | null,
+  or?: Array< ModelAccountFilterInput | null > | null,
+  not?: ModelAccountFilterInput | null,
 };
 
 export type ModelAccountConnection = {
@@ -273,6 +323,60 @@ export type ModelTodoConnection = {
   items?:  Array<Todo | null >,
   nextToken?: string | null,
   startedAt?: number | null,
+};
+
+export type CreateTransactionMutationVariables = {
+  input?: CreateTransactionInput,
+  condition?: ModelTransactionConditionInput | null,
+};
+
+export type CreateTransactionMutation = {
+  createTransaction?:  {
+    __typename: "Transaction",
+    id: string,
+    transactionId?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateTransactionMutationVariables = {
+  input?: UpdateTransactionInput,
+  condition?: ModelTransactionConditionInput | null,
+};
+
+export type UpdateTransactionMutation = {
+  updateTransaction?:  {
+    __typename: "Transaction",
+    id: string,
+    transactionId?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteTransactionMutationVariables = {
+  input?: DeleteTransactionInput,
+  condition?: ModelTransactionConditionInput | null,
+};
+
+export type DeleteTransactionMutation = {
+  deleteTransaction?:  {
+    __typename: "Transaction",
+    id: string,
+    transactionId?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
 };
 
 export type CreateAccountMutationVariables = {
@@ -467,6 +571,72 @@ export type DeleteTodoMutation = {
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+  } | null,
+};
+
+export type GetTransactionQueryVariables = {
+  id?: string,
+};
+
+export type GetTransactionQuery = {
+  getTransaction?:  {
+    __typename: "Transaction",
+    id: string,
+    transactionId?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListTransactionsQueryVariables = {
+  filter?: ModelTransactionFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListTransactionsQuery = {
+  listTransactions?:  {
+    __typename: "ModelTransactionConnection",
+    items:  Array< {
+      __typename: "Transaction",
+      id: string,
+      transactionId?: string | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncTransactionsQueryVariables = {
+  filter?: ModelTransactionFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncTransactionsQuery = {
+  syncTransactions?:  {
+    __typename: "ModelTransactionConnection",
+    items:  Array< {
+      __typename: "Transaction",
+      id: string,
+      transactionId?: string | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
@@ -698,6 +868,45 @@ export type SyncTodosQuery = {
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
+  } | null,
+};
+
+export type OnCreateTransactionSubscription = {
+  onCreateTransaction?:  {
+    __typename: "Transaction",
+    id: string,
+    transactionId?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateTransactionSubscription = {
+  onUpdateTransaction?:  {
+    __typename: "Transaction",
+    id: string,
+    transactionId?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteTransactionSubscription = {
+  onDeleteTransaction?:  {
+    __typename: "Transaction",
+    id: string,
+    transactionId?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 

@@ -4,6 +4,13 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
+export declare class Transaction {
+  readonly id: string;
+  readonly transactionId?: string;
+  constructor(init: ModelInit<Transaction>);
+  static copyOf(source: Transaction, mutator: (draft: MutableModel<Transaction>) => MutableModel<Transaction> | void): Transaction;
+}
+
 export declare class Account {
   readonly id: string;
   readonly name?: string;

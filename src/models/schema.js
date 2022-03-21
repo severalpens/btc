@@ -1,5 +1,48 @@
 export const schema = {
     "models": {
+        "Transaction": {
+            "name": "Transaction",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "transactionId": {
+                    "name": "transactionId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Transactions",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "Account": {
             "name": "Account",
             "fields": {
@@ -209,5 +252,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "f84895c31ac1244617d3db95068654ee"
+    "version": "84f3eaeca66ebb3802366ff782463b28"
 };

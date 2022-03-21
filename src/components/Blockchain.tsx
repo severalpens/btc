@@ -40,14 +40,11 @@ async registerContract(args:any){
 }
 
 async saveTx(artifact:any, result: any){
-
  // let tmp = await API.graphql({ query: mutations.createContract, variables: { input } });
-
 }
 
   async save(artifact:any, result: any) {
     let dt = new Date();
-
     let input: any = {
       abi: JSON.stringify(artifact.abi),
       name: artifact.contractName,
