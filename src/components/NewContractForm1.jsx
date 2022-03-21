@@ -27,6 +27,7 @@ export default function NewContractForm1(props) {
 
   useEffect(() => {
   }, []);
+  
 
   const handleContractType = (e) => {
     let ct = e.target.value;
