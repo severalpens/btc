@@ -13,6 +13,7 @@ function Navbar(props) {
   }
   catch{
     
+    
   }
 
   useEffect(() => {
