@@ -19,14 +19,14 @@ The function of the burn-to-claim protocol is to transfer value (eg ERC20 tokens
 
 For a successful transfer, there are 5 method calls to the blockchain. 
 
-![BTC2022 Successful](./architecture/diagrams/BTC2022_Successful.svg)
+![BTC2022 Successful](./docs/architecture/diagrams/BTC2022_Successful.svg)
 
 
 For a failed transfer there are 3. 
 
-![BTC2022 Timeout](./architecture/diagrams/BTC2022_Timeout.svg)
+![BTC2022 Timeout](./docs/architecture/diagrams/BTC2022_Timeout.svg)
 
-More are involved on initial setup. For the full data flow diagram, refer to [BTC2022](https://severalpens.github.io/btc/architecture/diagrams/btcvertical.svg).
+More are involved on initial setup. For the full data flow diagram, refer to [BTC2022](https://severalpens.github.io/btc/docs/architecture/diagrams/btcvertical.svg).
 
 ### The node.js version
 
@@ -81,7 +81,7 @@ The main purpose of this repo is to take some of the console application code an
 
 For example, deploying the ERC20 tokens, relevant code from the node.js version can be recycled in the construction of a form which will do the same thing. However the user will have control over the variables such as `network` and `initial amount`:
 
-![oldNewExample](./architecture/OldNewExample.png)
+![oldNewExample](./docs/architecture/OldNewExample.png)
 
 
 ### Checkpoint 4 - Build Server Side API & Oauth
