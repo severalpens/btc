@@ -59,6 +59,7 @@
     ]
   },
   "devDependencies": {
+    "@openzeppelin/contracts": "^4.5.0",
     "autoprefixer": "^10.4.0",
     "postcss": "^8.4.5",
     "tailwindcss": "^3.0.8"
