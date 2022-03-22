@@ -7,7 +7,13 @@ import {ContractContext} from './ContractContext';
 function Navbar(props) {
   const [accounts, setAccounts] = useState(null);
   const [network, setNetwork] = useState(null);
-  let contract = window.localStorage.contract ? JSON.parse(window.localStorage.contract) : [];
+  let contract = []
+  try{
+    contract = window.localStorage.contract ? JSON.parse(window.localStorage.contract) : [];
+  }
+  catch{
+    
+  }
 
   useEffect(() => {
     async function fetchData() {
