@@ -18,6 +18,7 @@ import Reclaim from './components/Reclaim';
 import Update from './components/Update';
 import Add from './components/Add';
 import EntryTransaction from './components/EntryTransaction';
+import Transactions from './components/Transactions';
 
 Amplify.configure(awsExports);
 
@@ -31,6 +32,7 @@ if (typeof window.ethereum !== 'undefined') {
           <Route path="contracts" element={<TableOuter />} />
           <Route path="deploy" element={<NewContractForm1 />} />
           <Route path="initialize" element={<InitializeMenu />} />
+          <Route path="transactions" element={<Transactions />} />
           <Route path="initialize/transfer" element={<Transfer />} />
           <Route path="initialize/register" element={<RegisterContract />} />
           <Route path="transfer" element={<TransferMenu />} />

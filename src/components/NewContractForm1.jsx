@@ -50,7 +50,9 @@ export default function NewContractForm1(props) {
   };
 
   const handleSubmit = async (event) => {
+
     event.preventDefault();
+
     switch (parseInt(contractType)) {
       case 0:
         setCtError1('No contract chosen');
@@ -70,6 +72,9 @@ export default function NewContractForm1(props) {
       default:
         break;
     }
+
+    
+
   }
 
 
@@ -174,6 +179,25 @@ export default function NewContractForm1(props) {
         </div>
         <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
       </form>
+      <div hidden={['0','1','2'].includes(contractType)}>
+        <div className="text mt-4">
+        Example ERC20 Contract:
+        </div>
+        <pre>
+        {`
+        
+        pragma solidity ^0.8.0;
+
+        import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+        contract BasicToken is ERC20 {
+          constructor(uint256 initialBalance) ERC20("Basic", "BSC") {
+            _mint(msg.sender, initialBalance);
+          }
+        }
+      `}
+        </pre>
+      </div>
     </div>
   )
 }
