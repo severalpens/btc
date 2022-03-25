@@ -27,21 +27,54 @@ export default class Blockchain {
     return result;
   }
 
-async registerContract(args:any){
-  let address = '0x0';
-  let abi: ethers.ContractInterface = [];
-  let provider = new ethers.providers.Web3Provider(window.ethereum);
-  let signer = provider.getSigner();
-  let ethersContract = new ethers.Contract(address, abi, signer);
-  let tx = await ethersContract.registerContract(address);
-  let result = await tx.wait();
-  await this.save(args, result);
-  return result;
-}
 
-async saveTx(artifact:any, result: any){
- // let tmp = await API.graphql({ query: mutations.createContract, variables: { input } });
-}
+
+
+  async initialize(tokenAddress: string,tokenTransferAmount: string) {
+    let strContract = window.localStorage.getItem('contract') || '';
+    let contract = JSON.parse(strContract);
+    this.registerContract(contract,tokenAddress,'1000')
+  }
+
+  
+  async registerContract(contract:any, tokenAddress: string, tokenTransferAmount: string){
+    let address: string = contract.address;
+    let abi: ethers.ContractInterface = contract.abi;
+    let provider = new ethers.providers.Web3Provider(window.ethereum);
+    let signer = provider.getSigner();
+    let ethersContract = new ethers.Contract(address, abi, signer);
+    
+    let tx = await ethersContract.registerContract(tokenAddress);
+    let result = await tx.wait();
+    await this.saveTx(result);
+    
+    
+    let tta = ethers.utils.parseEther(tokenTransferAmount);
+    let tx2 = await ethersContract.transfer(tta);
+    let result2 = await tx2.wait();
+    await this.saveTx(result2);
+
+    return result;
+  }
+  
+  async saveTx(result: any){
+    let input: any = {
+      transactionId: result.transactionHash
+    };
+    await API.graphql({ query: mutations.createTransaction, variables: { input } });
+  }
+
+  async transferToContract(args:any){
+    let address = '0x0';
+    let abi: ethers.ContractInterface = [];
+    let provider = new ethers.providers.Web3Provider(window.ethereum);
+    let signer = provider.getSigner();
+    let ethersContract = new ethers.Contract(address, abi, signer);
+    let tx = await ethersContract.registerContract(address);
+    let result = await tx.wait();
+    await this.save(args, result);
+    return result;
+  }
 
   async save(artifact:any, result: any) {
     let dt = new Date();

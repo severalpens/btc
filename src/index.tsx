@@ -11,8 +11,8 @@ import NewContractForm1 from './components/NewContractForm1';
 import InitializeMenu from './components/InitializeMenu';
 import TransferMenu from './components/TransferMenu';
 import Approve from './components/Approve';
-import RegisterContract from './components/RegisterContract';
-import Transfer from './components/Transfer';
+import RegisterToken from './components/RegisterToken';
+import Transfer from './components/TransferToContract';
 import ExitTransaction from './components/ExitTransaction';
 import Reclaim from './components/Reclaim';
 import Update from './components/Update';
@@ -34,7 +34,7 @@ if (typeof window.ethereum !== 'undefined') {
           <Route path="initialize" element={<InitializeMenu />} />
           <Route path="transactions" element={<Transactions />} />
           <Route path="initialize/transfer" element={<Transfer />} />
-          <Route path="initialize/register" element={<RegisterContract />} />
+          <Route path="initialize/register" element={<RegisterToken />} />
           <Route path="transfer" element={<TransferMenu />} />
           <Route path="transfer/approve" element={<Approve />} />
           <Route path="transfer/exit" element={<ExitTransaction />} />

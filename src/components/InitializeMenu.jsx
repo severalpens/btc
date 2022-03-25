@@ -10,7 +10,7 @@ export default function InitializeMenu() {
                     <Link to="/initialize/register">Register Contract</Link>
                 </div>
                 <div>
-                    <Link to="/initialize/transfer">Transfer (Initial Balance)</Link>
+                    <Link to="/initialize/transfer">Transfer to Contract (Initial Balance)</Link>
 
                 </div>
             </div>
