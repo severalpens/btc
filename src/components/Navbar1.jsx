@@ -51,12 +51,6 @@ function Navbar(props) {
             </NavLink>
           </div>
           <div className="p-6">
-            <NavLink className="" to="/transfer">
-              Transfer
-            </NavLink>
-          </div>
-
-          <div className="p-6">
             <NavLink className="" to="/transactions">
               Transactions
             </NavLink>

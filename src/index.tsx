@@ -8,8 +8,6 @@ import awsExports from "./aws-exports";
 import NoMetamask from './NoMetamask';
 import './index.scss';
 import NewContractForm1 from './components/NewContractForm1';
-import InitializeMenu from './components/InitializeMenu';
-import TransferMenu from './components/TransferMenu';
 import Approve from './components/Approve';
 import RegisterToken from './components/RegisterToken';
 import Transfer from './components/TransferToContract';
@@ -18,7 +16,8 @@ import Reclaim from './components/Reclaim';
 import Update from './components/Update';
 import Add from './components/Add';
 import EntryTransaction from './components/EntryTransaction';
-import Transactions from './components/Transactions';
+import Initialize from './components/Initialize';
+import TransactionsMenu from './components/TransactionsMenu';
 
 Amplify.configure(awsExports);
 
@@ -31,17 +30,16 @@ if (typeof window.ethereum !== 'undefined') {
         <Route path="/" element={<App />}>
           <Route path="contracts" element={<TableOuter />} />
           <Route path="deploy" element={<NewContractForm1 />} />
-          <Route path="initialize" element={<InitializeMenu />} />
-          <Route path="transactions" element={<Transactions />} />
+          <Route path="initialize" element={<Initialize />} />
           <Route path="initialize/transfer" element={<Transfer />} />
           <Route path="initialize/register" element={<RegisterToken />} />
-          <Route path="transfer" element={<TransferMenu />} />
-          <Route path="transfer/approve" element={<Approve />} />
-          <Route path="transfer/exit" element={<ExitTransaction />} />
-          <Route path="transfer/reclaim" element={<Reclaim />} />
-          <Route path="transfer/update" element={<Update />} />
-          <Route path="transfer/add" element={<Add />} />
-          <Route path="transfer/entry" element={<EntryTransaction />} />
+          <Route path="transactions" element={<TransactionsMenu />} />
+          <Route path="transactions/approve" element={<Approve />} />
+          <Route path="transactions/exit" element={<ExitTransaction />} />
+          <Route path="transactions/reclaim" element={<Reclaim />} />
+          <Route path="transactions/update" element={<Update />} />
+          <Route path="transactions/add" element={<Add />} />
+          <Route path="transactions/entry" element={<EntryTransaction />} />
           <Route
             path="*"
             element={

@@ -6,7 +6,7 @@ import * as queries from '../graphql/queries';
 
 const blockchain = new Blockchain();
 
-export default function ExitTransaction(props) {
+export default function Initialize(props) {
 
   const [tokenAddress, setTokenAddress] = useState('0x0');
   const [tokenTransferAmount, setTokenTransferAmount] = useState('1000');
@@ -42,7 +42,7 @@ export default function ExitTransaction(props) {
 
   return (
     <div className="ml-16 my-16 ">
-      <h2 className="font-medium leading-tight text-4xl mt-0 mb-8 text-blue-600">Exit Transaction</h2>
+      <h2 className="font-medium leading-tight text-4xl mt-0 mb-8 text-blue-600">Initialize</h2>
       <form className="" onSubmit={handleSubmit}>
         <div className="mb-3 xl:w-96">
           <label className="form-label inline-block mb-2 text-gray-700" htmlFor="contract-type">Token (ERC20 Contract) Address</label>
