@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import Blockchain from './Blockchain';
 import { NavLink } from 'react-router-dom';
-import {ContractContext} from './ContractContext';
 
 function Navbar(props) {
   const [accounts, setAccounts] = useState(null);
@@ -24,9 +23,6 @@ function Navbar(props) {
   }, [])
 
   return (
-    <ContractContext.Consumer>
-    {({address, setAddress}) => (
-
     <>
       <div className="container flex justify-between mx-auto  border m-4 border-black px-4">
         <div className="p-6 columns-2  flex ">
@@ -55,6 +51,16 @@ function Navbar(props) {
               Transactions
             </NavLink>
           </div>
+          <div className="p-6">
+            <NavLink className="" to="/hashpairs">
+              Hash Pairs
+            </NavLink>
+          </div>
+          <div className="p-6">
+            <NavLink className="" to="/burnaccounts">
+              Burn Accounts
+            </NavLink>
+          </div>
 
 
         </div>
@@ -80,8 +86,6 @@ function Navbar(props) {
         </div>
       </div>
     </>
-         )}
-         </ContractContext.Consumer>
        );
 }
 

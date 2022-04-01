@@ -32,7 +32,7 @@ export default function Initialize(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     let contract = JSON.parse(window.localStorage.getItem('contract'));
-    await blockchain.registerContract(contract, tokenAddress,tokenTransferAmount);
+    await blockchain.initialize(contract, tokenAddress,tokenTransferAmount);
   }
 
   const handleContractChange = async (e) => {

@@ -30,7 +30,8 @@ export default function Reclaim(props) {
 
   return (
     <div className="ml-16 my-16 ">
-      <h2 className="font-medium leading-tight text-4xl mt-0 mb-8 text-blue-600">Reclaim Transaction</h2>
+      <h2 className="font-medium leading-tight text-4xl mt-0 text-blue-600">Reclaim Transaction</h2>
+      <div className="italic mb-8">sender agent</div>
       <form className="" onSubmit={handleSubmit}>
         {/* Transaction Id */}
         <div className="mb-3 xl:w-96" >

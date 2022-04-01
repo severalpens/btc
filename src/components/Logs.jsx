@@ -1,110 +1,61 @@
-import { getContractAddress } from "ethers/lib/utils";
 import { useState, useEffect } from "react";
-import Blockchain from './Blockchain';
 import { API } from 'aws-amplify';
 import * as queries from '../graphql/queries';
-
-const blockchain = new Blockchain();
+import * as mutations from '../graphql/mutations';
+import { Link } from 'react-router-dom';
 
 export default function Logs(props) {
 
-  const [tokenAddress, setTokenAddress] = useState('0x0');
-  const [tokenTransferAmount, setTokenTransferAmount] = useState('1000');
-  const [contracts, setContracts] = useState(null);
-
-
-  const [ctError1, setCtError1] = useState('');
-  const [ibError1, setIbError1] = useState('');
+  const [logs, setLogs] = useState([]);
 
   useEffect(() => {
+   fetchData();
+  }, []);
 
-    async function fetchData() {
-      let graphqlResult = await API.graphql({ query: queries.listContracts });
-      let contract = JSON.parse(window.localStorage.getItem('contract'));
-      let cl = graphqlResult.data.listContracts.items.filter(x => !x._deleted && contract.address !== x.address);
-      setContracts(cl);
-      setTokenAddress(cl[0].address)
-    }
+  async function fetchData() {
+    let graphqlResult = await API.graphql({ query: queries.listLogs });
+    let cl = graphqlResult.data.listLogs.items
+    .filter(x => x.transactionType === props.transactionType && !x._deleted)
+    .sort((a,b) => a.timestamp > b.timestamp);
+    setLogs(cl);
+  }
     
-    fetchData();
-   }, []);
- 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    let contract = JSON.parse(window.localStorage.getItem('contract'));
-    await blockchain.registerContract(contract, tokenAddress,tokenTransferAmount);
-  }
-
-  const handleContractChange = async (e) => {
-    setTokenAddress(e.target.value);
-  }
-
 
   return (
-    <div className="ml-16 my-16 ">
-      <h2 className="font-medium leading-tight text-4xl mt-0 mb-8 text-blue-600">Update</h2>
-      <form className="" onSubmit={handleSubmit}>
-        <div className="mb-3 xl:w-96">
-          <label className="form-label inline-block mb-2 text-gray-700" htmlFor="contract-type">Token (ERC20 Contract) Address</label>
-          <select id='contract-type' name='contract-type' className="
-            form-select 
-            appearance-none
-            block
-            w-800
-            px-3
-            py-1.5
-            text-base
-            font-normal
-            text-gray-700
-            bg-white bg-clip-padding bg-no-repeat
-            border border-solid border-gray-300
-            rounded
-            transition
-            ease-in-out
-            m-0
-            focus:text-gray-700 
-            focus:bg-white 
-            focus:border-blue-600 
-            focus:outline-none"
-            aria-label="Default select example" onChange={handleContractChange}>
-          {contracts? contracts.map((contract) => (
-            <option key={contract.id} value={contract.address}>{contract.address}</option>
-          )):''}
-          </select>
-        </div>
-        <div className="mb-3 xl:w-96" >
-          <label htmlFor="exampleFormControlInput1" className="form-label inline-block mb-2 text-gray-700">
-            Initial Transfer Amount
-          </label >
-          <input type="text" className="
-      form-control
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700
-      focus:bg-white 
-      focus:border-blue-600 
-      focus:outline-none
-    "
-            placeholder="10000"
-            id="initialBalance"
-            name="initialBalance"
-            defaultValue="1000"
-            onChange={e => setTokenTransferAmount(e.target.value)}
-          />
-        </div>
-        <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
-      </form>
+    <div className="mt-28 mx-4">
+    <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+      <table className="table-auto min-w-full divide-y divide-gray-200">
+        <thead className="bg-gray-50">
+          <tr>
+          <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Timestamp
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Logs
+            </th>
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200">
+          {logs.map((log) => (
+            <tr key={log.id}>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{log.timestamp}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <a href={"https://rinkeby.etherscan.io/tx/"+log.transactionHash} target="_blank" rel="noreferrer">
+                {log.transactionHash.slice(0,5)+"..."}
+                </a>
+                </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
     </div>
   )
+
 }

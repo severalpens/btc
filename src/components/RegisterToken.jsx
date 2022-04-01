@@ -32,7 +32,7 @@ export default function RegisterToken(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     let contract = JSON.parse(window.localStorage.getItem('contract'));
-    await blockchain.registerContract(contract, tokenAddress,tokenTransferAmount);
+    await blockchain.initialize(contract, tokenAddress,tokenTransferAmount);
   }
 
   const handleContractChange = async (e) => {
@@ -42,7 +42,8 @@ export default function RegisterToken(props) {
 
   return (
     <div className="ml-16 my-16 ">
-      <h2 className="font-medium leading-tight text-4xl mt-0 mb-8 text-blue-600">Register Token</h2>
+      <h2 className="font-medium leading-tight text-4xl mt-0 text-blue-600">Register Token</h2>
+      <div className="italic mb-8">sender token</div>
       <form className="" onSubmit={handleSubmit}>
         <div className="mb-3 xl:w-96">
           <label className="form-label inline-block mb-2 text-gray-700" htmlFor="contract-type">ERC20 Contract Address</label>

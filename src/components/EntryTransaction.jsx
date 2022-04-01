@@ -6,11 +6,14 @@ import * as queries from '../graphql/queries';
 
 const blockchain = new Blockchain();
 
-export default function EntryTransaction(props) {
+export default function Add(props) {
 
-  const [contractAddress, setContractAddress] = useState(null);
+  const [amount, setAmount] = useState(null);
+  const [address, setAddress] = useState(null);
   const [transactionId, setTransactionId] = useState(null);
   const [hashSecret, setHashSecret] = useState(null);
+
+  
   const [ctError1, setCtError1] = useState('');
   const [ibError1, setIbError1] = useState('');
 
@@ -32,12 +35,46 @@ export default function EntryTransaction(props) {
 
   return (
     <div className="ml-16 my-16 ">
-      <h2 className="font-medium leading-tight text-4xl mt-0 mb-8 text-blue-600">Reclaim Transaction</h2>
+      <h2 className="font-medium leading-tight text-4xl mt-0 text-blue-600">Entry Transaction</h2>
+      <div className="italic mb-8">recipient agent</div>
       <form className="" onSubmit={handleSubmit}>
-        {/* Contract Address */}
+        {/* Amount */}
         <div className="mb-3 xl:w-96" >
-          <label htmlFor="contractAddress" className="form-label inline-block mb-2 text-gray-700">
-            Contract Address
+          <label htmlFor="amount" className="form-label inline-block mb-2 text-gray-700">
+            Amount
+          </label >
+          <input type="text" className="
+      form-control
+      block
+      w-full
+      px-3
+      py-1.5
+      text-base
+      font-normal
+      text-gray-700
+      bg-white bg-clip-padding
+      border border-solid border-gray-300
+      rounded
+      transition
+      ease-in-out
+      m-0
+      focus:text-gray-700
+      focus:bg-white 
+      focus:border-blue-600 
+      focus:outline-none
+    "
+            placeholder="1"
+            id="amount"
+            name="amount"
+            defaultValue="1"
+            onChange={e => setAmount(e.target.value)}
+          />
+        </div>
+
+        {/*  Address */}
+        <div className="mb-3 xl:w-96" >
+          <label htmlFor="address" className="form-label inline-block mb-2 text-gray-700">
+            Address
           </label >
           <input type="text" className="
       form-control
@@ -60,10 +97,10 @@ export default function EntryTransaction(props) {
       focus:outline-none
     "
             placeholder="0x0"
-            id="contractAddress"
-            name="contractAddress"
+            id="address"
+            name="address"
             defaultValue="0x0"
-            onChange={e => setContractAddress(e.target.value)}
+            onChange={e => setAddress(e.target.value)}
           />
         </div>
 
@@ -100,12 +137,10 @@ export default function EntryTransaction(props) {
           />
         </div>
 
-
-
         {/* Hash Secret */}
         <div className="mb-3 xl:w-96" >
           <label htmlFor="hashSecret" className="form-label inline-block mb-2 text-gray-700">
-            Hash Secrect 
+            Hash Secret
           </label >
           <input type="text" className="
       form-control
@@ -134,7 +169,6 @@ export default function EntryTransaction(props) {
             onChange={e => setHashSecret(e.target.value)}
           />
         </div>
-
 
         <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
       </form>

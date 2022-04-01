@@ -5,7 +5,6 @@ import './App.scss';
 import React, {useState} from 'react';
 
 
-import {ContractContext} from './components/ContractContext';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,9 +27,7 @@ class App extends React.Component {
   render() {
     // The entire state is passed to the provider
     return (
-      <ContractContext.Provider value={this.state}>
         <Content/>
-      </ContractContext.Provider>
     );
   }
 }
