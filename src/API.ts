@@ -2,17 +2,21 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateTransactionInput = {
+export type CreateTxLogInput = {
   id?: string | null,
-  transactionId?: string | null,
+  transactionType?: string | null,
+  transactionHash?: string | null,
+  timestamp?: number | null,
   _version?: number | null,
 };
 
-export type ModelTransactionConditionInput = {
-  transactionId?: ModelStringInput | null,
-  and?: Array< ModelTransactionConditionInput | null > | null,
-  or?: Array< ModelTransactionConditionInput | null > | null,
-  not?: ModelTransactionConditionInput | null,
+export type ModelTxLogConditionInput = {
+  transactionType?: ModelStringInput | null,
+  transactionHash?: ModelStringInput | null,
+  timestamp?: ModelIntInput | null,
+  and?: Array< ModelTxLogConditionInput | null > | null,
+  or?: Array< ModelTxLogConditionInput | null > | null,
+  not?: ModelTxLogConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -55,10 +59,107 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type TxLog = {
+  __typename: "TxLog",
+  id?: string,
+  transactionType?: string | null,
+  transactionHash?: string | null,
+  timestamp?: number | null,
+  _version?: number,
+  _deleted?: boolean | null,
+  _lastChangedAt?: number,
+  createdAt?: string,
+  updatedAt?: string,
+};
+
+export type UpdateTxLogInput = {
+  id: string,
+  transactionType?: string | null,
+  transactionHash?: string | null,
+  timestamp?: number | null,
+  _version?: number | null,
+};
+
+export type DeleteTxLogInput = {
+  id: string,
+  _version?: number | null,
+};
+
+export type CreateLogInput = {
+  id?: string | null,
+  transactionType?: string | null,
+  transactionHash?: string | null,
+  timestamp?: number | null,
+  _version?: number | null,
+};
+
+export type ModelLogConditionInput = {
+  transactionType?: ModelStringInput | null,
+  transactionHash?: ModelStringInput | null,
+  timestamp?: ModelIntInput | null,
+  and?: Array< ModelLogConditionInput | null > | null,
+  or?: Array< ModelLogConditionInput | null > | null,
+  not?: ModelLogConditionInput | null,
+};
+
+export type Log = {
+  __typename: "Log",
+  id?: string,
+  transactionType?: string | null,
+  transactionHash?: string | null,
+  timestamp?: number | null,
+  _version?: number,
+  _deleted?: boolean | null,
+  _lastChangedAt?: number,
+  createdAt?: string,
+  updatedAt?: string,
+};
+
+export type UpdateLogInput = {
+  id: string,
+  transactionType?: string | null,
+  transactionHash?: string | null,
+  timestamp?: number | null,
+  _version?: number | null,
+};
+
+export type DeleteLogInput = {
+  id: string,
+  _version?: number | null,
+};
+
+export type CreateTransactionInput = {
+  id?: string | null,
+  transactionId?: string | null,
+  timestamp?: number | null,
+  _version?: number | null,
+};
+
+export type ModelTransactionConditionInput = {
+  transactionId?: ModelStringInput | null,
+  timestamp?: ModelIntInput | null,
+  and?: Array< ModelTransactionConditionInput | null > | null,
+  or?: Array< ModelTransactionConditionInput | null > | null,
+  not?: ModelTransactionConditionInput | null,
+};
+
 export type Transaction = {
   __typename: "Transaction",
   id?: string,
   transactionId?: string | null,
+  timestamp?: number | null,
   _version?: number,
   _deleted?: boolean | null,
   _lastChangedAt?: number,
@@ -69,6 +170,7 @@ export type Transaction = {
 export type UpdateTransactionInput = {
   id: string,
   transactionId?: string | null,
+  timestamp?: number | null,
   _version?: number | null,
 };
 
@@ -151,18 +253,6 @@ export type ModelContractConditionInput = {
   not?: ModelContractConditionInput | null,
 };
 
-export type ModelIntInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-};
-
 export type Contract = {
   __typename: "Contract",
   id?: string,
@@ -238,12 +328,14 @@ export type DeleteTodoInput = {
   _version?: number | null,
 };
 
-export type ModelTransactionFilterInput = {
+export type ModelTxLogFilterInput = {
   id?: ModelIDInput | null,
-  transactionId?: ModelStringInput | null,
-  and?: Array< ModelTransactionFilterInput | null > | null,
-  or?: Array< ModelTransactionFilterInput | null > | null,
-  not?: ModelTransactionFilterInput | null,
+  transactionType?: ModelStringInput | null,
+  transactionHash?: ModelStringInput | null,
+  timestamp?: ModelIntInput | null,
+  and?: Array< ModelTxLogFilterInput | null > | null,
+  or?: Array< ModelTxLogFilterInput | null > | null,
+  not?: ModelTxLogFilterInput | null,
 };
 
 export type ModelIDInput = {
@@ -260,6 +352,39 @@ export type ModelIDInput = {
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
   size?: ModelSizeInput | null,
+};
+
+export type ModelTxLogConnection = {
+  __typename: "ModelTxLogConnection",
+  items?:  Array<TxLog | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type ModelLogFilterInput = {
+  id?: ModelIDInput | null,
+  transactionType?: ModelStringInput | null,
+  transactionHash?: ModelStringInput | null,
+  timestamp?: ModelIntInput | null,
+  and?: Array< ModelLogFilterInput | null > | null,
+  or?: Array< ModelLogFilterInput | null > | null,
+  not?: ModelLogFilterInput | null,
+};
+
+export type ModelLogConnection = {
+  __typename: "ModelLogConnection",
+  items?:  Array<Log | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type ModelTransactionFilterInput = {
+  id?: ModelIDInput | null,
+  transactionId?: ModelStringInput | null,
+  timestamp?: ModelIntInput | null,
+  and?: Array< ModelTransactionFilterInput | null > | null,
+  or?: Array< ModelTransactionFilterInput | null > | null,
+  not?: ModelTransactionFilterInput | null,
 };
 
 export type ModelTransactionConnection = {
@@ -325,6 +450,126 @@ export type ModelTodoConnection = {
   startedAt?: number | null,
 };
 
+export type CreateTxLogMutationVariables = {
+  input?: CreateTxLogInput,
+  condition?: ModelTxLogConditionInput | null,
+};
+
+export type CreateTxLogMutation = {
+  createTxLog?:  {
+    __typename: "TxLog",
+    id: string,
+    transactionType?: string | null,
+    transactionHash?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateTxLogMutationVariables = {
+  input?: UpdateTxLogInput,
+  condition?: ModelTxLogConditionInput | null,
+};
+
+export type UpdateTxLogMutation = {
+  updateTxLog?:  {
+    __typename: "TxLog",
+    id: string,
+    transactionType?: string | null,
+    transactionHash?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteTxLogMutationVariables = {
+  input?: DeleteTxLogInput,
+  condition?: ModelTxLogConditionInput | null,
+};
+
+export type DeleteTxLogMutation = {
+  deleteTxLog?:  {
+    __typename: "TxLog",
+    id: string,
+    transactionType?: string | null,
+    transactionHash?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type CreateLogMutationVariables = {
+  input?: CreateLogInput,
+  condition?: ModelLogConditionInput | null,
+};
+
+export type CreateLogMutation = {
+  createLog?:  {
+    __typename: "Log",
+    id: string,
+    transactionType?: string | null,
+    transactionHash?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateLogMutationVariables = {
+  input?: UpdateLogInput,
+  condition?: ModelLogConditionInput | null,
+};
+
+export type UpdateLogMutation = {
+  updateLog?:  {
+    __typename: "Log",
+    id: string,
+    transactionType?: string | null,
+    transactionHash?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteLogMutationVariables = {
+  input?: DeleteLogInput,
+  condition?: ModelLogConditionInput | null,
+};
+
+export type DeleteLogMutation = {
+  deleteLog?:  {
+    __typename: "Log",
+    id: string,
+    transactionType?: string | null,
+    transactionHash?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
 export type CreateTransactionMutationVariables = {
   input?: CreateTransactionInput,
   condition?: ModelTransactionConditionInput | null,
@@ -335,6 +580,7 @@ export type CreateTransactionMutation = {
     __typename: "Transaction",
     id: string,
     transactionId?: string | null,
+    timestamp?: number | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
@@ -353,6 +599,7 @@ export type UpdateTransactionMutation = {
     __typename: "Transaction",
     id: string,
     transactionId?: string | null,
+    timestamp?: number | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
@@ -371,6 +618,7 @@ export type DeleteTransactionMutation = {
     __typename: "Transaction",
     id: string,
     transactionId?: string | null,
+    timestamp?: number | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
@@ -574,6 +822,150 @@ export type DeleteTodoMutation = {
   } | null,
 };
 
+export type GetTxLogQueryVariables = {
+  id?: string,
+};
+
+export type GetTxLogQuery = {
+  getTxLog?:  {
+    __typename: "TxLog",
+    id: string,
+    transactionType?: string | null,
+    transactionHash?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListTxLogsQueryVariables = {
+  filter?: ModelTxLogFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListTxLogsQuery = {
+  listTxLogs?:  {
+    __typename: "ModelTxLogConnection",
+    items:  Array< {
+      __typename: "TxLog",
+      id: string,
+      transactionType?: string | null,
+      transactionHash?: string | null,
+      timestamp?: number | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncTxLogsQueryVariables = {
+  filter?: ModelTxLogFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncTxLogsQuery = {
+  syncTxLogs?:  {
+    __typename: "ModelTxLogConnection",
+    items:  Array< {
+      __typename: "TxLog",
+      id: string,
+      transactionType?: string | null,
+      transactionHash?: string | null,
+      timestamp?: number | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type GetLogQueryVariables = {
+  id?: string,
+};
+
+export type GetLogQuery = {
+  getLog?:  {
+    __typename: "Log",
+    id: string,
+    transactionType?: string | null,
+    transactionHash?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListLogsQueryVariables = {
+  filter?: ModelLogFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListLogsQuery = {
+  listLogs?:  {
+    __typename: "ModelLogConnection",
+    items:  Array< {
+      __typename: "Log",
+      id: string,
+      transactionType?: string | null,
+      transactionHash?: string | null,
+      timestamp?: number | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncLogsQueryVariables = {
+  filter?: ModelLogFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncLogsQuery = {
+  syncLogs?:  {
+    __typename: "ModelLogConnection",
+    items:  Array< {
+      __typename: "Log",
+      id: string,
+      transactionType?: string | null,
+      transactionHash?: string | null,
+      timestamp?: number | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
 export type GetTransactionQueryVariables = {
   id?: string,
 };
@@ -583,6 +975,7 @@ export type GetTransactionQuery = {
     __typename: "Transaction",
     id: string,
     transactionId?: string | null,
+    timestamp?: number | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
@@ -604,6 +997,7 @@ export type ListTransactionsQuery = {
       __typename: "Transaction",
       id: string,
       transactionId?: string | null,
+      timestamp?: number | null,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
@@ -629,6 +1023,7 @@ export type SyncTransactionsQuery = {
       __typename: "Transaction",
       id: string,
       transactionId?: string | null,
+      timestamp?: number | null,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
@@ -871,11 +1266,102 @@ export type SyncTodosQuery = {
   } | null,
 };
 
+export type OnCreateTxLogSubscription = {
+  onCreateTxLog?:  {
+    __typename: "TxLog",
+    id: string,
+    transactionType?: string | null,
+    transactionHash?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateTxLogSubscription = {
+  onUpdateTxLog?:  {
+    __typename: "TxLog",
+    id: string,
+    transactionType?: string | null,
+    transactionHash?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteTxLogSubscription = {
+  onDeleteTxLog?:  {
+    __typename: "TxLog",
+    id: string,
+    transactionType?: string | null,
+    transactionHash?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateLogSubscription = {
+  onCreateLog?:  {
+    __typename: "Log",
+    id: string,
+    transactionType?: string | null,
+    transactionHash?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateLogSubscription = {
+  onUpdateLog?:  {
+    __typename: "Log",
+    id: string,
+    transactionType?: string | null,
+    transactionHash?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteLogSubscription = {
+  onDeleteLog?:  {
+    __typename: "Log",
+    id: string,
+    transactionType?: string | null,
+    transactionHash?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
 export type OnCreateTransactionSubscription = {
   onCreateTransaction?:  {
     __typename: "Transaction",
     id: string,
     transactionId?: string | null,
+    timestamp?: number | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
@@ -889,6 +1375,7 @@ export type OnUpdateTransactionSubscription = {
     __typename: "Transaction",
     id: string,
     transactionId?: string | null,
+    timestamp?: number | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
@@ -902,6 +1389,7 @@ export type OnDeleteTransactionSubscription = {
     __typename: "Transaction",
     id: string,
     transactionId?: string | null,
+    timestamp?: number | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,

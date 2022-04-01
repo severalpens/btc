@@ -4,9 +4,11 @@ import { schema } from './schema';
 
 
 
-const { Transaction, Account, Contract, Todo } = initSchema(schema);
+const { TxLog, Log, Transaction, Account, Contract, Todo } = initSchema(schema);
 
 export {
+  TxLog,
+  Log,
   Transaction,
   Account,
   Contract,

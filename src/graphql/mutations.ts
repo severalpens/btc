@@ -2,6 +2,114 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createTxLog = /* GraphQL */ `
+  mutation CreateTxLog(
+    $input: CreateTxLogInput!
+    $condition: ModelTxLogConditionInput
+  ) {
+    createTxLog(input: $input, condition: $condition) {
+      id
+      transactionType
+      transactionHash
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateTxLog = /* GraphQL */ `
+  mutation UpdateTxLog(
+    $input: UpdateTxLogInput!
+    $condition: ModelTxLogConditionInput
+  ) {
+    updateTxLog(input: $input, condition: $condition) {
+      id
+      transactionType
+      transactionHash
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteTxLog = /* GraphQL */ `
+  mutation DeleteTxLog(
+    $input: DeleteTxLogInput!
+    $condition: ModelTxLogConditionInput
+  ) {
+    deleteTxLog(input: $input, condition: $condition) {
+      id
+      transactionType
+      transactionHash
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createLog = /* GraphQL */ `
+  mutation CreateLog(
+    $input: CreateLogInput!
+    $condition: ModelLogConditionInput
+  ) {
+    createLog(input: $input, condition: $condition) {
+      id
+      transactionType
+      transactionHash
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateLog = /* GraphQL */ `
+  mutation UpdateLog(
+    $input: UpdateLogInput!
+    $condition: ModelLogConditionInput
+  ) {
+    updateLog(input: $input, condition: $condition) {
+      id
+      transactionType
+      transactionHash
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteLog = /* GraphQL */ `
+  mutation DeleteLog(
+    $input: DeleteLogInput!
+    $condition: ModelLogConditionInput
+  ) {
+    deleteLog(input: $input, condition: $condition) {
+      id
+      transactionType
+      transactionHash
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createTransaction = /* GraphQL */ `
   mutation CreateTransaction(
     $input: CreateTransactionInput!
@@ -10,6 +118,7 @@ export const createTransaction = /* GraphQL */ `
     createTransaction(input: $input, condition: $condition) {
       id
       transactionId
+      timestamp
       _version
       _deleted
       _lastChangedAt
@@ -26,6 +135,7 @@ export const updateTransaction = /* GraphQL */ `
     updateTransaction(input: $input, condition: $condition) {
       id
       transactionId
+      timestamp
       _version
       _deleted
       _lastChangedAt
@@ -42,6 +152,7 @@ export const deleteTransaction = /* GraphQL */ `
     deleteTransaction(input: $input, condition: $condition) {
       id
       transactionId
+      timestamp
       _version
       _deleted
       _lastChangedAt

@@ -4,9 +4,28 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
+export declare class TxLog {
+  readonly id: string;
+  readonly transactionType?: string;
+  readonly transactionHash?: string;
+  readonly timestamp?: number;
+  constructor(init: ModelInit<TxLog>);
+  static copyOf(source: TxLog, mutator: (draft: MutableModel<TxLog>) => MutableModel<TxLog> | void): TxLog;
+}
+
+export declare class Log {
+  readonly id: string;
+  readonly transactionType?: string;
+  readonly transactionHash?: string;
+  readonly timestamp?: number;
+  constructor(init: ModelInit<Log>);
+  static copyOf(source: Log, mutator: (draft: MutableModel<Log>) => MutableModel<Log> | void): Log;
+}
+
 export declare class Transaction {
   readonly id: string;
   readonly transactionId?: string;
+  readonly timestamp?: number;
   constructor(init: ModelInit<Transaction>);
   static copyOf(source: Transaction, mutator: (draft: MutableModel<Transaction>) => MutableModel<Transaction> | void): Transaction;
 }

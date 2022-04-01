@@ -1,3 +1,10 @@
+type TxLog @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  transactionType: String
+  transactionHash: String
+  timestamp: AWSTimestamp
+}
+
 type Log @model @auth(rules: [{allow: public}]) {
   id: ID!
   transactionType: String
@@ -35,5 +42,4 @@ type Todo @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
   description: String
-}
- 
+} 

@@ -2,11 +2,146 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getTxLog = /* GraphQL */ `
+  query GetTxLog($id: ID!) {
+    getTxLog(id: $id) {
+      id
+      transactionType
+      transactionHash
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listTxLogs = /* GraphQL */ `
+  query ListTxLogs(
+    $filter: ModelTxLogFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTxLogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        transactionType
+        transactionHash
+        timestamp
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncTxLogs = /* GraphQL */ `
+  query SyncTxLogs(
+    $filter: ModelTxLogFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncTxLogs(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        transactionType
+        transactionHash
+        timestamp
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getLog = /* GraphQL */ `
+  query GetLog($id: ID!) {
+    getLog(id: $id) {
+      id
+      transactionType
+      transactionHash
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listLogs = /* GraphQL */ `
+  query ListLogs(
+    $filter: ModelLogFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listLogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        transactionType
+        transactionHash
+        timestamp
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncLogs = /* GraphQL */ `
+  query SyncLogs(
+    $filter: ModelLogFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncLogs(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        transactionType
+        transactionHash
+        timestamp
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getTransaction = /* GraphQL */ `
   query GetTransaction($id: ID!) {
     getTransaction(id: $id) {
       id
       transactionId
+      timestamp
       _version
       _deleted
       _lastChangedAt
@@ -25,6 +160,7 @@ export const listTransactions = /* GraphQL */ `
       items {
         id
         transactionId
+        timestamp
         _version
         _deleted
         _lastChangedAt
@@ -52,6 +188,7 @@ export const syncTransactions = /* GraphQL */ `
       items {
         id
         transactionId
+        timestamp
         _version
         _deleted
         _lastChangedAt

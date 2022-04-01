@@ -2,11 +2,102 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateTxLog = /* GraphQL */ `
+  subscription OnCreateTxLog {
+    onCreateTxLog {
+      id
+      transactionType
+      transactionHash
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateTxLog = /* GraphQL */ `
+  subscription OnUpdateTxLog {
+    onUpdateTxLog {
+      id
+      transactionType
+      transactionHash
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteTxLog = /* GraphQL */ `
+  subscription OnDeleteTxLog {
+    onDeleteTxLog {
+      id
+      transactionType
+      transactionHash
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateLog = /* GraphQL */ `
+  subscription OnCreateLog {
+    onCreateLog {
+      id
+      transactionType
+      transactionHash
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateLog = /* GraphQL */ `
+  subscription OnUpdateLog {
+    onUpdateLog {
+      id
+      transactionType
+      transactionHash
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteLog = /* GraphQL */ `
+  subscription OnDeleteLog {
+    onDeleteLog {
+      id
+      transactionType
+      transactionHash
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateTransaction = /* GraphQL */ `
   subscription OnCreateTransaction {
     onCreateTransaction {
       id
       transactionId
+      timestamp
       _version
       _deleted
       _lastChangedAt
@@ -20,6 +111,7 @@ export const onUpdateTransaction = /* GraphQL */ `
     onUpdateTransaction {
       id
       transactionId
+      timestamp
       _version
       _deleted
       _lastChangedAt
@@ -33,6 +125,7 @@ export const onDeleteTransaction = /* GraphQL */ `
     onDeleteTransaction {
       id
       transactionId
+      timestamp
       _version
       _deleted
       _lastChangedAt
