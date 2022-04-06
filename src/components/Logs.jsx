@@ -14,10 +14,10 @@ export default function Logs(props) {
 
   async function fetchData() {
     let graphqlResult = await API.graphql({ query: queries.listLogs });
-    let cl = graphqlResult.data.listLogs.items
+    let ll = graphqlResult.data.listLogs.items
     .filter(x => x.transactionType === props.transactionType && !x._deleted)
-    .sort((a,b) => a.timestamp > b.timestamp);
-    setLogs(cl);
+    let l = ll.sort((a,b) => b.timestamp - a.timestamp);
+    setLogs(l);
   }
     
 

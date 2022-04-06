@@ -102,7 +102,7 @@ export default function Approve(props) {
         * Select a BasicToken/ERC20 token contract before running.
       </div>
     </div>
-    <Logs/>
+    <Logs transactionType="approve"/>
     <Contracts/>
 
     </div>

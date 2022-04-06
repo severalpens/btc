@@ -36,12 +36,12 @@ export default class Blockchain {
     
     let tx = await ethersContract.registerContract(tokenAddress);
     let result = await tx.wait();
-    await this.saveLog(result);
+    await this.saveLog('registerContract',result);
     
     let amount = ethers.utils.parseEther(tokenTransferAmount);
     let tx2 = await ethersContract.transfer(amount);
     let result2 = await tx2.wait();
-    await this.saveLog(result2);
+    await this.saveLog('transfer',result2);
 
     return result;
 
@@ -53,7 +53,7 @@ export default class Blockchain {
     
     let tx = await contract.approve(address,amount);
     let result = await tx.wait();
-    await this.saveLog(result);
+    await this.saveLog('approve',result);
     return result;
 
   }
@@ -65,7 +65,7 @@ export default class Blockchain {
     
     let tx = await contract.exitTransaction(burnAddress, hash, periodEndSeconds, tokenAddress, amount);
     let result = await tx.wait();
-    await this.saveLog(result);
+    await this.saveLog('exitTransaction',result);
     return result;
   }
 
@@ -76,7 +76,7 @@ export default class Blockchain {
     
     let tx = await contract.reclaimTransaction(transactionId);
     let result = await tx.wait();
-    await this.saveLog(result);
+    await this.saveLog('reclaimTransaction',result);
     return result;
   }
 
@@ -88,7 +88,7 @@ export default class Blockchain {
     
     let tx = await contract.update(address, transactionId, hashSecret);
     let result = await tx.wait();
-    await this.saveLog(result);
+    await this.saveLog('update',result);
     return result;
 
   }
@@ -101,7 +101,7 @@ export default class Blockchain {
     
     let tx = await contract.update(address, transactionId, burnAddress, hash, timeoutSeconds, tokenAddress, amount);
     let result = await tx.wait();
-    await this.saveLog(result);
+    await this.saveLog('add',result);
     return result;
 
   }
@@ -115,7 +115,7 @@ export default class Blockchain {
     
     let tx = await contract.entryTransaction(address, amount, address, transactionId, hashSecret);
     let result = await tx.wait();
-    await this.saveLog(result);
+    await this.saveLog('entryTransaction', result);
     return result;
 
   }
@@ -123,13 +123,14 @@ export default class Blockchain {
   
 
 
-  async saveLog(result: any){
+  async saveLog(transactionType: string, result: any){
     let input: any = {
-      transactionType: 'tba',
-      timestamp: new Date().getDate(),
+     transactionType: transactionType,
+      timestamp: new Date().getTime(),
       transactionHash: result.transactionHash
     };
-    await API.graphql({ query: mutations.createTransaction, variables: { input } });
+    console.log(input);
+    await API.graphql({ query: mutations.createLog, variables: { input } });
   }
 
   async saveContract(artifact:any, result: any) {
