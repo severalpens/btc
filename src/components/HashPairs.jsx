@@ -4,14 +4,35 @@ import * as queries from '../graphql/queries';
 import * as mutations from '../graphql/mutations';
 import { Link } from 'react-router-dom';
 
-export default function HashPairs(props) {
 
+export default function HashPairs(props) {
+  
   const [hashPairs, setHashPairs] = useState([]);
   const [hashPair, setHashPair] = useState({hash: '0x0', secret: '0x0'});
 
   useEffect(() => {
    fetchData();
   }, []);
+  
+  // function newCrypto(){
+  //   var crypto = {};
+    
+  //   const bufToStr = (b) => "0x" + b.toString("hex");
+  //   const sha256 = (x) => cryptoLib.createHash("sha256").update(x).digest();
+  //   const random32 = () => cryptoLib.randomBytes(32);
+    
+  //   crypto.newSecretHashPair = () => {
+  //     const secret = random32();
+  //     const hash = sha256(secret);
+  //     return {
+  //       secret: bufToStr(secret),
+  //       hash: bufToStr(hash),
+  //     };
+  //   };
+
+  //   return crypto;
+
+  // }
 
   async function fetchData() {
     let graphqlResult = await API.graphql({ query: queries.getAccount });

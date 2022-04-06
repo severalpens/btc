@@ -9,11 +9,18 @@
       "UnauthRoleName": "amplify-authcra-devl-20426-unauthRole",
       "StackName": "amplify-authcra-devl-20426",
       "StackId": "arn:aws:cloudformation:ap-southeast-2:105565668989:stack/amplify-authcra-devl-20426/71a56200-8883-11ec-a711-02c225e8819a",
-      "AmplifyAppId": "d1ikb64pfuz4kf"
+      "AmplifyAppId": "d1ikb64pfuz4kf",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-authcra-devl-20426-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
         "cognitocf0c6096": {}
+      },
+      "function": {
+        "lambda1": {
+          "deploymentBucketName": "amplify-authcra-devl-20426-deployment",
+          "s3Key": "amplify-builds/lambda1-514947447247324c5a45-build.zip"
+        }
       }
     }
   }

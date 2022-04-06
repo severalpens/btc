@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "paths": {
+    "/hashpair/{hash}": {
+      "name": "/hashpair/{hash}",
+      "lambdaFunction": "lambda1",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    }
+  }
+}

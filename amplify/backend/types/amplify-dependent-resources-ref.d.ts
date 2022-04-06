@@ -15,6 +15,19 @@ export type AmplifyDependentResourcesAttributes = {
         "btcamplify": {
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
+        },
+        "api1": {
+            "RootUrl": "string",
+            "ApiName": "string",
+            "ApiId": "string"
+        }
+    },
+    "function": {
+        "lambda1": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
         }
     }
 }

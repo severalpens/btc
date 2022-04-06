@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import Blockchain from './Blockchain';
 import { API } from 'aws-amplify';
 import * as queries from '../graphql/queries';
+import Contracts from "./Contracts";
+import Logs from "./Logs";
 
 const blockchain = new Blockchain();
 
@@ -57,6 +59,7 @@ export default function ExitTransaction(props) {
 
 
   return (
+    <div className="flex">
     <div className="ml-16 my-16 ">
       <h2 className="font-medium leading-tight text-4xl mt-0 text-blue-600">Exit Transaction</h2>
       <div className="italic mb-8">sender agent</div>
@@ -233,6 +236,9 @@ export default function ExitTransaction(props) {
 
         <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
       </form>
+    </div>
+      <Logs transactionType="exitTransaction"/>
+    <Contracts/>
     </div>
   )
 }
