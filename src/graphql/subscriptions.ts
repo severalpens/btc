@@ -2,6 +2,66 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateTx = /* GraphQL */ `
+  subscription OnCreateTx {
+    onCreateTx {
+      id
+      transactionHash
+      burnAddress
+      hash
+      periodEndSeconds
+      tokenAddress
+      amount
+      transactionId
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateTx = /* GraphQL */ `
+  subscription OnUpdateTx {
+    onUpdateTx {
+      id
+      transactionHash
+      burnAddress
+      hash
+      periodEndSeconds
+      tokenAddress
+      amount
+      transactionId
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteTx = /* GraphQL */ `
+  subscription OnDeleteTx {
+    onDeleteTx {
+      id
+      transactionHash
+      burnAddress
+      hash
+      periodEndSeconds
+      tokenAddress
+      amount
+      transactionId
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateBurnAccount = /* GraphQL */ `
   subscription OnCreateBurnAccount {
     onCreateBurnAccount {

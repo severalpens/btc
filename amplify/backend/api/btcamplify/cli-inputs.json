@@ -3,7 +3,7 @@
   "serviceConfiguration": {
     "apiName": "btcamplify",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/tmp/amplify-1caa1ecf-d419-4e86-997d-d0d59d2600cf/amplify/backend/api/btcamplify/schema.graphql",
+    "gqlSchemaPath": "/tmp/amplify-d467ab2c-6d52-433c-bb47-5bd95621ecc7/amplify/backend/api/btcamplify/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
       "keyDescription": "api key description",

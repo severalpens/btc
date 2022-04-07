@@ -1,5 +1,97 @@
 export const schema = {
     "models": {
+        "Tx": {
+            "name": "Tx",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "transactionHash": {
+                    "name": "transactionHash",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "burnAddress": {
+                    "name": "burnAddress",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "hash": {
+                    "name": "hash",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "periodEndSeconds": {
+                    "name": "periodEndSeconds",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "tokenAddress": {
+                    "name": "tokenAddress",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "amount": {
+                    "name": "amount",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "transactionId": {
+                    "name": "transactionId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "timestamp": {
+                    "name": "timestamp",
+                    "isArray": false,
+                    "type": "AWSTimestamp",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Txes",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "BurnAccount": {
             "name": "BurnAccount",
             "fields": {
@@ -473,5 +565,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "f7b206c7a2dce09df8963114c7051d3b"
+    "version": "a5b68485a46a172b27158be2c5f1c97e"
 };

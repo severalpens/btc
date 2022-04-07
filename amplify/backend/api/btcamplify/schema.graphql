@@ -1,3 +1,15 @@
+type Tx @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  transactionHash: String
+  burnAddress: String
+  hash: String
+  periodEndSeconds: String
+  tokenAddress: String
+  amount: String
+  transactionId: String
+  timestamp: AWSTimestamp
+}
+
 type BurnAccount @model @auth(rules: [{allow: public}]) {
   id: ID!
   address: String

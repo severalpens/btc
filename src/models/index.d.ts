@@ -4,6 +4,20 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
+export declare class Tx {
+  readonly id: string;
+  readonly transactionHash?: string;
+  readonly burnAddress?: string;
+  readonly hash?: string;
+  readonly periodEndSeconds?: string;
+  readonly tokenAddress?: string;
+  readonly amount?: string;
+  readonly transactionId?: string;
+  readonly timestamp?: number;
+  constructor(init: ModelInit<Tx>);
+  static copyOf(source: Tx, mutator: (draft: MutableModel<Tx>) => MutableModel<Tx> | void): Tx;
+}
+
 export declare class BurnAccount {
   readonly id: string;
   readonly address?: string;

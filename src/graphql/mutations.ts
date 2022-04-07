@@ -2,6 +2,66 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createTx = /* GraphQL */ `
+  mutation CreateTx($input: CreateTxInput!, $condition: ModelTxConditionInput) {
+    createTx(input: $input, condition: $condition) {
+      id
+      transactionHash
+      burnAddress
+      hash
+      periodEndSeconds
+      tokenAddress
+      amount
+      transactionId
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateTx = /* GraphQL */ `
+  mutation UpdateTx($input: UpdateTxInput!, $condition: ModelTxConditionInput) {
+    updateTx(input: $input, condition: $condition) {
+      id
+      transactionHash
+      burnAddress
+      hash
+      periodEndSeconds
+      tokenAddress
+      amount
+      transactionId
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteTx = /* GraphQL */ `
+  mutation DeleteTx($input: DeleteTxInput!, $condition: ModelTxConditionInput) {
+    deleteTx(input: $input, condition: $condition) {
+      id
+      transactionHash
+      burnAddress
+      hash
+      periodEndSeconds
+      tokenAddress
+      amount
+      transactionId
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createBurnAccount = /* GraphQL */ `
   mutation CreateBurnAccount(
     $input: CreateBurnAccountInput!

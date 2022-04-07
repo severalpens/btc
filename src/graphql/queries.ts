@@ -2,6 +2,84 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getTx = /* GraphQL */ `
+  query GetTx($id: ID!) {
+    getTx(id: $id) {
+      id
+      transactionHash
+      burnAddress
+      hash
+      periodEndSeconds
+      tokenAddress
+      amount
+      transactionId
+      timestamp
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listTxs = /* GraphQL */ `
+  query ListTxs($filter: ModelTxFilterInput, $limit: Int, $nextToken: String) {
+    listTxs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        transactionHash
+        burnAddress
+        hash
+        periodEndSeconds
+        tokenAddress
+        amount
+        transactionId
+        timestamp
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncTxes = /* GraphQL */ `
+  query SyncTxes(
+    $filter: ModelTxFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncTxes(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        transactionHash
+        burnAddress
+        hash
+        periodEndSeconds
+        tokenAddress
+        amount
+        transactionId
+        timestamp
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getBurnAccount = /* GraphQL */ `
   query GetBurnAccount($id: ID!) {
     getBurnAccount(id: $id) {

@@ -2,19 +2,31 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateBurnAccountInput = {
+export type CreateTxInput = {
   id?: string | null,
-  address?: string | null,
-  privateKey?: string | null,
+  transactionHash?: string | null,
+  burnAddress?: string | null,
+  hash?: string | null,
+  periodEndSeconds?: string | null,
+  tokenAddress?: string | null,
+  amount?: string | null,
+  transactionId?: string | null,
+  timestamp?: number | null,
   _version?: number | null,
 };
 
-export type ModelBurnAccountConditionInput = {
-  address?: ModelStringInput | null,
-  privateKey?: ModelStringInput | null,
-  and?: Array< ModelBurnAccountConditionInput | null > | null,
-  or?: Array< ModelBurnAccountConditionInput | null > | null,
-  not?: ModelBurnAccountConditionInput | null,
+export type ModelTxConditionInput = {
+  transactionHash?: ModelStringInput | null,
+  burnAddress?: ModelStringInput | null,
+  hash?: ModelStringInput | null,
+  periodEndSeconds?: ModelStringInput | null,
+  tokenAddress?: ModelStringInput | null,
+  amount?: ModelStringInput | null,
+  transactionId?: ModelStringInput | null,
+  timestamp?: ModelIntInput | null,
+  and?: Array< ModelTxConditionInput | null > | null,
+  or?: Array< ModelTxConditionInput | null > | null,
+  not?: ModelTxConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -55,6 +67,69 @@ export type ModelSizeInput = {
   ge?: number | null,
   gt?: number | null,
   between?: Array< number | null > | null,
+};
+
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type Tx = {
+  __typename: "Tx",
+  id?: string,
+  transactionHash?: string | null,
+  burnAddress?: string | null,
+  hash?: string | null,
+  periodEndSeconds?: string | null,
+  tokenAddress?: string | null,
+  amount?: string | null,
+  transactionId?: string | null,
+  timestamp?: number | null,
+  _version?: number,
+  _deleted?: boolean | null,
+  _lastChangedAt?: number,
+  createdAt?: string,
+  updatedAt?: string,
+};
+
+export type UpdateTxInput = {
+  id: string,
+  transactionHash?: string | null,
+  burnAddress?: string | null,
+  hash?: string | null,
+  periodEndSeconds?: string | null,
+  tokenAddress?: string | null,
+  amount?: string | null,
+  transactionId?: string | null,
+  timestamp?: number | null,
+  _version?: number | null,
+};
+
+export type DeleteTxInput = {
+  id: string,
+  _version?: number | null,
+};
+
+export type CreateBurnAccountInput = {
+  id?: string | null,
+  address?: string | null,
+  privateKey?: string | null,
+  _version?: number | null,
+};
+
+export type ModelBurnAccountConditionInput = {
+  address?: ModelStringInput | null,
+  privateKey?: ModelStringInput | null,
+  and?: Array< ModelBurnAccountConditionInput | null > | null,
+  or?: Array< ModelBurnAccountConditionInput | null > | null,
+  not?: ModelBurnAccountConditionInput | null,
 };
 
 export type BurnAccount = {
@@ -135,18 +210,6 @@ export type ModelTxLogConditionInput = {
   and?: Array< ModelTxLogConditionInput | null > | null,
   or?: Array< ModelTxLogConditionInput | null > | null,
   not?: ModelTxLogConditionInput | null,
-};
-
-export type ModelIntInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
 };
 
 export type TxLog = {
@@ -406,13 +469,19 @@ export type DeleteTodoInput = {
   _version?: number | null,
 };
 
-export type ModelBurnAccountFilterInput = {
+export type ModelTxFilterInput = {
   id?: ModelIDInput | null,
-  address?: ModelStringInput | null,
-  privateKey?: ModelStringInput | null,
-  and?: Array< ModelBurnAccountFilterInput | null > | null,
-  or?: Array< ModelBurnAccountFilterInput | null > | null,
-  not?: ModelBurnAccountFilterInput | null,
+  transactionHash?: ModelStringInput | null,
+  burnAddress?: ModelStringInput | null,
+  hash?: ModelStringInput | null,
+  periodEndSeconds?: ModelStringInput | null,
+  tokenAddress?: ModelStringInput | null,
+  amount?: ModelStringInput | null,
+  transactionId?: ModelStringInput | null,
+  timestamp?: ModelIntInput | null,
+  and?: Array< ModelTxFilterInput | null > | null,
+  or?: Array< ModelTxFilterInput | null > | null,
+  not?: ModelTxFilterInput | null,
 };
 
 export type ModelIDInput = {
@@ -429,6 +498,22 @@ export type ModelIDInput = {
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
   size?: ModelSizeInput | null,
+};
+
+export type ModelTxConnection = {
+  __typename: "ModelTxConnection",
+  items?:  Array<Tx | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type ModelBurnAccountFilterInput = {
+  id?: ModelIDInput | null,
+  address?: ModelStringInput | null,
+  privateKey?: ModelStringInput | null,
+  and?: Array< ModelBurnAccountFilterInput | null > | null,
+  or?: Array< ModelBurnAccountFilterInput | null > | null,
+  not?: ModelBurnAccountFilterInput | null,
 };
 
 export type ModelBurnAccountConnection = {
@@ -558,6 +643,81 @@ export type ModelTodoConnection = {
   items?:  Array<Todo | null >,
   nextToken?: string | null,
   startedAt?: number | null,
+};
+
+export type CreateTxMutationVariables = {
+  input?: CreateTxInput,
+  condition?: ModelTxConditionInput | null,
+};
+
+export type CreateTxMutation = {
+  createTx?:  {
+    __typename: "Tx",
+    id: string,
+    transactionHash?: string | null,
+    burnAddress?: string | null,
+    hash?: string | null,
+    periodEndSeconds?: string | null,
+    tokenAddress?: string | null,
+    amount?: string | null,
+    transactionId?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateTxMutationVariables = {
+  input?: UpdateTxInput,
+  condition?: ModelTxConditionInput | null,
+};
+
+export type UpdateTxMutation = {
+  updateTx?:  {
+    __typename: "Tx",
+    id: string,
+    transactionHash?: string | null,
+    burnAddress?: string | null,
+    hash?: string | null,
+    periodEndSeconds?: string | null,
+    tokenAddress?: string | null,
+    amount?: string | null,
+    transactionId?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteTxMutationVariables = {
+  input?: DeleteTxInput,
+  condition?: ModelTxConditionInput | null,
+};
+
+export type DeleteTxMutation = {
+  deleteTx?:  {
+    __typename: "Tx",
+    id: string,
+    transactionHash?: string | null,
+    burnAddress?: string | null,
+    hash?: string | null,
+    periodEndSeconds?: string | null,
+    tokenAddress?: string | null,
+    amount?: string | null,
+    transactionId?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
 };
 
 export type CreateBurnAccountMutationVariables = {
@@ -1043,6 +1203,93 @@ export type DeleteTodoMutation = {
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+  } | null,
+};
+
+export type GetTxQueryVariables = {
+  id?: string,
+};
+
+export type GetTxQuery = {
+  getTx?:  {
+    __typename: "Tx",
+    id: string,
+    transactionHash?: string | null,
+    burnAddress?: string | null,
+    hash?: string | null,
+    periodEndSeconds?: string | null,
+    tokenAddress?: string | null,
+    amount?: string | null,
+    transactionId?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListTxsQueryVariables = {
+  filter?: ModelTxFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListTxsQuery = {
+  listTxs?:  {
+    __typename: "ModelTxConnection",
+    items:  Array< {
+      __typename: "Tx",
+      id: string,
+      transactionHash?: string | null,
+      burnAddress?: string | null,
+      hash?: string | null,
+      periodEndSeconds?: string | null,
+      tokenAddress?: string | null,
+      amount?: string | null,
+      transactionId?: string | null,
+      timestamp?: number | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncTxesQueryVariables = {
+  filter?: ModelTxFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncTxesQuery = {
+  syncTxes?:  {
+    __typename: "ModelTxConnection",
+    items:  Array< {
+      __typename: "Tx",
+      id: string,
+      transactionHash?: string | null,
+      burnAddress?: string | null,
+      hash?: string | null,
+      periodEndSeconds?: string | null,
+      tokenAddress?: string | null,
+      amount?: string | null,
+      transactionId?: string | null,
+      timestamp?: number | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
@@ -1625,6 +1872,66 @@ export type SyncTodosQuery = {
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
+  } | null,
+};
+
+export type OnCreateTxSubscription = {
+  onCreateTx?:  {
+    __typename: "Tx",
+    id: string,
+    transactionHash?: string | null,
+    burnAddress?: string | null,
+    hash?: string | null,
+    periodEndSeconds?: string | null,
+    tokenAddress?: string | null,
+    amount?: string | null,
+    transactionId?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateTxSubscription = {
+  onUpdateTx?:  {
+    __typename: "Tx",
+    id: string,
+    transactionHash?: string | null,
+    burnAddress?: string | null,
+    hash?: string | null,
+    periodEndSeconds?: string | null,
+    tokenAddress?: string | null,
+    amount?: string | null,
+    transactionId?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteTxSubscription = {
+  onDeleteTx?:  {
+    __typename: "Tx",
+    id: string,
+    transactionHash?: string | null,
+    burnAddress?: string | null,
+    hash?: string | null,
+    periodEndSeconds?: string | null,
+    tokenAddress?: string | null,
+    amount?: string | null,
+    transactionId?: string | null,
+    timestamp?: number | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
