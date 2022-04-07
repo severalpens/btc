@@ -1,6 +1,6 @@
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import { createRoot } from 'react-dom/client';
 import App from './App';
 import TableOuter from './components/TableOuter';
 import Amplify from "aws-amplify";
@@ -25,10 +25,10 @@ import Contracts from './components/Contracts';
 
 Amplify.configure(awsExports);
 
-const rootElement = document.getElementById('root');
-
+const container = document.getElementById('root');
+const root = createRoot(container);
 if (typeof window.ethereum !== 'undefined') {
-  ReactDOM.render(
+  root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
@@ -58,15 +58,13 @@ if (typeof window.ethereum !== 'undefined') {
           />
         </Route>
       </Routes>
-    </BrowserRouter>,
-    rootElement
+    </BrowserRouter>
   );
 }
 else {
-  ReactDOM.render(
-    <NoMetamask />,
-    document.getElementById('root')
-  );
+  root.render(
+    <NoMetamask />
+     );
 
 }
 
