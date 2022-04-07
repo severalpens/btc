@@ -8,41 +8,34 @@ import { Link } from 'react-router-dom';
 export default function HashPairs(props) {
   
   const [hashPairs, setHashPairs] = useState([]);
-  const [hashPair, setHashPair] = useState({hash: '0x0', secret: '0x0'});
 
   useEffect(() => {
    fetchData();
   }, []);
   
-  // function newCrypto(){
-  //   var crypto = {};
-    
-  //   const bufToStr = (b) => "0x" + b.toString("hex");
-  //   const sha256 = (x) => cryptoLib.createHash("sha256").update(x).digest();
-  //   const random32 = () => cryptoLib.randomBytes(32);
-    
-  //   crypto.newSecretHashPair = () => {
-  //     const secret = random32();
-  //     const hash = sha256(secret);
-  //     return {
-  //       secret: bufToStr(secret),
-  //       hash: bufToStr(hash),
-  //     };
-  //   };
 
-  //   return crypto;
+     
+  const deleteRecordHandler = async (hashPair) => {
+    let input = {id: hashPair.id, _version: 1};
+    await API.graphql({ query: mutations.deleteHashPair, variables: {input}});
+    await fetchData();
+  }
 
-  // }
 
   async function fetchData() {
-    let graphqlResult = await API.graphql({ query: queries.getAccount });
-    let hp = graphqlResult.data.listContracts.items.filter(x => !x._deleted);
-    setHashPairs(hp);
+    let graphqlResult = await API.graphql({ query: queries.listHashPairs });
+    let hps = graphqlResult.data.listHashPairs.items.filter(x => !x._deleted);
+    setHashPairs(hps);
   }
 
   async function newHashPair(e){
     e.preventDefault();
-
+    const apiName = 'api2';
+    const path = '/hashpair';
+    let input = await API.get(apiName, path);
+     console.log(input);
+     await API.graphql({ query: mutations.createHashPair, variables: { input } });
+     await fetchData();
   }
     
 
@@ -68,6 +61,8 @@ export default function HashPairs(props) {
             >
               Secret
             </th>
+            <th scope="col" className="relative px-6 py-3"><span className="sr-only"></span></th>
+
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
@@ -79,6 +74,11 @@ export default function HashPairs(props) {
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-900">{hashPair.secret}</div>
               </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <button type="submit" className="border m-4  px-6 py-2.5 border-black rounded-md" 
+                onClick={e => deleteRecordHandler(hashPair)}>Delete</button>
+              </td>
+
             </tr>
           ))}
         </tbody>

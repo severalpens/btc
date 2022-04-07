@@ -1,5 +1,55 @@
 export const schema = {
     "models": {
+        "HashPair": {
+            "name": "HashPair",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "hash": {
+                    "name": "hash",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "secret": {
+                    "name": "secret",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "HashPairs",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "TxLog": {
             "name": "TxLog",
             "fields": {
@@ -373,5 +423,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "cfe88dba4c90d16c68349e995c63ebc0"
+    "version": "5831e607a5a7517f5b45dc0731c63768"
 };

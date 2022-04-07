@@ -4,9 +4,10 @@ import { schema } from './schema';
 
 
 
-const { TxLog, Log, Transaction, Account, Contract, Todo } = initSchema(schema);
+const { HashPair, TxLog, Log, Transaction, Account, Contract, Todo } = initSchema(schema);
 
 export {
+  HashPair,
   TxLog,
   Log,
   Transaction,

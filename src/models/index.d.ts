@@ -4,6 +4,14 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
+export declare class HashPair {
+  readonly id: string;
+  readonly hash?: string;
+  readonly secret?: string;
+  constructor(init: ModelInit<HashPair>);
+  static copyOf(source: HashPair, mutator: (draft: MutableModel<HashPair>) => MutableModel<HashPair> | void): HashPair;
+}
+
 export declare class TxLog {
   readonly id: string;
   readonly transactionType?: string;

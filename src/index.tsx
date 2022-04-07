@@ -21,6 +21,7 @@ import TransactionsMenu from './components/TransactionsMenu';
 import HashPairs from './components/HashPairs';
 import BurnAccounts from './components/BurnAccounts';
 import CallApi from './components/CallApi';
+import Contracts from './components/Contracts';
 
 Amplify.configure(awsExports);
 
@@ -31,7 +32,8 @@ if (typeof window.ethereum !== 'undefined') {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path="contracts" element={<TableOuter />} />
+        <Route path="contracts" element={<TableOuter />} />
+        <Route path="contracts2" element={<Contracts />} />
           <Route path="deploy" element={<NewContractForm1 />} />
           <Route path="callapi" element={<CallApi />} />
           <Route path="hashpairs" element={<HashPairs />} />

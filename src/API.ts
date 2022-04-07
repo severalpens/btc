@@ -2,21 +2,19 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateTxLogInput = {
+export type CreateHashPairInput = {
   id?: string | null,
-  transactionType?: string | null,
-  transactionHash?: string | null,
-  timestamp?: number | null,
+  hash?: string | null,
+  secret?: string | null,
   _version?: number | null,
 };
 
-export type ModelTxLogConditionInput = {
-  transactionType?: ModelStringInput | null,
-  transactionHash?: ModelStringInput | null,
-  timestamp?: ModelIntInput | null,
-  and?: Array< ModelTxLogConditionInput | null > | null,
-  or?: Array< ModelTxLogConditionInput | null > | null,
-  not?: ModelTxLogConditionInput | null,
+export type ModelHashPairConditionInput = {
+  hash?: ModelStringInput | null,
+  secret?: ModelStringInput | null,
+  and?: Array< ModelHashPairConditionInput | null > | null,
+  or?: Array< ModelHashPairConditionInput | null > | null,
+  not?: ModelHashPairConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -57,6 +55,47 @@ export type ModelSizeInput = {
   ge?: number | null,
   gt?: number | null,
   between?: Array< number | null > | null,
+};
+
+export type HashPair = {
+  __typename: "HashPair",
+  id?: string,
+  hash?: string | null,
+  secret?: string | null,
+  _version?: number,
+  _deleted?: boolean | null,
+  _lastChangedAt?: number,
+  createdAt?: string,
+  updatedAt?: string,
+};
+
+export type UpdateHashPairInput = {
+  id: string,
+  hash?: string | null,
+  secret?: string | null,
+  _version?: number | null,
+};
+
+export type DeleteHashPairInput = {
+  id: string,
+  _version?: number | null,
+};
+
+export type CreateTxLogInput = {
+  id?: string | null,
+  transactionType?: string | null,
+  transactionHash?: string | null,
+  timestamp?: number | null,
+  _version?: number | null,
+};
+
+export type ModelTxLogConditionInput = {
+  transactionType?: ModelStringInput | null,
+  transactionHash?: ModelStringInput | null,
+  timestamp?: ModelIntInput | null,
+  and?: Array< ModelTxLogConditionInput | null > | null,
+  or?: Array< ModelTxLogConditionInput | null > | null,
+  not?: ModelTxLogConditionInput | null,
 };
 
 export type ModelIntInput = {
@@ -328,14 +367,13 @@ export type DeleteTodoInput = {
   _version?: number | null,
 };
 
-export type ModelTxLogFilterInput = {
+export type ModelHashPairFilterInput = {
   id?: ModelIDInput | null,
-  transactionType?: ModelStringInput | null,
-  transactionHash?: ModelStringInput | null,
-  timestamp?: ModelIntInput | null,
-  and?: Array< ModelTxLogFilterInput | null > | null,
-  or?: Array< ModelTxLogFilterInput | null > | null,
-  not?: ModelTxLogFilterInput | null,
+  hash?: ModelStringInput | null,
+  secret?: ModelStringInput | null,
+  and?: Array< ModelHashPairFilterInput | null > | null,
+  or?: Array< ModelHashPairFilterInput | null > | null,
+  not?: ModelHashPairFilterInput | null,
 };
 
 export type ModelIDInput = {
@@ -352,6 +390,23 @@ export type ModelIDInput = {
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
   size?: ModelSizeInput | null,
+};
+
+export type ModelHashPairConnection = {
+  __typename: "ModelHashPairConnection",
+  items?:  Array<HashPair | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type ModelTxLogFilterInput = {
+  id?: ModelIDInput | null,
+  transactionType?: ModelStringInput | null,
+  transactionHash?: ModelStringInput | null,
+  timestamp?: ModelIntInput | null,
+  and?: Array< ModelTxLogFilterInput | null > | null,
+  or?: Array< ModelTxLogFilterInput | null > | null,
+  not?: ModelTxLogFilterInput | null,
 };
 
 export type ModelTxLogConnection = {
@@ -448,6 +503,63 @@ export type ModelTodoConnection = {
   items?:  Array<Todo | null >,
   nextToken?: string | null,
   startedAt?: number | null,
+};
+
+export type CreateHashPairMutationVariables = {
+  input?: CreateHashPairInput,
+  condition?: ModelHashPairConditionInput | null,
+};
+
+export type CreateHashPairMutation = {
+  createHashPair?:  {
+    __typename: "HashPair",
+    id: string,
+    hash?: string | null,
+    secret?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateHashPairMutationVariables = {
+  input?: UpdateHashPairInput,
+  condition?: ModelHashPairConditionInput | null,
+};
+
+export type UpdateHashPairMutation = {
+  updateHashPair?:  {
+    __typename: "HashPair",
+    id: string,
+    hash?: string | null,
+    secret?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteHashPairMutationVariables = {
+  input?: DeleteHashPairInput,
+  condition?: ModelHashPairConditionInput | null,
+};
+
+export type DeleteHashPairMutation = {
+  deleteHashPair?:  {
+    __typename: "HashPair",
+    id: string,
+    hash?: string | null,
+    secret?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
 };
 
 export type CreateTxLogMutationVariables = {
@@ -819,6 +931,75 @@ export type DeleteTodoMutation = {
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+  } | null,
+};
+
+export type GetHashPairQueryVariables = {
+  id?: string,
+};
+
+export type GetHashPairQuery = {
+  getHashPair?:  {
+    __typename: "HashPair",
+    id: string,
+    hash?: string | null,
+    secret?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListHashPairsQueryVariables = {
+  filter?: ModelHashPairFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListHashPairsQuery = {
+  listHashPairs?:  {
+    __typename: "ModelHashPairConnection",
+    items:  Array< {
+      __typename: "HashPair",
+      id: string,
+      hash?: string | null,
+      secret?: string | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncHashPairsQueryVariables = {
+  filter?: ModelHashPairFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncHashPairsQuery = {
+  syncHashPairs?:  {
+    __typename: "ModelHashPairConnection",
+    items:  Array< {
+      __typename: "HashPair",
+      id: string,
+      hash?: string | null,
+      secret?: string | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
@@ -1263,6 +1444,48 @@ export type SyncTodosQuery = {
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
+  } | null,
+};
+
+export type OnCreateHashPairSubscription = {
+  onCreateHashPair?:  {
+    __typename: "HashPair",
+    id: string,
+    hash?: string | null,
+    secret?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateHashPairSubscription = {
+  onUpdateHashPair?:  {
+    __typename: "HashPair",
+    id: string,
+    hash?: string | null,
+    secret?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteHashPairSubscription = {
+  onDeleteHashPair?:  {
+    __typename: "HashPair",
+    id: string,
+    hash?: string | null,
+    secret?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 

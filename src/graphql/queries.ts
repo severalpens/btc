@@ -2,6 +2,70 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getHashPair = /* GraphQL */ `
+  query GetHashPair($id: ID!) {
+    getHashPair(id: $id) {
+      id
+      hash
+      secret
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listHashPairs = /* GraphQL */ `
+  query ListHashPairs(
+    $filter: ModelHashPairFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listHashPairs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        hash
+        secret
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncHashPairs = /* GraphQL */ `
+  query SyncHashPairs(
+    $filter: ModelHashPairFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncHashPairs(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        hash
+        secret
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getTxLog = /* GraphQL */ `
   query GetTxLog($id: ID!) {
     getTxLog(id: $id) {

@@ -2,6 +2,48 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateHashPair = /* GraphQL */ `
+  subscription OnCreateHashPair {
+    onCreateHashPair {
+      id
+      hash
+      secret
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateHashPair = /* GraphQL */ `
+  subscription OnUpdateHashPair {
+    onUpdateHashPair {
+      id
+      hash
+      secret
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteHashPair = /* GraphQL */ `
+  subscription OnDeleteHashPair {
+    onDeleteHashPair {
+      id
+      hash
+      secret
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateTxLog = /* GraphQL */ `
   subscription OnCreateTxLog {
     onCreateTxLog {

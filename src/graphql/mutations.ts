@@ -2,6 +2,57 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createHashPair = /* GraphQL */ `
+  mutation CreateHashPair(
+    $input: CreateHashPairInput!
+    $condition: ModelHashPairConditionInput
+  ) {
+    createHashPair(input: $input, condition: $condition) {
+      id
+      hash
+      secret
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateHashPair = /* GraphQL */ `
+  mutation UpdateHashPair(
+    $input: UpdateHashPairInput!
+    $condition: ModelHashPairConditionInput
+  ) {
+    updateHashPair(input: $input, condition: $condition) {
+      id
+      hash
+      secret
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteHashPair = /* GraphQL */ `
+  mutation DeleteHashPair(
+    $input: DeleteHashPairInput!
+    $condition: ModelHashPairConditionInput
+  ) {
+    deleteHashPair(input: $input, condition: $condition) {
+      id
+      hash
+      secret
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createTxLog = /* GraphQL */ `
   mutation CreateTxLog(
     $input: CreateTxLogInput!
