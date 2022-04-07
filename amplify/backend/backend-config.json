@@ -27,7 +27,7 @@
         }
       }
     },
-    "api1": {
+    "api2": {
       "service": "API Gateway",
       "providerPlugin": "awscloudformation",
       "dependsOn": [

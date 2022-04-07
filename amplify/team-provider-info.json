@@ -19,7 +19,7 @@
       "function": {
         "lambda1": {
           "deploymentBucketName": "amplify-authcra-devl-20426-deployment",
-          "s3Key": "amplify-builds/lambda1-514947447247324c5a45-build.zip"
+          "s3Key": "amplify-builds/lambda1-325a3174624e50313647-build.zip"
         }
       }
     }
