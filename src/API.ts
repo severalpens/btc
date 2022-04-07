@@ -2,19 +2,19 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateHashPairInput = {
+export type CreateBurnAccountInput = {
   id?: string | null,
-  hash?: string | null,
-  secret?: string | null,
+  address?: string | null,
+  privateKey?: string | null,
   _version?: number | null,
 };
 
-export type ModelHashPairConditionInput = {
-  hash?: ModelStringInput | null,
-  secret?: ModelStringInput | null,
-  and?: Array< ModelHashPairConditionInput | null > | null,
-  or?: Array< ModelHashPairConditionInput | null > | null,
-  not?: ModelHashPairConditionInput | null,
+export type ModelBurnAccountConditionInput = {
+  address?: ModelStringInput | null,
+  privateKey?: ModelStringInput | null,
+  and?: Array< ModelBurnAccountConditionInput | null > | null,
+  or?: Array< ModelBurnAccountConditionInput | null > | null,
+  not?: ModelBurnAccountConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -55,6 +55,45 @@ export type ModelSizeInput = {
   ge?: number | null,
   gt?: number | null,
   between?: Array< number | null > | null,
+};
+
+export type BurnAccount = {
+  __typename: "BurnAccount",
+  id?: string,
+  address?: string | null,
+  privateKey?: string | null,
+  _version?: number,
+  _deleted?: boolean | null,
+  _lastChangedAt?: number,
+  createdAt?: string,
+  updatedAt?: string,
+};
+
+export type UpdateBurnAccountInput = {
+  id: string,
+  address?: string | null,
+  privateKey?: string | null,
+  _version?: number | null,
+};
+
+export type DeleteBurnAccountInput = {
+  id: string,
+  _version?: number | null,
+};
+
+export type CreateHashPairInput = {
+  id?: string | null,
+  hash?: string | null,
+  secret?: string | null,
+  _version?: number | null,
+};
+
+export type ModelHashPairConditionInput = {
+  hash?: ModelStringInput | null,
+  secret?: ModelStringInput | null,
+  and?: Array< ModelHashPairConditionInput | null > | null,
+  or?: Array< ModelHashPairConditionInput | null > | null,
+  not?: ModelHashPairConditionInput | null,
 };
 
 export type HashPair = {
@@ -367,13 +406,13 @@ export type DeleteTodoInput = {
   _version?: number | null,
 };
 
-export type ModelHashPairFilterInput = {
+export type ModelBurnAccountFilterInput = {
   id?: ModelIDInput | null,
-  hash?: ModelStringInput | null,
-  secret?: ModelStringInput | null,
-  and?: Array< ModelHashPairFilterInput | null > | null,
-  or?: Array< ModelHashPairFilterInput | null > | null,
-  not?: ModelHashPairFilterInput | null,
+  address?: ModelStringInput | null,
+  privateKey?: ModelStringInput | null,
+  and?: Array< ModelBurnAccountFilterInput | null > | null,
+  or?: Array< ModelBurnAccountFilterInput | null > | null,
+  not?: ModelBurnAccountFilterInput | null,
 };
 
 export type ModelIDInput = {
@@ -390,6 +429,22 @@ export type ModelIDInput = {
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
   size?: ModelSizeInput | null,
+};
+
+export type ModelBurnAccountConnection = {
+  __typename: "ModelBurnAccountConnection",
+  items?:  Array<BurnAccount | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type ModelHashPairFilterInput = {
+  id?: ModelIDInput | null,
+  hash?: ModelStringInput | null,
+  secret?: ModelStringInput | null,
+  and?: Array< ModelHashPairFilterInput | null > | null,
+  or?: Array< ModelHashPairFilterInput | null > | null,
+  not?: ModelHashPairFilterInput | null,
 };
 
 export type ModelHashPairConnection = {
@@ -503,6 +558,63 @@ export type ModelTodoConnection = {
   items?:  Array<Todo | null >,
   nextToken?: string | null,
   startedAt?: number | null,
+};
+
+export type CreateBurnAccountMutationVariables = {
+  input?: CreateBurnAccountInput,
+  condition?: ModelBurnAccountConditionInput | null,
+};
+
+export type CreateBurnAccountMutation = {
+  createBurnAccount?:  {
+    __typename: "BurnAccount",
+    id: string,
+    address?: string | null,
+    privateKey?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateBurnAccountMutationVariables = {
+  input?: UpdateBurnAccountInput,
+  condition?: ModelBurnAccountConditionInput | null,
+};
+
+export type UpdateBurnAccountMutation = {
+  updateBurnAccount?:  {
+    __typename: "BurnAccount",
+    id: string,
+    address?: string | null,
+    privateKey?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteBurnAccountMutationVariables = {
+  input?: DeleteBurnAccountInput,
+  condition?: ModelBurnAccountConditionInput | null,
+};
+
+export type DeleteBurnAccountMutation = {
+  deleteBurnAccount?:  {
+    __typename: "BurnAccount",
+    id: string,
+    address?: string | null,
+    privateKey?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
 };
 
 export type CreateHashPairMutationVariables = {
@@ -931,6 +1043,75 @@ export type DeleteTodoMutation = {
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+  } | null,
+};
+
+export type GetBurnAccountQueryVariables = {
+  id?: string,
+};
+
+export type GetBurnAccountQuery = {
+  getBurnAccount?:  {
+    __typename: "BurnAccount",
+    id: string,
+    address?: string | null,
+    privateKey?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListBurnAccountsQueryVariables = {
+  filter?: ModelBurnAccountFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListBurnAccountsQuery = {
+  listBurnAccounts?:  {
+    __typename: "ModelBurnAccountConnection",
+    items:  Array< {
+      __typename: "BurnAccount",
+      id: string,
+      address?: string | null,
+      privateKey?: string | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncBurnAccountsQueryVariables = {
+  filter?: ModelBurnAccountFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncBurnAccountsQuery = {
+  syncBurnAccounts?:  {
+    __typename: "ModelBurnAccountConnection",
+    items:  Array< {
+      __typename: "BurnAccount",
+      id: string,
+      address?: string | null,
+      privateKey?: string | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
@@ -1444,6 +1625,48 @@ export type SyncTodosQuery = {
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
+  } | null,
+};
+
+export type OnCreateBurnAccountSubscription = {
+  onCreateBurnAccount?:  {
+    __typename: "BurnAccount",
+    id: string,
+    address?: string | null,
+    privateKey?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateBurnAccountSubscription = {
+  onUpdateBurnAccount?:  {
+    __typename: "BurnAccount",
+    id: string,
+    address?: string | null,
+    privateKey?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteBurnAccountSubscription = {
+  onDeleteBurnAccount?:  {
+    __typename: "BurnAccount",
+    id: string,
+    address?: string | null,
+    privateKey?: string | null,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 

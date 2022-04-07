@@ -2,6 +2,70 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getBurnAccount = /* GraphQL */ `
+  query GetBurnAccount($id: ID!) {
+    getBurnAccount(id: $id) {
+      id
+      address
+      privateKey
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listBurnAccounts = /* GraphQL */ `
+  query ListBurnAccounts(
+    $filter: ModelBurnAccountFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listBurnAccounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        address
+        privateKey
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncBurnAccounts = /* GraphQL */ `
+  query SyncBurnAccounts(
+    $filter: ModelBurnAccountFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncBurnAccounts(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        address
+        privateKey
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getHashPair = /* GraphQL */ `
   query GetHashPair($id: ID!) {
     getHashPair(id: $id) {

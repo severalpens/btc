@@ -1,3 +1,9 @@
+type BurnAccount @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  address: String
+  privateKey: String
+}
+
 type HashPair @model @auth(rules: [{allow: public}]) {
   id: ID!
   hash: String

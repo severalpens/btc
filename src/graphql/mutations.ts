@@ -2,6 +2,57 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createBurnAccount = /* GraphQL */ `
+  mutation CreateBurnAccount(
+    $input: CreateBurnAccountInput!
+    $condition: ModelBurnAccountConditionInput
+  ) {
+    createBurnAccount(input: $input, condition: $condition) {
+      id
+      address
+      privateKey
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateBurnAccount = /* GraphQL */ `
+  mutation UpdateBurnAccount(
+    $input: UpdateBurnAccountInput!
+    $condition: ModelBurnAccountConditionInput
+  ) {
+    updateBurnAccount(input: $input, condition: $condition) {
+      id
+      address
+      privateKey
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteBurnAccount = /* GraphQL */ `
+  mutation DeleteBurnAccount(
+    $input: DeleteBurnAccountInput!
+    $condition: ModelBurnAccountConditionInput
+  ) {
+    deleteBurnAccount(input: $input, condition: $condition) {
+      id
+      address
+      privateKey
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createHashPair = /* GraphQL */ `
   mutation CreateHashPair(
     $input: CreateHashPairInput!

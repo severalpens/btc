@@ -30,7 +30,8 @@ export default function BurnAccounts(props) {
 
   async function newBurnAccount(e){
     e.preventDefault();
-    let input = ethers.Wallet.createRandom();
+    let account = ethers.Wallet.createRandom();
+    let input = {address: account.address, privateKey: account.privateKey}
      console.log(input);
      await API.graphql({ query: mutations.createBurnAccount, variables: { input } });
      await fetchData();

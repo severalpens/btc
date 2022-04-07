@@ -2,6 +2,48 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateBurnAccount = /* GraphQL */ `
+  subscription OnCreateBurnAccount {
+    onCreateBurnAccount {
+      id
+      address
+      privateKey
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateBurnAccount = /* GraphQL */ `
+  subscription OnUpdateBurnAccount {
+    onUpdateBurnAccount {
+      id
+      address
+      privateKey
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteBurnAccount = /* GraphQL */ `
+  subscription OnDeleteBurnAccount {
+    onDeleteBurnAccount {
+      id
+      address
+      privateKey
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateHashPair = /* GraphQL */ `
   subscription OnCreateHashPair {
     onCreateHashPair {

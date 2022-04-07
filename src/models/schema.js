@@ -1,5 +1,55 @@
 export const schema = {
     "models": {
+        "BurnAccount": {
+            "name": "BurnAccount",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "address": {
+                    "name": "address",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "privateKey": {
+                    "name": "privateKey",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "BurnAccounts",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "HashPair": {
             "name": "HashPair",
             "fields": {
@@ -423,5 +473,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "5831e607a5a7517f5b45dc0731c63768"
+    "version": "f7b206c7a2dce09df8963114c7051d3b"
 };
