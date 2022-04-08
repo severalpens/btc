@@ -3,26 +3,55 @@ import { useState, useEffect } from "react";
 import Blockchain from './Blockchain';
 import { API } from 'aws-amplify';
 import * as queries from '../graphql/queries';
+import ContractCombobox from "./ContractCombobox";
+import TransactionIdCombobox from "./TransactionIdCombobox";
+import HashCombobox from "./HashCombobox";
 
 const blockchain = new Blockchain();
 
 export default function Update(props) {
-
+  
+  const [contracts, setContracts] = useState(null);
   const [contractAddress, setContractAddress] = useState(null);
-  const [transactionId, setTransactionId] = useState(null);
   const [hashSecret, setHashSecret] = useState(null);
   const [ctError1, setCtError1] = useState('');
   const [ibError1, setIbError1] = useState('');
+  const [txs, setTxs] = useState([]);
+  const [transactionId, setTransactionId] = useState('0x0');
+  const [hash, setHash] = useState('0x0');
+  const [hashPairs, setHashPairs] = useState([]);
 
-  useEffect(() => {
 
-    async function fetchData() {
+
+    useEffect(() => {
+      fetchContracts();
+      fetchHashPairs();
+      fetchTxs();
+    }, []);
+  
+    async function fetchContracts() {
+      let graphqlResult = await API.graphql({ query: queries.listContracts });
+      let contract = JSON.parse(window.localStorage.getItem('contract'));
+      let cl = graphqlResult.data.listContracts.items.filter(x => !x._deleted && contract.address !== x.address);
+      setContracts(cl);
+      setContractAddress(cl[0].address)
     }
-    
-    fetchData();
-   }, []);
- 
-
+  
+    async function fetchHashPairs() {
+      let graphqlResult = await API.graphql({ query: queries.listHashPairs });
+      let hps = graphqlResult.data.listHashPairs.items.filter(x => !x._deleted);
+      setHashPairs(hps);
+    }
+  
+  
+    async function fetchTxs() {
+      let graphqlResult = await API.graphql({ query: queries.listTxs });
+      let hps = graphqlResult.data.listTxs.items.filter(x => !x._deleted);
+      setTxs(hps);
+    }
+  
+  
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     let contract = JSON.parse(window.localStorage.getItem('contract'));
@@ -40,32 +69,7 @@ export default function Update(props) {
           <label htmlFor="contractAddress" className="form-label inline-block mb-2 text-gray-700">
             Contract Address
           </label >
-          <input type="text" className="
-      form-control
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700
-      focus:bg-white 
-      focus:border-blue-600 
-      focus:outline-none
-    "
-            placeholder="0x0"
-            id="contractAddress"
-            name="contractAddress"
-            defaultValue="0x0"
-            onChange={e => setContractAddress(e.target.value)}
-          />
+          <ContractCombobox contracts={contracts} setAddress={setContractAddress}/>
         </div>
 
         {/* Transaction Id */}
@@ -73,70 +77,15 @@ export default function Update(props) {
           <label htmlFor="transactionId" className="form-label inline-block mb-2 text-gray-700">
             Transaction Id 
           </label >
-          <input type="text" className="
-      form-control
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700
-      focus:bg-white 
-      focus:border-blue-600 
-      focus:outline-none
-    "
-            placeholder="0x0"
-            id="transactionId"
-            name="transactionId"
-            defaultValue="0x0"
-            onChange={e => setTransactionId(e.target.value)}
-          />
+          <TransactionIdCombobox setTransactionId={setTransactionId} txs={txs}/>
         </div>
-
-
-
         {/* Hash Secret */}
         <div className="mb-3 xl:w-96" >
           <label htmlFor="hashSecret" className="form-label inline-block mb-2 text-gray-700">
-            Hash Secrect 
+            Hash Secrect
           </label >
-          <input type="text" className="
-      form-control
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700
-      focus:bg-white 
-      focus:border-blue-600 
-      focus:outline-none
-    "
-            placeholder="0x0"
-            id="hashSecret"
-            name="hashSecret"
-            defaultValue="0x0"
-            onChange={e => setHashSecret(e.target.value)}
-          />
+          <HashCombobox hashPairs={hashPairs} setHash={setHash} />
         </div>
-
-
         <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
       </form>
     </div>

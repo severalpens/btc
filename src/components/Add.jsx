@@ -3,6 +3,10 @@ import { useState, useEffect } from "react";
 import Blockchain from './Blockchain';
 import { API } from 'aws-amplify';
 import * as queries from '../graphql/queries';
+import ContractCombobox from "./ContractCombobox";
+import TransactionIdCombobox from "./TransactionIdCombobox";
+import BurnAccountCombobox from "./BurnAccountCombobox";
+import HashCombobox from "./HashCombobox";
 
 const blockchain = new Blockchain();
 
@@ -11,24 +15,58 @@ export default function Add(props) {
   const [contractAddress, setContractAddress] = useState(null);
   const [transactionId, setTransactionId] = useState(null);
   const [burnAccountAddress, setBurnAccountAddress] = useState(null);
-  const [hash, setHash] = useState(null);
   const [timeoutSeconds, setTimeoutSeconds] = useState(null);
-  const [tokenAddress, setTokenAddress] = useState(null);
-  const [amount, setAmount] = useState(null);
+  const [contracts, setContracts] = useState(null);
+  const [burnAccounts, setBurnAccounts] = useState([]);
+  const [hashPairs, setHashPairs] = useState([]);
+  const [burnAddress, setBurnAddress] = useState('0x0');
+  const [hash, setHash] = useState('0x0');
+  const [periodEndSeconds, setPeriodEndSeconds] = useState('0x0');
+  const [tokenAddress, setTokenAddress] = useState('0x0');
+  const [amount, setAmount] = useState('1');
+  const [txs, setTxs] = useState([]);
+  const [address, setAddress] = useState(null);
+
 
   
   const [ctError1, setCtError1] = useState('');
   const [ibError1, setIbError1] = useState('');
 
-  useEffect(() => {
-
-    async function fetchData() {
+    useEffect(() => {
+      fetchContracts();
+      fetchHashPairs();
+      fetchTxs();
+      fetchBurnAccounts();
+    }, []);
+  
+    async function fetchContracts() {
+      let graphqlResult = await API.graphql({ query: queries.listContracts });
+      let contract = JSON.parse(window.localStorage.getItem('contract'));
+      let cl = graphqlResult.data.listContracts.items.filter(x => !x._deleted && contract.address !== x.address);
+      setContracts(cl);
+      setContractAddress(cl[0].address)
     }
-    
-    fetchData();
-   }, []);
- 
+  
+    async function fetchHashPairs() {
+      let graphqlResult = await API.graphql({ query: queries.listHashPairs });
+      let hps = graphqlResult.data.listHashPairs.items.filter(x => !x._deleted);
+      setHashPairs(hps);
+    }
+  
+   
+    async function fetchBurnAccounts() {
+      let graphqlResult = await API.graphql({ query: queries.listBurnAccounts });
+      let hps = graphqlResult.data.listBurnAccounts.items.filter(x => !x._deleted);
+      setBurnAccounts(hps);
+    }
 
+  
+    async function fetchTxs() {
+      let graphqlResult = await API.graphql({ query: queries.listTxs });
+      let hps = graphqlResult.data.listTxs.items.filter(x => !x._deleted);
+      setTxs(hps);
+    }
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     let contract = JSON.parse(window.localStorage.getItem('contract'));
@@ -46,32 +84,7 @@ export default function Add(props) {
           <label htmlFor="contractAddress" className="form-label inline-block mb-2 text-gray-700">
             Contract Address
           </label >
-          <input type="text" className="
-      form-control
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700
-      focus:bg-white 
-      focus:border-blue-600 
-      focus:outline-none
-    "
-            placeholder="0x0"
-            id="contractAddress"
-            name="contractAddress"
-            defaultValue="0x0"
-            onChange={e => setContractAddress(e.target.value)}
-          />
+          <ContractCombobox contracts={contracts} setAddress={setContractAddress}/>
         </div>
 
         {/* TransactionId */}
@@ -79,32 +92,8 @@ export default function Add(props) {
           <label htmlFor="transactionId" className="form-label inline-block mb-2 text-gray-700">
             Transaction Id
           </label >
-          <input type="text" className="
-      form-control
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700
-      focus:bg-white 
-      focus:border-blue-600 
-      focus:outline-none
-    "
-            placeholder="0x0"
-            id="transactionId"
-            name="transactionId"
-            defaultValue="0x0"
-            onChange={e => setTransactionId(e.target.value)}
-          />
+          <TransactionIdCombobox setTransactionId={setTransactionId} txs={txs}/>
+          
         </div>
 
         {/* Burn Account Address */}
@@ -112,32 +101,9 @@ export default function Add(props) {
           <label htmlFor="burnAccountAddress" className="form-label inline-block mb-2 text-gray-700">
             Burn Account Addresss 
           </label >
-          <input type="text" className="
-      form-control
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700
-      focus:bg-white 
-      focus:border-blue-600 
-      focus:outline-none
-    "
-            placeholder="0x0"
-            id="burnAccountAddress"
-            name="burnAccountAddress"
-            defaultValue="0x0"
-            onChange={e => setBurnAccountAddress(e.target.value)}
-          />
+          <BurnAccountCombobox burnAccounts={burnAccounts} setAddress={setBurnAddress} />
+        
+
         </div>
 
         {/* Hash */}
@@ -145,32 +111,8 @@ export default function Add(props) {
           <label htmlFor="hash" className="form-label inline-block mb-2 text-gray-700">
             Hash 
           </label >
-          <input type="text" className="
-      form-control
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700
-      focus:bg-white 
-      focus:border-blue-600 
-      focus:outline-none
-    "
-            placeholder="0x0"
-            id="hash"
-            name="hash"
-            defaultValue="0x0"
-            onChange={e => setHash(e.target.value)}
-          />
+          <HashCombobox hashPairs={hashPairs} setHash={setHash} />
+          
         </div>
 
         {/* Timeout Seconds Secret */}
@@ -212,32 +154,8 @@ export default function Add(props) {
           <label htmlFor="tokenAddress" className="form-label inline-block mb-2 text-gray-700">
             Token Address 
           </label >
-          <input type="text" className="
-      form-control
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700
-      focus:bg-white 
-      focus:border-blue-600 
-      focus:outline-none
-    "
-            placeholder="0x0"
-            id="tokenAddress"
-            name="tokenAddress"
-            defaultValue="0x0"
-            onChange={e => setTokenAddress(e.target.value)}
-          />
+          <ContractCombobox setAddress={setAddress} contracts={contracts}/>
+
         </div>
 
 
