@@ -36,11 +36,18 @@ contract BurnToClaim {
     event requireMockEvent(string  message);
     event revertMockEvent(string  message);
 
+
+
+
     function requireMock(bool result, string memory message) public {
         if(result == false){
             emit requireMockEvent(message);
         }
     }
+
+
+
+
 
     function registerContract(address contractAddress) external {
         requireMock(
@@ -52,6 +59,8 @@ contract BurnToClaim {
             true
         );
     }
+
+
 
     function exitTransaction(
         address _burnAddress,
