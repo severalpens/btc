@@ -22,6 +22,10 @@ import HashPairs from './components/HashPairs';
 import BurnAccounts from './components/BurnAccounts';
 import CallApi from './components/CallApi';
 import Contracts from './components/Contracts';
+import Accounts from './components/Accounts';
+import DeployMenu from './components/DeployMenu';
+import ElementsMenu from './components/ElementsMenu';
+import TransferMenu from './components/TransferMenu';
 
 Amplify.configure(awsExports);
 
@@ -33,8 +37,8 @@ if (typeof window.ethereum !== 'undefined') {
       <Routes>
         <Route path="/" element={<App />}>
         <Route path="contracts" element={<TableOuter />} />
+        <Route path="accounts" element={<Accounts/>} />
         <Route path="contracts2" element={<Contracts />} />
-          <Route path="deploy" element={<NewContractForm1 />} />
           <Route path="callapi" element={<CallApi />} />
           <Route path="hashpairs" element={<HashPairs />} />
           <Route path="burnaccounts" element={<BurnAccounts />} />
@@ -42,6 +46,10 @@ if (typeof window.ethereum !== 'undefined') {
           <Route path="initialize/transfer" element={<Transfer />} />
           <Route path="initialize/register" element={<RegisterToken />} />
           <Route path="transactions" element={<TransactionsMenu />} />
+          <Route path="transfer" element={<TransferMenu/>} />
+          <Route path="elements" element={<ElementsMenu />} />
+          <Route path="transactions/deploy" element={<NewContractForm1 />} />
+          <Route path="transactions/initialize" element={<Initialize />} />
           <Route path="transactions/approve" element={<Approve />} />
           <Route path="transactions/exit" element={<ExitTransaction />} />
           <Route path="transactions/reclaim" element={<Reclaim />} />
