@@ -4,8 +4,6 @@ import Navbar from './components/Navbar2';
 import './App.scss';
 import React, {useState} from 'react';
 
-
-
 class App extends React.Component {
   constructor(props) {
     super(props);
