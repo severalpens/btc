@@ -47,6 +47,7 @@ export default function TableInner(props) {
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 <button type="submit" className="border m-4  px-6 py-2.5 border-black rounded-md" 
                 onClick={e => {
+                  props.setCurrentContract(contract);
                   window.localStorage.setItem('contract',JSON.stringify(contract))
                   }}>Select</button>
               </td>

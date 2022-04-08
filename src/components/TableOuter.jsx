@@ -5,9 +5,11 @@ import * as mutations from '../graphql/mutations';
 import * as subscriptions from '../graphql/mutations';
 import TableInner from './TableInner';
 import { Link } from 'react-router-dom';
+import { useOutletContext } from "react-router-dom";
 
 export default function TableOuter(props) {
   const [contracts, setContracts] = useState(null);
+  const [currentContract, setCurrentContract] = useOutletContext();
 
   useEffect(() => {
    fetchData();
@@ -32,9 +34,9 @@ export default function TableOuter(props) {
       <button
         type="submit"
         className="border m-4  px-6 py-2.5 border-black rounded-md">
-        <Link to="/deploy" >Deploy New Contract</Link>
+        <Link to="/transactions/deploy" >Deploy New Contract</Link>
       </button>      
-      <TableInner contracts={contracts} deleteRecordHandler={deleteRecordHandler} />
+      <TableInner contracts={contracts} deleteRecordHandler={deleteRecordHandler} setCurrentContract={setCurrentContract} />
     </div>
   )
 

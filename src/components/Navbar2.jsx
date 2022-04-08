@@ -7,7 +7,8 @@ function Navbar(props) {
   const [accounts, setAccounts] = useState(null);
   const [network, setNetwork] = useState(null);
   let contract = [];
-  
+  let currentContract = props.currentContract;
+
   try{
     contract =  JSON.parse(window.localStorage.contract);
   }
@@ -58,8 +59,8 @@ function Navbar(props) {
           </a>
         </div>
         <div className="p-6">
-          <a href={`https://${network}.etherscan.io/address/${contract.address}`} target="_blank" rel="noreferrer">
-            Contract: {contract.name} | {contract.network} | {contract.address}
+          <a href={`https://${network}.etherscan.io/address/${currentContract.address}`} target="_blank" rel="noreferrer">
+            Contract: {currentContract.name} | {currentContract.network} | {currentContract.address}
           </a>
         </div>
       </div>

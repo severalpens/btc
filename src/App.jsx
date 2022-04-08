@@ -4,40 +4,14 @@ import Navbar from './components/Navbar2';
 import './App.scss';
 import React, {useState} from 'react';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.setAddress = (addr) => {
-      this.setState(state => ({
-        address: addr
-      }));
-    };
-
-    // State also contains the updater function so it will
-    // be passed down into the context provider
-    this.state = {
-      address: '0x1',
-      setAddress: this.setAddress,
-    };
-  }
-
-  render() {
-    // The entire state is passed to the provider
-    return (
-        <Content/>
-    );
-  }
-}
-
-function Content() {
+function App() {
+  const [currentContract, setCurrentContract] = React.useState(0);
   return (
     <>
-      <Navbar />
-      <Outlet />
-
+      <Navbar currentContract={currentContract} />
+      <Outlet context={[currentContract, setCurrentContract]}/>
     </>
-  );
+  )
 }
 
 
