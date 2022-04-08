@@ -7,6 +7,7 @@ import ContractCombobox from "./ContractCombobox";
 import TransactionIdCombobox from "./TransactionIdCombobox";
 import BurnAccountCombobox from "./BurnAccountCombobox";
 import HashCombobox from "./HashCombobox";
+import Logs from "./Logs";
 
 const blockchain = new Blockchain();
 
@@ -75,6 +76,8 @@ export default function EntryTransaction(props) {
 
 
   return (
+    <div className="flex">
+
     <div className="ml-16 my-16 ">
       <h2 className="font-medium leading-tight text-4xl mt-0 text-blue-600">Entry Transaction</h2>
       <div className="italic mb-8">recipient agent</div>
@@ -185,6 +188,8 @@ export default function EntryTransaction(props) {
 
         <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
       </form>
-    </div>
+      </div>
+      <Logs transactionType="entryTransaction" />
+      </div>
   )
 }

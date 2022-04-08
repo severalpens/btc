@@ -6,6 +6,7 @@ import * as queries from '../graphql/queries';
 import ContractCombobox from "./ContractCombobox";
 import TransactionIdCombobox from "./TransactionIdCombobox";
 import HashCombobox from "./HashCombobox";
+import Logs from "./Logs";
 
 const blockchain = new Blockchain();
 
@@ -60,6 +61,7 @@ export default function Update(props) {
 
 
   return (
+    <div className="flex">
     <div className="ml-16 my-16 ">
       <h2 className="font-medium leading-tight text-4xl mt-0 text-blue-600">Update</h2>
       <div className="italic mb-8">sender agent</div>
@@ -88,6 +90,8 @@ export default function Update(props) {
         </div>
         <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
       </form>
-    </div>
+      </div>
+      <Logs transactionType="update" />
+      </div>
   )
 }

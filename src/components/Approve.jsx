@@ -6,7 +6,7 @@ import Logs from "./Logs";
 import { API } from 'aws-amplify';
 import * as queries from '../graphql/queries';
 import * as mutations from '../graphql/mutations';
-import ContractCombobox from "./ContractCombobox";
+import AccountCombobox from "./AccountCombobox";
 import TextInput from './TextInput';
 
 const blockchain = new Blockchain();
@@ -16,16 +16,16 @@ export default function Approve(props) {
   const [address, setAddress] = useState('0x0');
   const [amount, setAmount] = useState('1');
   const [contracts, setContracts] = useState([]);
+  const [accounts, setAccounts] = useState([]);
 
   useEffect(() => {
     fetchData();
    }, []);
  
    async function fetchData() {
-     let graphqlResult = await API.graphql({ query: queries.listContracts });
-     let cl = graphqlResult.data.listContracts.items.filter(x => !x._deleted);
-     console.log(cl);
-     setContracts(cl);
+     let graphqlResult = await API.graphql({ query: queries.listAccounts });
+     let a = graphqlResult.data.listAccounts.items.filter(x => !x._deleted);
+     setAccounts(a);
    }
      
 
@@ -46,7 +46,7 @@ export default function Approve(props) {
             <label htmlFor="address" className="form-label inline-block mb-2 text-gray-700">
               Account Address
             </label >
-            <ContractCombobox setAddress={setAddress} contracts={contracts}/>
+            <AccountCombobox setAddress={setAddress} accounts={accounts}/>
           </div>
           <div className="mb-3 xl:w-96" >
             <label htmlFor="exampleFormControlInput1" className="form-label inline-block mb-2 text-gray-700">

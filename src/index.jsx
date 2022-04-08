@@ -26,6 +26,7 @@ import Accounts from './components/Accounts';
 import DeployMenu from './components/DeployMenu';
 import ElementsMenu from './components/ElementsMenu';
 import TransferMenu from './components/TransferMenu';
+import AddAccount from './components/AddAccount';
 
 Amplify.configure(awsExports);
 
@@ -38,6 +39,7 @@ if (typeof window.ethereum !== 'undefined') {
         <Route path="/" element={<App />}>
         <Route path="contracts" element={<TableOuter />} />
         <Route path="accounts" element={<Accounts/>} />
+        <Route path="accounts/add" element={<AddAccount/>} />
         <Route path="contracts2" element={<Contracts />} />
           <Route path="callapi" element={<CallApi />} />
           <Route path="hashpairs" element={<HashPairs />} />

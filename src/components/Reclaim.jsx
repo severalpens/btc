@@ -49,6 +49,7 @@ export default function Reclaim(props) {
           <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
         </form>
       </div>
+      <Logs transactionType="reclaim" />
     </div>
   )
 }
