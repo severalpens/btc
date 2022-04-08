@@ -64,8 +64,21 @@ export default class Blockchain {
     let contract = new ethers.Contract(artifact.address, artifact.abi, provider.getSigner());
     
     let tx = await contract.exitTransaction(burnAddress, hash, periodEndSeconds, tokenAddress, amount);
-    let result = await tx.wait();
+    let result: ethers.utils.Result = await tx.wait();
+    let args: any = result.events[result.events.length - 1].args;
+    let transactionId: string = args.transactionId;
+    let input = {
+      transactionId, 
+      timestamp: new Date().getTime(),
+      burnAddress, 
+      hash, 
+      periodEndSeconds, 
+      tokenAddress, 
+      amount
+    }
+
     await this.saveLog('exitTransaction',result);
+    await this.saveTransactionId(input);
     return result;
   }
 
@@ -121,6 +134,11 @@ export default class Blockchain {
   }
 
   
+
+
+  async saveTransactionId(input:any){
+    await API.graphql({ query: mutations.createTx, variables: { input } });
+  }
 
 
   async saveLog(transactionType: string, result: any){
