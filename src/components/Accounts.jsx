@@ -4,7 +4,6 @@ import * as queries from '../graphql/queries';
 import * as mutations from '../graphql/mutations';
 import { Link } from 'react-router-dom';
 
-
 export default function Accounts(props) {
   
   const [accounts, setAccounts] = useState([]);
@@ -28,23 +27,16 @@ export default function Accounts(props) {
     setAccounts(a);
   }
 
-  async function addAccount(e){
-    e.preventDefault();
-    const apiName = 'api2';
-    const path = '/hashpair';
-    let input = await API.get(apiName, path);
-     console.log(input);
-     await API.graphql({ query: mutations.createHashPair, variables: { input } });
-     await fetchData();
-  }
-    
+
 
   return (
     <div className="m-28">
       <h2 className="text-3xl text-gray-700">Accounts</h2>
-      <button type="submit" className="border m-4  px-6 py-2.5 border-black rounded-md" onClick={addAccount}>
-        Add Account
-      </button>
+      <button
+        type="submit"
+        className="border m-4  px-6 py-2.5 border-black rounded-md">
+        <Link to="/accounts/add" >Add Account</Link>
+      </button>    
     <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
       <table className="table-auto min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
