@@ -37,6 +37,11 @@ function Navbar(props) {
             </NavLink>
           </div>
           <div className="p-6">
+            <NavLink className="" to="/accounts">
+              Accounts
+            </NavLink>
+          </div>
+          <div className="p-6">
             <NavLink className="" to="/deploy">
               Deploy
             </NavLink>
