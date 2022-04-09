@@ -32,9 +32,11 @@ import * as mutations from '../graphql/mutations';
 
 
  export async function fetchTxs(setTxs) {
-        let graphqlResult = await API.graphql({ query: queries.listTxs });
-        let hps = graphqlResult.data.listTxs.items.filter(x => !x._deleted);
-        setTxs(hps);
-      }
+  let graphqlResult = await API.graphql({ query: queries.listTxs });
+  let txs = graphqlResult.data.listTxs.items
+  .filter(x =>  !x._deleted)
+  .sort((a,b) => b.timestamp - a.timestamp);
+  setTxs(txs);
+    }
     
     

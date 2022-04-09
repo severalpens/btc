@@ -27,9 +27,9 @@ export default function InputHashSecret(props) {
                 id="address"
                 name="address"
                 onChange={e => setHashSecret(e.target.value)}
-                list="optionslist"
+                list="hashSecretOptionsList"
             />
-            <datalist id="optionslist">
+            <datalist id="hashSecretOptionsList">
                 {hashPairs ? hashPairs.map((hashPair) => (
                     <option key={hashPair.id} value={hashPair.secret}>
                         {hashPair.hash.slice(0, 5) + '..' + hashPair.hash.slice(hashPair.hash.length - 4)}

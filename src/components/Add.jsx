@@ -6,6 +6,7 @@ import InputHash from "./InputHash";
 import TableLogs from "./TableLogs";
 import { fetchBurnAccounts, fetchContracts, fetchHashPairs, fetchTxs } from "../apis/DatabaseInterface";
 import BtcInterface from '../apis/BtcInterface';
+import InputNumber from "./InputNumber";
 
 const btcInterface = new BtcInterface();
 
@@ -20,6 +21,7 @@ export default function Add(props) {
   const [hash, setHash] = useState('0x0');
   const [amount, setAmount] = useState('1');
   const [txs, setTxs] = useState([]);
+  const [tokenAddress, setTokenAddress] = useState('0x0');
 
   useEffect(() => {
     fetchContracts(setContracts);
@@ -31,7 +33,7 @@ export default function Add(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     let contract = JSON.parse(window.localStorage.getItem('contract'));
-    await btcInterface.add(contract, contractAddress,amount);
+    await btcInterface.add(contract, contractAddress,transactionId, burnAddress, hash, timeoutSeconds, tokenAddress, amount);
   }
 
   return (
@@ -48,7 +50,6 @@ export default function Add(props) {
             </label >
             <InputContract contracts={contracts} setAddress={setContractAddress} />
           </div>
-
           {/* TransactionId */}
           <div className="mb-3 xl:w-96" >
             <label htmlFor="transactionId" className="form-label inline-block mb-2 text-gray-700">
@@ -78,32 +79,7 @@ export default function Add(props) {
             <label htmlFor="timeoutSeconds" className="form-label inline-block mb-2 text-gray-700">
               Timeout Seconds
             </label >
-            <input type="text" className="
-      form-control
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700
-      focus:bg-white 
-      focus:border-blue-600 
-      focus:outline-none
-    "
-              placeholder="240"
-              id="timeoutSeconds"
-              name="timeoutSeconds"
-              defaultValue="240"
-              onChange={e => setTimeoutSeconds(e.target.value)}
-            />
+            <InputNumber elementId="timeoutSeconds" setItem={setTimeoutSeconds}/>
           </div>
 
           {/* Token Address */}
@@ -111,7 +87,7 @@ export default function Add(props) {
             <label htmlFor="tokenAddress" className="form-label inline-block mb-2 text-gray-700">
               Token Address
             </label >
-            <InputContract setAddress={setContractAddress} contracts={contracts} />
+            <InputContract setAddress={setTokenAddress} contracts={contracts} />
           </div>
 
           {/* Amount */}

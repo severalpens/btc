@@ -10,12 +10,10 @@ const blockchain = new BtcInterface();
 export default function Initialize(props) {
 
   const [tokenAddress, setTokenAddress] = useState('0x0');
+  const [token, setToken] = useState({});
   const [tokenTransferAmount, setTokenTransferAmount] = useState('1000');
   const [contracts, setContracts] = useState(null);
 
-
-  const [ctError1, setCtError1] = useState('');
-  const [ibError1, setIbError1] = useState('');
 
   useEffect(() => {
 
@@ -33,13 +31,14 @@ export default function Initialize(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     let contract = JSON.parse(window.localStorage.getItem('contract'));
-    await blockchain.initialize(contract, tokenAddress,tokenTransferAmount);
+    await blockchain.initialize(contract, token,tokenTransferAmount);
   }
 
-  const handleContractChange = async (e) => {
-    setTokenAddress(e.target.value);
+  const handleTokenChange = async (tokenAddress) => {
+    setTokenAddress(tokenAddress);
+    let tkn = contracts.find(x => x.address == tokenAddress);
+    setToken(tkn);
   }
-
 
   return (
     <div className="flex">
@@ -48,7 +47,7 @@ export default function Initialize(props) {
       <form className="" onSubmit={handleSubmit}>
         <div className="mb-3 xl:w-96">
           <label className="form-label inline-block mb-2 text-gray-700" htmlFor="contract-type">Token (ERC20 Contract) Address</label>
-          <InputContract contracts={contracts} setAddress={setTokenAddress}/>
+          <InputContract contracts={contracts} setAddress={handleTokenChange}/>
         </div>
         <div className="mb-3 xl:w-96" >
           <label htmlFor="exampleFormControlInput1" className="form-label inline-block mb-2 text-gray-700">
@@ -84,7 +83,8 @@ export default function Initialize(props) {
         <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
       </form>
       </div>
-      <TableLogs transactionType="initialize" />
+      <TableLogs transactionType="registerContract" />
+      <TableLogs transactionType="transfer" />
       </div>
   )
 }

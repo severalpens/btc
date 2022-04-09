@@ -4,16 +4,10 @@ export default function MenuTransactions() {
     return (
         <div className="ml-16 my-16 ">
             <div>
-                <h2 className="font-medium leading-tight text-4xl mt-0 mb-8 text-blue-600">Deploy</h2>
-                <div>
-                    <Link to="/transactions/deploy">Deploy</Link>
-                </div>
+                <h2 className="font-medium leading-tight text-4xl mt-0 mb-8 text-blue-600">Transactions</h2>
                 <div>
                     <Link to="/transactions/initialize">Initialize</Link>
                 </div>
-            </div>
-            <div>
-                <h2 className="font-medium leading-tight text-4xl mt-0 mb-8 text-blue-600">Transfer</h2>
                 <div>
                     <Link to="/transactions/approve">Approve</Link>
                 </div>

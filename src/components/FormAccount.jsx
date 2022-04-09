@@ -23,7 +23,7 @@ export default function FormAccount(props) {
     };
 
     await API.graphql({ query: mutations.createAccount, variables: { input } });
-    navigate("/accounts", { replace: true });
+    navigate("/elements/accounts", { replace: true });
   }
 
   return (

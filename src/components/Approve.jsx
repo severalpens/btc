@@ -5,6 +5,7 @@ import { API } from 'aws-amplify';
 import * as queries from '../graphql/queries';
 import InputText from './InputText';
 import InputContract from "./InputContract";
+import { fetchContracts } from "../apis/DatabaseInterface";
 
 const blockchain = new BtcInterface();
 
@@ -15,14 +16,9 @@ export default function Approve(props) {
   const [accounts, setAccounts] = useState([]);
 
   useEffect(() => {
-    fetchData();
+    fetchContracts(setContracts);
    }, []);
  
-   async function fetchData() {
-     let graphqlResult = await API.graphql({ query: queries.listAccounts });
-     let a = graphqlResult.data.listAccounts.items.filter(x => !x._deleted);
-     setAccounts(a);
-   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();

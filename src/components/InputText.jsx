@@ -1,6 +1,6 @@
 
 export default function InputText(props) {
-const {setItem, elementId} = props.setItem;
+const {setItem, elementId} = props;
   return (
             <input type="text" className="
                     form-control

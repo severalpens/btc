@@ -6,8 +6,9 @@ import * as queries from '../graphql/queries';
 import * as mutations from '../graphql/mutations';
 import InputTransactionId from "./InputTransactionId";
 import InputText from './InputText';
+import { fetchTxs } from "../apis/DatabaseInterface";
 
-const blockchain = new BtcInterface();
+const btcInterface = new BtcInterface();
 
 export default function Reclaim(props) {
 
@@ -18,20 +19,14 @@ export default function Reclaim(props) {
   const [contracts, setContracts] = useState([]);
 
   useEffect(() => {
-    fetchData();
+    fetchTxs(setTxs);
    }, []);
  
-   async function fetchData() {
-     let graphqlResult = await API.graphql({ query: queries.listTxs });
-     let tx = graphqlResult.data.listTxs.items.filter(x => !x._deleted);
-     setTxs(tx);
-   }
-     
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     let contract = JSON.parse(window.localStorage.getItem('contract'));
-    await blockchain.reclaim(contract, transactionId);
+    await btcInterface.reclaimTransaction(contract, transactionId);
   }
 
 
@@ -49,7 +44,7 @@ export default function Reclaim(props) {
           <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
         </form>
       </div>
-      <TableLogs transactionType="reclaim" />
+      <TableLogs transactionType="reclaimTransaction" />
     </div>
   )
 }

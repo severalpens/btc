@@ -32,7 +32,7 @@ export default function InputTransactionId(props) {
             <datalist id="transactionIdOptionsList">
                 {txs ? txs.map((tx) => (
                     <option key={tx.id} value={tx.transactionId}>
-                   {tx.transactionId}{" | "}{tx.tokenAddress.slice(0, 5) + '..' + tx.tokenAddress.slice(tx.tokenAddress.length - 4)}
+                   {tx.timestamp}
                         </option>
                     )) : ''}
             </datalist>

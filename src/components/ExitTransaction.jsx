@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import BtcInterface from '../apis/BtcInterface';
-import TransactionIds from "./TransactionIds";
+import TableTransactionIds from "./TableTransactionIds";
 import InputHash from "./InputHash";
 import InputBurnAccount from "./InputBurnAccount";
 import InputContract from "./InputContract";
 import InputText from "./InputText";
-import { fetchBurnAccounts, fetchContracts, fetchHashPairs } from "../apis/DatabaseInterface";
+import { fetchBurnAccounts, fetchContracts, fetchHashPairs, fetchTxs } from "../apis/DatabaseInterface";
 
 const btcInterface = new BtcInterface();
 
@@ -18,18 +18,22 @@ export default function ExitTransaction(props) {
   const [periodEndSeconds, setPeriodEndSeconds] = useState('0x0');
   const [tokenAddress, setTokenAddress] = useState('0x0');
   const [amount, setAmount] = useState('1');
+  const [txs, setTxs] = useState([]);
 
   useEffect(() => {
     fetchContracts(setContracts);
     fetchBurnAccounts(setBurnAccounts);
     fetchHashPairs(setHashPairs);
+    fetchTxs(setTxs);
   }, []);
 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     let contract = JSON.parse(window.localStorage.getItem('contract'));
-   await btcInterface.exitTransaction(contract, tokenAddress,amount);
+   await btcInterface.exitTransaction(contract, burnAddress, hash, periodEndSeconds, tokenAddress, amount);
+   await fetchTxs(setTxs);
+
   }
 
 
@@ -96,7 +100,7 @@ export default function ExitTransaction(props) {
           <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
         </form>
       </div>
-      <TransactionIds />
+      <TableTransactionIds txs={txs} />
     </div>
   )
 }
