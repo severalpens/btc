@@ -1,6 +1,9 @@
 import { ethers } from "ethers";
 import { API } from 'aws-amplify';
 import * as mutations from '../graphql/mutations';
+import {fetchContracts} from '../apis/DatabaseInterface';
+import * as queries from '../graphql/queries';
+
 
 export default class BtcInterface {
 
@@ -25,22 +28,36 @@ export default class BtcInterface {
     return result;
   }
   
-  async initialize(contract:any, tokenAddress: string, tokenTransferAmount: string){
-    let address: string = contract.address;
+  async initialize(contract:any, token: any, tokenTransferAmount: string){
+    await this.registerContract(contract, token,  tokenTransferAmount)
+    await this.transfer(contract, token,  tokenTransferAmount)
+  }
+
+  
+  async registerContract(contract:any, token: any, tokenTransferAmount: string){
+    let contractAddress: string = contract.address;
     let abi: ethers.ContractInterface = contract.abi;
     let provider = new ethers.providers.Web3Provider(window.ethereum);
     let signer = provider.getSigner();
-    let ethersContract = new ethers.Contract(address, abi, signer);
-    let tx = await ethersContract.registerContract(tokenAddress);
+    let ethersContract = new ethers.Contract(contractAddress, abi, signer);
+    let tx = await ethersContract.registerContract(token.address);
     let result = await tx.wait();
     await this.saveLog('registerContract',result);
+  }
+
     
-    let amount = ethers.utils.parseEther(tokenTransferAmount);
-    let tx2 = await ethersContract.transfer(amount);
-    let result2 = await tx2.wait();
-    await this.saveLog('transfer',result2);
+  async transfer(contract:any, token: any, tokenTransferAmount: string){
+    let abi: ethers.ContractInterface = token.abi;
+    let provider = new ethers.providers.Web3Provider(window.ethereum);
+    let signer = provider.getSigner();
+    let ethersContract = new ethers.Contract(token.address, abi, signer);
+    let tx = await ethersContract.transfer(contract.address, tokenTransferAmount);
+    let result = await tx.wait();
+    await this.saveLog('transfer',result);
     return result;
   }
+
+
 
   async approve(artifact:any, address: string, amount: string){
     let provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -59,9 +76,11 @@ export default class BtcInterface {
     
     let tx = await contract.exitTransaction(burnAddress, hash, periodEndSeconds, tokenAddress, amount);
     let result: ethers.utils.Result = await tx.wait();
+    console.log(result)
     let args: any = result.events[result.events.length - 1].args;
     let transactionId: string = args.transactionId;
     let input = {
+      transactionHash: result.transactionHash,
       transactionId, 
       timestamp: new Date().getTime(),
       burnAddress, 
@@ -76,7 +95,11 @@ export default class BtcInterface {
     return result;
   }
 
-  
+  async saveTransactionId(input:any){
+    await API.graphql({ query: mutations.createTx, variables: { input } });
+  }
+
+
   async reclaimTransaction(artifact:any, transactionId: string){
     let provider = new ethers.providers.Web3Provider(window.ethereum);
     let contract = new ethers.Contract(artifact.address, artifact.abi, provider.getSigner());
@@ -98,10 +121,13 @@ export default class BtcInterface {
   }
 
    
-  async add(artifact:any, address: string, transactionId: string, burnAddress: string, hash: string, timeoutSeconds: string, tokenAddress: string, amount: string){
+  async add(artifact:any, contractAddress: string, transactionId: string, burnAddress: string, hash: string, timeoutSeconds: string, tokenAddress: string, amount: string){
     let provider = new ethers.providers.Web3Provider(window.ethereum);
     let contract = new ethers.Contract(artifact.address, artifact.abi, provider.getSigner());
-    let tx = await contract.update(address, transactionId, burnAddress, hash, timeoutSeconds, tokenAddress, amount);
+    let parsedAmount = ethers.utils.parseEther(amount);
+    let tos = Number.parseInt(timeoutSeconds);
+    console.log({contractAddress, transactionId, burnAddress, hash, tos,timeoutSeconds, tokenAddress, amount, parsedAmount});
+    let tx = await contract.add(contractAddress, transactionId, burnAddress, hash, timeoutSeconds, tokenAddress, parsedAmount);
     let result = await tx.wait();
     await this.saveLog('add',result);
     return result;
@@ -116,10 +142,6 @@ export default class BtcInterface {
     let result = await tx.wait();
     await this.saveLog('entryTransaction', result);
     return result;
-  }
-
-  async saveTransactionId(input:any){
-    await API.graphql({ query: mutations.createTx, variables: { input } });
   }
 
   async saveLog(transactionType: string, result: any){
