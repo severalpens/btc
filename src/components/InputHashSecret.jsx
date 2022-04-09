@@ -1,5 +1,7 @@
-export default function ContractCombobox(props) {
-    const { contracts, setAddress } = props;
+
+export default function InputHashSecret(props) {
+    const { hashPairs, setHashSecret } = props;
+
     return (
         <div className="mb-3 xl:w-96" >
             <input type="text" className="
@@ -24,13 +26,17 @@ export default function ContractCombobox(props) {
                 "
                 id="address"
                 name="address"
-                onChange={e => setAddress(e.target.value)}
+                onChange={e => setHashSecret(e.target.value)}
                 list="optionslist"
             />
             <datalist id="optionslist">
-                {contracts ? contracts.map((contract) => (
-                    <option key={contract.id} value={contract.address}>{contract.network}{" | "}{contract.name}{" | "}{contract.owner.slice(0, 5) + '..' + contract.owner.slice(contract.owner.length - 4)}</option>
-                )) : ''}
+                {hashPairs ? hashPairs.map((hashPair) => (
+                    <option key={hashPair.id} value={hashPair.secret}>
+                        {hashPair.hash.slice(0, 5) + '..' + hashPair.hash.slice(hashPair.hash.length - 4)}
+                        {" | "}
+                        {hashPair.secret.slice(0, 5) + '..' + hashPair.secret.slice(hashPair.secret.length - 4)}
+                        </option>
+                    )) : ''}
             </datalist>
         </div>
     )

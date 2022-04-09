@@ -1,40 +1,27 @@
 import { useState, useEffect } from "react";
 import { API } from 'aws-amplify';
-import * as queries from '../graphql/queries';
 import * as mutations from '../graphql/mutations';
-import { Link } from 'react-router-dom';
 import {ethers} from 'ethers';
+import { deleteBurnAccount, fetchBurnAccounts } from "../apis/DatabaseInterface";
 
 export default function BurnAccounts(props) {
   
   const [burnAccounts, setBurnAccounts] = useState([]);
 
   useEffect(() => {
-   fetchData();
+   fetchBurnAccounts(setBurnAccounts);
   }, []);
-  
-
      
   const deleteRecordHandler = async (burnAccount) => {
-    let input = {id: burnAccount.id, _version: 1};
-    await API.graphql({ query: mutations.deleteBurnAccount, variables: {input}});
-    await fetchData();
-  }
-
-
-  async function fetchData() {
-    let graphqlResult = await API.graphql({ query: queries.listBurnAccounts });
-    let hps = graphqlResult.data.listBurnAccounts.items.filter(x => !x._deleted);
-    setBurnAccounts(hps);
+    await deleteBurnAccount(burnAccount, setBurnAccounts);
   }
 
   async function newBurnAccount(e){
     e.preventDefault();
     let account = ethers.Wallet.createRandom();
     let input = {address: account.address, privateKey: account.privateKey}
-     console.log(input);
      await API.graphql({ query: mutations.createBurnAccount, variables: { input } });
-     await fetchData();
+     await fetchBurnAccounts(setBurnAccounts);
   }
     
 

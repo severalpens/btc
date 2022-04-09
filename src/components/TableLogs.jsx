@@ -4,7 +4,7 @@ import * as queries from '../graphql/queries';
 import * as mutations from '../graphql/mutations';
 import { Link } from 'react-router-dom';
 
-export default function Logs(props) {
+export default function TableLogs(props) {
 
   const [logs, setLogs] = useState([]);
 

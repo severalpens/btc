@@ -1,4 +1,4 @@
-export default function TableInner(props) {
+export default function TableContracts(props) {
   const contracts = props.contracts || [];
   return (
     <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">

@@ -1,18 +1,14 @@
 import { useState, useEffect } from "react";
-import Blockchain from './Blockchain';
-import TableOuter from "./TableOuter";
-import Contracts from "./Contracts";
-import Logs from "./Logs";
+import BtcInterface from '../apis/BtcInterface';
+import TableLogs from "./TableLogs";
 import { API } from 'aws-amplify';
 import * as queries from '../graphql/queries';
-import * as mutations from '../graphql/mutations';
-import AccountCombobox from "./AccountCombobox";
-import TextInput from './TextInput';
+import InputText from './InputText';
+import InputContract from "./InputContract";
 
-const blockchain = new Blockchain();
+const blockchain = new BtcInterface();
 
 export default function Approve(props) {
-
   const [address, setAddress] = useState('0x0');
   const [amount, setAmount] = useState('1');
   const [contracts, setContracts] = useState([]);
@@ -27,14 +23,12 @@ export default function Approve(props) {
      let a = graphqlResult.data.listAccounts.items.filter(x => !x._deleted);
      setAccounts(a);
    }
-     
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     let contract = JSON.parse(window.localStorage.getItem('contract'));
     await blockchain.approve(contract, address, amount);
   }
-
 
   return (
     <div className="flex">
@@ -44,24 +38,25 @@ export default function Approve(props) {
         <form className="" onSubmit={handleSubmit}>
           <div className="mb-3 xl:w-96" >
             <label htmlFor="address" className="form-label inline-block mb-2 text-gray-700">
-              Account Address
+              Contract Address
             </label >
-            <AccountCombobox setAddress={setAddress} accounts={accounts}/>
+            <InputContract setAddress={setAddress} contracts={contracts}/>
           </div>
           <div className="mb-3 xl:w-96" >
             <label htmlFor="exampleFormControlInput1" className="form-label inline-block mb-2 text-gray-700">
               Amount
             </label >
-            <TextInput componentId="amount" setItem={setAmount}/>
+            <InputText componentId="amount" setItem={setAmount}/>
           </div>
-          <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
+          <button type="submit" className="border px-6 py-2.5 border-black rounded-md">
+            Submit
+          </button>
         </form>
         <div className="mt-16">
           * Select a BasicToken/ERC20 token contract before running.
         </div>
       </div>
-      <Logs transactionType="approve" />
-
+      <TableLogs transactionType="approve" />
     </div>
   )
 }

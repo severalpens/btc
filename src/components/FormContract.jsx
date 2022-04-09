@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
-import Blockchain from './Blockchain';
+import BtcInterface from '../apis/BtcInterface';
 
 // component formatted using https://tailwind-elements.com/docs/standard/forms/form-templates/
 
-import BasicToken from './BasicToken';
-import BurnToClaim from './BurnToClaim';
+import BasicToken from '../artifacts/BasicToken';
+import BurnToClaim from '../artifacts/BurnToClaim';
 
 
-const blockchain = new Blockchain();
+const blockchain = new BtcInterface();
 const fileReader = new FileReader();
 
 //Refer to https://dev.to/ilonacodes/frontend-shorts-how-to-read-content-from-the-file-input-in-react-1kfb
 
-export default function NewContractForm1(props) {
+export default function FormContract(props) {
 
   const [contractType, setContractType] = useState('0');
   const [customArtifact, setCustomArtifact] = useState(BasicToken.abi);

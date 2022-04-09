@@ -1,5 +1,5 @@
 
-export default function HashCombobox(props) {
+export default function InputHash(props) {
     const { hashPairs, setHash } = props;
 
     return (

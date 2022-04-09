@@ -1,7 +1,5 @@
-
-export default function TransactionIdCombobox(props) {
-    const { txs, setTransactionId } = props;
-
+export default function InputContract(props) {
+    const { contracts, setAddress } = props;
     return (
         <div className="mb-3 xl:w-96" >
             <input type="text" className="
@@ -24,17 +22,15 @@ export default function TransactionIdCombobox(props) {
                 focus:border-blue-600 
                 focus:outline-none
                 "
-                id="transactionId"
-                name="transactionId"
-                onChange={e => setTransactionId(e.target.value)}
-                list="transactionIdOptionsList"
+                id="address"
+                name="address"
+                onChange={e => setAddress(e.target.value)}
+                list="optionslist"
             />
-            <datalist id="transactionIdOptionsList">
-                {txs ? txs.map((tx) => (
-                    <option key={tx.id} value={tx.transactionId}>
-                   {tx.transactionId}{" | "}{tx.tokenAddress.slice(0, 5) + '..' + tx.tokenAddress.slice(tx.tokenAddress.length - 4)}
-                        </option>
-                    )) : ''}
+            <datalist id="optionslist">
+                {contracts ? contracts.map((contract) => (
+                    <option key={contract.id} value={contract.address}>{contract.network}{" | "}{contract.name}{" | "}{contract.owner.slice(0, 5) + '..' + contract.owner.slice(contract.owner.length - 4)}</option>
+                )) : ''}
             </datalist>
         </div>
     )

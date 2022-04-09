@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import Blockchain from './Blockchain';
-import Logs from "./Logs";
+import BtcInterface from '../apis/BtcInterface';
+import TableLogs from "./TableLogs";
 import { API } from 'aws-amplify';
 import * as queries from '../graphql/queries';
 import * as mutations from '../graphql/mutations';
-import TransactionIdCombobox from "./TransactionIdCombobox";
-import TextInput from './TextInput';
+import InputTransactionId from "./InputTransactionId";
+import InputText from './InputText';
 
-const blockchain = new Blockchain();
+const blockchain = new BtcInterface();
 
 export default function Reclaim(props) {
 
@@ -44,12 +44,12 @@ export default function Reclaim(props) {
             <label htmlFor="address" className="form-label inline-block mb-2 text-gray-700">
               Transaction ID
             </label >
-            <TransactionIdCombobox setTransactionId={setTransactionId} txs={txs}/>
+            <InputTransactionId setTransactionId={setTransactionId} txs={txs}/>
           </div>
           <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
         </form>
       </div>
-      <Logs transactionType="reclaim" />
+      <TableLogs transactionType="reclaim" />
     </div>
   )
 }

@@ -1,12 +1,11 @@
-import { getContractAddress } from "ethers/lib/utils";
 import { useState, useEffect } from "react";
-import Blockchain from './Blockchain';
+import BtcInterface from '../apis/BtcInterface';
 import { API } from 'aws-amplify';
 import * as queries from '../graphql/queries';
-import ContractCombobox from "./ContractCombobox";
-import Logs from "./Logs";
+import InputContract from "./InputContract";
+import TableLogs from "./TableLogs";
 
-const blockchain = new Blockchain();
+const blockchain = new BtcInterface();
 
 export default function Initialize(props) {
 
@@ -49,7 +48,7 @@ export default function Initialize(props) {
       <form className="" onSubmit={handleSubmit}>
         <div className="mb-3 xl:w-96">
           <label className="form-label inline-block mb-2 text-gray-700" htmlFor="contract-type">Token (ERC20 Contract) Address</label>
-          <ContractCombobox contracts={contracts} setAddress={setTokenAddress}/>
+          <InputContract contracts={contracts} setAddress={setTokenAddress}/>
         </div>
         <div className="mb-3 xl:w-96" >
           <label htmlFor="exampleFormControlInput1" className="form-label inline-block mb-2 text-gray-700">
@@ -85,7 +84,7 @@ export default function Initialize(props) {
         <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
       </form>
       </div>
-      <Logs transactionType="initialize" />
+      <TableLogs transactionType="initialize" />
       </div>
   )
 }

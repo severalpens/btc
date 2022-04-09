@@ -1,37 +1,26 @@
-import { getContractAddress } from "ethers/lib/utils";
 import { useState, useEffect } from "react";
-import Blockchain from './Blockchain';
-import { API } from 'aws-amplify';
-import * as queries from '../graphql/queries';
-import ContractCombobox from "./ContractCombobox";
-import TransactionIdCombobox from "./TransactionIdCombobox";
-import BurnAccountCombobox from "./BurnAccountCombobox";
-import HashCombobox from "./HashCombobox";
-import Logs from "./Logs";
+import BtcInterface from '../apis/BtcInterface';
+import InputContract from "./InputContract";
+import InputTransactionId from "./InputTransactionId";
+import InputHash from "./InputHash";
+import TableLogs from "./TableLogs";
+import { fetchContracts, fetchHashPairs, fetchTxs, fetchBurnAccounts } from "../apis/DatabaseInterface";
 
-const blockchain = new Blockchain();
+const btcInterface = new BtcInterface();
 
 export default function EntryTransaction(props) {
 
   const [contractAddress, setContractAddress] = useState(null);
   const [transactionId, setTransactionId] = useState(null);
-  const [burnAccountAddress, setBurnAccountAddress] = useState(null);
   const [timeoutSeconds, setTimeoutSeconds] = useState(null);
   const [contracts, setContracts] = useState(null);
-  const [burnAccounts, setBurnAccounts] = useState([]);
   const [hashPairs, setHashPairs] = useState([]);
-  const [burnAddress, setBurnAddress] = useState('0x0');
   const [hash, setHash] = useState('0x0');
-  const [periodEndSeconds, setPeriodEndSeconds] = useState('0x0');
   const [tokenAddress, setTokenAddress] = useState('0x0');
   const [amount, setAmount] = useState('1');
   const [txs, setTxs] = useState([]);
   const [address, setAddress] = useState(null);
 
-
-  
-  const [ctError1, setCtError1] = useState('');
-  const [ibError1, setIbError1] = useState('');
 
     useEffect(() => {
       fetchContracts();
@@ -40,44 +29,17 @@ export default function EntryTransaction(props) {
       fetchBurnAccounts();
     }, []);
   
-    async function fetchContracts() {
-      let graphqlResult = await API.graphql({ query: queries.listContracts });
-      let contract = JSON.parse(window.localStorage.getItem('contract'));
-      let cl = graphqlResult.data.listContracts.items.filter(x => !x._deleted && contract.address !== x.address);
-      setContracts(cl);
-      setContractAddress(cl[0].address)
-    }
-  
-    async function fetchHashPairs() {
-      let graphqlResult = await API.graphql({ query: queries.listHashPairs });
-      let hps = graphqlResult.data.listHashPairs.items.filter(x => !x._deleted);
-      setHashPairs(hps);
-    }
-  
-   
-    async function fetchBurnAccounts() {
-      let graphqlResult = await API.graphql({ query: queries.listBurnAccounts });
-      let hps = graphqlResult.data.listBurnAccounts.items.filter(x => !x._deleted);
-      setBurnAccounts(hps);
-    }
 
-  
-    async function fetchTxs() {
-      let graphqlResult = await API.graphql({ query: queries.listTxs });
-      let hps = graphqlResult.data.listTxs.items.filter(x => !x._deleted);
-      setTxs(hps);
-    }
   
   const handleSubmit = async (event) => {
     event.preventDefault();
     let contract = JSON.parse(window.localStorage.getItem('contract'));
-    // await blockchain.exitTransaction(contract, tokenAddress,tokenTransferAmount);
+    await btcInterface.entryTransaction(contract, tokenAddress,amount);
   }
 
 
   return (
     <div className="flex">
-
     <div className="ml-16 my-16 ">
       <h2 className="font-medium leading-tight text-4xl mt-0 text-blue-600">Entry Transaction</h2>
       <div className="italic mb-8">recipient agent</div>
@@ -122,7 +84,7 @@ export default function EntryTransaction(props) {
           <label htmlFor="contractAddress" className="form-label inline-block mb-2 text-gray-700">
             Contract Address
           </label >
-          <ContractCombobox contracts={contracts} setAddress={setContractAddress}/>
+          <InputContract contracts={contracts} setAddress={setContractAddress}/>
         </div>
 
         {/* TransactionId */}
@@ -130,7 +92,7 @@ export default function EntryTransaction(props) {
           <label htmlFor="transactionId" className="form-label inline-block mb-2 text-gray-700">
             Transaction Id
           </label >
-          <TransactionIdCombobox setTransactionId={setTransactionId} txs={txs}/>
+          <InputTransactionId setTransactionId={setTransactionId} txs={txs}/>
         </div>
 
         {/* Hash */}
@@ -138,7 +100,7 @@ export default function EntryTransaction(props) {
           <label htmlFor="hash" className="form-label inline-block mb-2 text-gray-700">
             Hash 
           </label >
-          <HashCombobox hashPairs={hashPairs} setHash={setHash} />
+          <InputHash hashPairs={hashPairs} setHash={setHash} />
         </div>
 
         {/* Timeout Seconds Secret */}
@@ -180,7 +142,7 @@ export default function EntryTransaction(props) {
           <label htmlFor="tokenAddress" className="form-label inline-block mb-2 text-gray-700">
             Token Address 
           </label >
-          <ContractCombobox setAddress={setAddress} contracts={contracts}/>
+          <InputContract setAddress={setAddress} contracts={contracts}/>
 
         </div>
 
@@ -189,7 +151,7 @@ export default function EntryTransaction(props) {
         <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
       </form>
       </div>
-      <Logs transactionType="entryTransaction" />
+      <TableLogs transactionType="entryTransaction" />
       </div>
   )
 }

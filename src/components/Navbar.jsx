@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
-import Blockchain from './Blockchain';
+import BtcInterface from '../apis/BtcInterface';
 import { NavLink } from 'react-router-dom';
 
 function Navbar(props) {
@@ -17,7 +17,7 @@ function Navbar(props) {
   useEffect(() => {
     async function fetchData() {
       let userAccounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      setNetwork(Blockchain.getNetwork(window.ethereum.chainId))
+      setNetwork(BtcInterface.getNetwork(window.ethereum.chainId))
       setAccounts(userAccounts);
     }
     fetchData();

@@ -1,19 +1,15 @@
-import { getContractAddress } from "ethers/lib/utils";
 import { useState, useEffect } from "react";
-import Blockchain from './Blockchain';
-import { API } from 'aws-amplify';
-import * as queries from '../graphql/queries';
-import Logs from "./Logs";
+import BtcInterface from '../apis/BtcInterface';
 import TransactionIds from "./TransactionIds";
-import HashCombobox from "./HashCombobox";
-import BurnAccountCombobox from "./BurnAccountCombobox";
-import ContractCombobox from "./ContractCombobox";
-import TextInput from "./TextInput";
+import InputHash from "./InputHash";
+import InputBurnAccount from "./InputBurnAccount";
+import InputContract from "./InputContract";
+import InputText from "./InputText";
+import { fetchBurnAccounts, fetchContracts, fetchHashPairs } from "../apis/DatabaseInterface";
 
-const blockchain = new Blockchain();
+const btcInterface = new BtcInterface();
 
 export default function ExitTransaction(props) {
-
   const [contracts, setContracts] = useState(null);
   const [burnAccounts, setBurnAccounts] = useState([]);
   const [hashPairs, setHashPairs] = useState([]);
@@ -23,71 +19,17 @@ export default function ExitTransaction(props) {
   const [tokenAddress, setTokenAddress] = useState('0x0');
   const [amount, setAmount] = useState('1');
 
-
-  const [ctError1, setCtError1] = useState('');
-  const [ibError1, setIbError1] = useState('');
-
   useEffect(() => {
-    fetchContracts();
-    fetchBurnAccounts();
-    fetchHashPairs();
+    fetchContracts(setContracts);
+    fetchBurnAccounts(setBurnAccounts);
+    fetchHashPairs(setHashPairs);
   }, []);
-
-  async function fetchContracts() {
-    let graphqlResult = await API.graphql({ query: queries.listContracts });
-    let contract = JSON.parse(window.localStorage.getItem('contract'));
-    let cl = graphqlResult.data.listContracts.items.filter(x => !x._deleted && contract.address !== x.address);
-    setContracts(cl);
-    setTokenAddress(cl[0].address)
-  }
-
-  async function fetchHashPairs() {
-    let graphqlResult = await API.graphql({ query: queries.listHashPairs });
-    let hps = graphqlResult.data.listHashPairs.items.filter(x => !x._deleted);
-    setHashPairs(hps);
-  }
-
-   
-    async function fetchBurnAccounts() {
-      let graphqlResult = await API.graphql({ query: queries.listBurnAccounts });
-      let hps = graphqlResult.data.listBurnAccounts.items.filter(x => !x._deleted);
-      setBurnAccounts(hps);
-    }
-
-
-  const handleBurnAccountChange = async (e) => {
-    setBurnAddress(e.target.value);
-  }
-  const handleHashPairChange = async (e) => {
-    setHash(e.target.value);
-  }
-  const handleTokenChange = async (e) => {
-    setTokenAddress(e.target.value);
-  }
-
-
-
-
 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     let contract = JSON.parse(window.localStorage.getItem('contract'));
-    // await blockchain.exitTransaction(contract, tokenAddress,tokenTransferAmount);
-  }
-
-
-
-  
-  const setInput = (inputName, value) => {
-    switch (inputName) {
-      case 'burnAddress':
-        setBurnAddress(value)
-        break;
-
-      default:
-        break;
-    }
+   await btcInterface.exitTransaction(contract, tokenAddress,amount);
   }
 
 
@@ -100,24 +42,24 @@ export default function ExitTransaction(props) {
           {/* Burn Address */}
           <div className="mb-3 xl:w-96">
             <label className="form-label inline-block mb-2 text-gray-700" htmlFor="burn-account">Burn Address</label>
-            <BurnAccountCombobox burnAccounts={burnAccounts} setAddress={setBurnAddress} />
+            <InputBurnAccount burnAccounts={burnAccounts} setAddress={setBurnAddress} />
           </div>
           {/* Hash */}
           <div className="mb-3 xl:w-96">
             <label className="form-label inline-block mb-2 text-gray-700" htmlFor="hash-pair">Hash Pair</label>
-            <HashCombobox hashPairs={hashPairs} setHash={setHash} />
+            <InputHash hashPairs={hashPairs} setHash={setHash} />
           </div>
           {/* period End Seconds */}
           <div className="mb-3 xl:w-96" >
             <label htmlFor="exampleFormControlInput1" className="form-label inline-block mb-2 text-gray-700">
               Period End Seconds
             </label >
-            <TextInput setItem={setPeriodEndSeconds}/>
+            <InputText setItem={setPeriodEndSeconds}/>
           </div>
           {/* tokenAddress */}
           <div className="mb-3 xl:w-96">
             <label className="form-label inline-block mb-2 text-gray-700" htmlFor="token-account">Token Address</label>
-            <ContractCombobox contracts={contracts} setAddress={setTokenAddress}/>
+            <InputContract contracts={contracts} setAddress={setTokenAddress}/>
           </div>
           {/* Amount */}
           <div className="mb-3 xl:w-96" >
@@ -151,9 +93,6 @@ export default function ExitTransaction(props) {
               onChange={e => setAmount(e.target.value)}
             />
           </div>
-
-
-
           <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
         </form>
       </div>

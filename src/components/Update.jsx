@@ -1,14 +1,13 @@
-import { getContractAddress } from "ethers/lib/utils";
 import { useState, useEffect } from "react";
-import Blockchain from './Blockchain';
+import BtcInterface from '../apis/BtcInterface';
 import { API } from 'aws-amplify';
 import * as queries from '../graphql/queries';
-import ContractCombobox from "./ContractCombobox";
-import TransactionIdCombobox from "./TransactionIdCombobox";
-import HashCombobox from "./HashCombobox";
-import Logs from "./Logs";
+import InputContract from "./InputContract";
+import InputTransactionId from "./InputTransactionId";
+import InputHash from "./InputHash";
+import TableLogs from "./TableLogs";
 
-const blockchain = new Blockchain();
+const blockchain = new BtcInterface();
 
 export default function Update(props) {
   
@@ -71,7 +70,7 @@ export default function Update(props) {
           <label htmlFor="contractAddress" className="form-label inline-block mb-2 text-gray-700">
             Contract Address
           </label >
-          <ContractCombobox contracts={contracts} setAddress={setContractAddress}/>
+          <InputContract contracts={contracts} setAddress={setContractAddress}/>
         </div>
 
         {/* Transaction Id */}
@@ -79,19 +78,19 @@ export default function Update(props) {
           <label htmlFor="transactionId" className="form-label inline-block mb-2 text-gray-700">
             Transaction Id 
           </label >
-          <TransactionIdCombobox setTransactionId={setTransactionId} txs={txs}/>
+          <InputTransactionId setTransactionId={setTransactionId} txs={txs}/>
         </div>
         {/* Hash Secret */}
         <div className="mb-3 xl:w-96" >
           <label htmlFor="hashSecret" className="form-label inline-block mb-2 text-gray-700">
             Hash Secrect
           </label >
-          <HashCombobox hashPairs={hashPairs} setHash={setHash} />
+          <InputHash hashPairs={hashPairs} setHash={setHash} />
         </div>
         <button type="submit" className="border px-6 py-2.5 border-black rounded-md">Submit</button>
       </form>
       </div>
-      <Logs transactionType="update" />
+      <TableLogs transactionType="update" />
       </div>
   )
 }

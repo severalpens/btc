@@ -1,21 +1,8 @@
-import { useState, useEffect } from "react";
-import Blockchain from './Blockchain';
-import TableOuter from "./TableOuter";
-import Contracts from "./Contracts";
-import Logs from "./Logs";
-import { API } from 'aws-amplify';
-import * as queries from '../graphql/queries';
-import * as mutations from '../graphql/mutations';
-import ContractCombobox from "./ContractCombobox";
 
-const blockchain = new Blockchain();
-
-export default function TextInput(props) {
-
-const {setItem, componentId} = props.setItem;
-
+export default function InputNumber(props) {
+const {setItem, elementId} = props.setItem;
   return (
-            <input type="text" className="
+            <input type="number" className="
                     form-control
                     block
                     w-full
@@ -36,8 +23,8 @@ const {setItem, componentId} = props.setItem;
                     focus:outline-none
                   "
               placeholder="1"
-              id={componentId}
-              name={componentId}
+              id={elementId}
+              name={elementId}
               defaultValue="1"
               onChange={e => setItem(e.target.value)}
             />

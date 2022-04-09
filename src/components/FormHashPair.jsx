@@ -1,7 +1,7 @@
-import React from 'react'
 import { API,Auth } from 'aws-amplify';
 import { withAuthenticator } from '@aws-amplify/ui-react';
-function CallApi() {
+
+function HashPairNew() {
 
  async function handleClick() {
     const apiName = 'api2';
@@ -36,4 +36,4 @@ function CallApi() {
   )
 }
 
-export default withAuthenticator(CallApi)
+export default withAuthenticator(HashPairNew)

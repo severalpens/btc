@@ -1,10 +1,8 @@
 import { ethers } from "ethers";
 import { API } from 'aws-amplify';
-import * as queries from '../graphql/queries';
 import * as mutations from '../graphql/mutations';
-import * as subscriptions from '../graphql/mutations';
 
-export default class Blockchain {
+export default class BtcInterface {
 
   async deployBtc(artifact: any) {
     let provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -142,7 +140,7 @@ export default class Blockchain {
       name: artifact.contractName,
       address: result.address,
       symbol: '',
-      network: Blockchain.getNetwork(window.ethereum.chainId),
+      network: BtcInterface.getNetwork(window.ethereum.chainId),
       owner: window.ethereum.selectedAddress,
       initialBalance: '',
       timestamp: dt.getTime()

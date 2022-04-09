@@ -1,6 +1,6 @@
 
-export default function HashSecretCombobox(props) {
-    const { hashPairs, setHashSecret } = props;
+export default function InputTransactionId(props) {
+    const { txs, setTransactionId } = props;
 
     return (
         <div className="mb-3 xl:w-96" >
@@ -24,17 +24,15 @@ export default function HashSecretCombobox(props) {
                 focus:border-blue-600 
                 focus:outline-none
                 "
-                id="address"
-                name="address"
-                onChange={e => setHashSecret(e.target.value)}
-                list="optionslist"
+                id="transactionId"
+                name="transactionId"
+                onChange={e => setTransactionId(e.target.value)}
+                list="transactionIdOptionsList"
             />
-            <datalist id="optionslist">
-                {hashPairs ? hashPairs.map((hashPair) => (
-                    <option key={hashPair.id} value={hashPair.secret}>
-                        {hashPair.hash.slice(0, 5) + '..' + hashPair.hash.slice(hashPair.hash.length - 4)}
-                        {" | "}
-                        {hashPair.secret.slice(0, 5) + '..' + hashPair.secret.slice(hashPair.secret.length - 4)}
+            <datalist id="transactionIdOptionsList">
+                {txs ? txs.map((tx) => (
+                    <option key={tx.id} value={tx.transactionId}>
+                   {tx.transactionId}{" | "}{tx.tokenAddress.slice(0, 5) + '..' + tx.tokenAddress.slice(tx.tokenAddress.length - 4)}
                         </option>
                     )) : ''}
             </datalist>

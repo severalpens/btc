@@ -1,5 +1,7 @@
-export default function AccountCombobox(props) {
-    const { accounts, setAddress } = props;
+
+export default function InputBurnAccount(props) {
+    const {  burnAccounts, setAddress } = props;
+
     return (
         <div className="mb-3 xl:w-96" >
             <input type="text" className="
@@ -25,12 +27,16 @@ export default function AccountCombobox(props) {
                 id="address"
                 name="address"
                 onChange={e => setAddress(e.target.value)}
-                list="optionslist"
+                list="burnAccountOptionsList"
             />
-            <datalist id="optionslist">
-                {accounts ? accounts.map((account) => (
-                    <option key={account.id} value={account.address}>{account.name}</option>
-                )) : ''}
+            <datalist id="burnAccountOptionsList">
+                {burnAccounts ? burnAccounts.map((account) => (
+                    <option key={account.id} value={account.address}>
+                        {account.address.slice(0, 5) + '..' + account.address.slice(account.address.length - 4)}
+                        {" | "}
+                        {account.privateKey.slice(0, 5) + '..' + account.privateKey.slice(account.privateKey.length - 4)}
+                        </option>
+                    )) : ''}
             </datalist>
         </div>
     )

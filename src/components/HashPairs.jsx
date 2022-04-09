@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { API } from 'aws-amplify';
 import * as queries from '../graphql/queries';
 import * as mutations from '../graphql/mutations';
-import { Link } from 'react-router-dom';
 
 
 export default function HashPairs(props) {

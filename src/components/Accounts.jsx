@@ -35,7 +35,7 @@ export default function Accounts(props) {
       <button
         type="submit"
         className="border m-4  px-6 py-2.5 border-black rounded-md">
-        <Link to="/accounts/add" >Add Account</Link>
+        <Link to="/elements/accounts/add" >Add Account</Link>
       </button>    
     <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
       <table className="table-auto min-w-full divide-y divide-gray-200">
