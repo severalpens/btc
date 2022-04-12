@@ -106,9 +106,9 @@ export default function FormContract(props) {
             focus:outline-none"
             aria-label="Default select example" onChange={handleContractType}>
             <option value="0">--</option>
-            <option value="1">Burn to Claim - Default</option>
+            {/* <option value="1">Burn to Claim - Default</option> */}
             <option value="2">Burn to Claim - New Artifact</option>
-            <option value="3">ERC20 - Default</option>
+            {/* <option value="3">ERC20 - Default</option> */}
             <option value="4">ERC20 - New Artifact</option>
           </select>
           <div className="text-red-600">{errors}</div>
