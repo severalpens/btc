@@ -22,6 +22,7 @@ import HashPairNew from './components/FormHashPair';
 import Accounts from './components/Accounts';
 import ElementsMenu from './components/MenuElements';
 import AddAccount from './components/FormAccount';
+import Logs from './components/Logs';
 
 Amplify.configure(awsExports);
 
@@ -35,6 +36,7 @@ if (typeof window.ethereum !== 'undefined') {
           <Route path="elements" element={<ElementsMenu />} />
         <Route path="elements/contracts" element={<Contracts />} />
         <Route path="elements/accounts" element={<Accounts/>} />
+        <Route path="elements/logs" element={<Logs/>} />
         <Route path="elements/accounts/add" element={<AddAccount/>} />
           <Route path="elements/hashpairs" element={<HashPairs />} />
           <Route path="elements/burnaccounts" element={<BurnAccounts />} />

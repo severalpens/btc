@@ -47,7 +47,7 @@ export default function TableLogs(props) {
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{log.timestamp}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 <a href={"https://rinkeby.etherscan.io/tx/"+log.transactionHash} target="_blank" rel="noreferrer">
-                {log.transactionHash.slice(0,5)+"..."}
+                {log.transactionHash}
                 </a>
                 </td>
             </tr>
