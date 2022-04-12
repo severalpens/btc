@@ -18,6 +18,9 @@ export default function MenuElements() {
                 <div>
                     <Link to="/elements/burnaccounts">Burn Accounts</Link>
                 </div>
+                <div>
+                    <Link to="/elements/logs">Logs</Link>
+                </div>
             </div>
         </div>
     )
