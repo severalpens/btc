@@ -67,11 +67,11 @@ https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Organizing
 
 
 
-### Checkpoint/Version 1 - PoC
-### Checkpoint/Version 2 - Setup template and build template form
+### Checkpoint/Version 1 - PoC (Completed)
+### Checkpoint/Version 2 - Setup template and build template form  (Completed)
 
 
-### Checkpoint 3 - Construct UI forms for each method (step) in the dataflow diagram.
+### Checkpoint 3 - Construct UI forms for each method (step) in the dataflow diagram. (Completed)
 
 
 
@@ -84,17 +84,7 @@ For example, deploying the ERC20 tokens, relevant code from the node.js version 
 ![oldNewExample](./docs/architecture/OldNewExample.png)
 
 
-### Checkpoint 4 - Build Server Side API & Oauth
+### Checkpoint 4 - Build Server Side API & Oauth  (Completed using AWS Amplify)
 - A small api will be needed to track transfer expiration.
 - An Oauth implementation will be needed. Preferably [Auth0](https://auth0.com).
-
-### Checkpoint 5 - Add Integration/Unit Testing
-- Use [Hardhat](https://hardhat.org/) to build integration tests for the contracts.
-- Use mocha.js/chai.js to build unit tests for the client application.
-
-
-### Checkpoint 6 - Refine the React app 
-- Expand Usability.
-- Add more networks and possibly Mainnet.
-
 
