@@ -42,28 +42,10 @@ Draft [wireframes](https://www.figma.com/file/57QEuRZprxs9rInc4j9C5M/BTC2022?nod
 
 ## Project Management 
 
-### ToDo
-- User stories
-- Form template
-- CSS
-- Variable names
-
-### Versions
-V1 was a playground/PoC environment.
-
-v2 is a complete rebuild using:
-- client 
-    - create-react-app
-    - typescript
-    - react-router
-    - scss
-    - [style guide](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Organizing)
-- server 
-    - express-generator
-    - ejs
-
-
+### CSS
 https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Organizing
+https://tailwind-elements.com/docs/standard/components/popover/
+https://tailwindcss.com/
 
 
 
@@ -82,9 +64,3 @@ The main purpose of this repo is to take some of the console application code an
 For example, deploying the ERC20 tokens, relevant code from the node.js version can be recycled in the construction of a form which will do the same thing. However the user will have control over the variables such as `network` and `initial amount`:
 
 ![oldNewExample](./docs/architecture/OldNewExample.png)
-
-
-### Checkpoint 4 - Build Server Side API & Oauth  (Completed using AWS Amplify)
-- A small api will be needed to track transfer expiration.
-- An Oauth implementation will be needed. Preferably [Auth0](https://auth0.com).
-
