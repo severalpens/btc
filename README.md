@@ -41,30 +41,16 @@ The root directory (`/`) can be used to compile contracts and will eventually be
 Draft [wireframes](https://www.figma.com/file/57QEuRZprxs9rInc4j9C5M/BTC2022?node-id=0%3A1) have been created to demonstrate UIs from a functional perspective. ie I have no web design skills
 
 
-
-### CSS
-https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Organizing
-
-
-https://tailwind-elements.com/docs/standard/components/popover
-
-
-https://tailwindcss.com
+## CSS
+https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Organizing<br/>
+https://tailwind-elements.com/docs/standard/components/popover<br/>
+https://tailwindcss.com<br/>
 
 
 ## Project Management 
-
-
-
-
 ### Checkpoint/Version 1 - PoC (Completed)
 ### Checkpoint/Version 2 - Setup template and build template form  (Completed)
-
-
 ### Checkpoint 3 - Construct UI forms for each method (step) in the dataflow diagram. (Completed)
-
-
-
 
 
 The main purpose of this repo is to take some of the console application code and use it to construct a complete React UI application. 
