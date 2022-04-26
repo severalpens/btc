@@ -40,12 +40,20 @@ The root directory (`/`) can be used to compile contracts and will eventually be
 ## Wireframes
 Draft [wireframes](https://www.figma.com/file/57QEuRZprxs9rInc4j9C5M/BTC2022?node-id=0%3A1) have been created to demonstrate UIs from a functional perspective. ie I have no web design skills
 
-## Project Management 
+
 
 ### CSS
 https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Organizing
-https://tailwind-elements.com/docs/standard/components/popover/
-https://tailwindcss.com/
+
+
+https://tailwind-elements.com/docs/standard/components/popover
+
+
+https://tailwindcss.com
+
+
+## Project Management 
+
 
 
 
